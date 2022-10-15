@@ -1,0 +1,85 @@
+-- Keybindings
+-- Reference: https://neovim.io/doc/user/api.html#nvim_set_keymap()
+
+local keymap = vim.keymap.set
+local default_opts = { silent = true }
+local noremap_opts = { silent = true, noremap = true }
+local remap_opts   = { silent = true, remap = true }
+
+local NORMAL = "n"
+local VISUAL = "v"
+local INSERT = "i"
+local TERM   = "t"
+
+-- Leader keybindings
+keymap(NORMAL, "<leader>w", ":w<cr>",   default_opts) -- write file
+keymap(VISUAL, "<leader>y", '"+y<cr>',  default_opts) -- yank to clipboard
+keymap(NORMAL, "<leader>z", "<c-z>",    noremap_opts) -- suspend nvim
+keymap(NORMAL, "<leader>,", "",         default_opts) -- reload nvim
+keymap(NORMAL, "<leader>/", ":noh<cr>", default_opts) -- clear search
+
+keymap(NORMAL, '<leader>"', 'ysiW"', remap_opts)
+keymap(NORMAL, "<leader>'", "ysiW'", remap_opts)
+keymap(NORMAL, "<leader>)", "ysiW)", remap_opts)
+keymap(NORMAL, "<leader>{", "ysiW{", remap_opts)
+keymap(NORMAL, "<leader>[", "ysiW[", remap_opts)
+
+-- Janus-rails keybindings
+keymap(NORMAL, "<leader>j", ":JanusRspec<cr>", default_opts)
+
+-- Toggle terminal keybindings
+keymap(TERM,   "<c-j>",     "<c-\\><c-n>", noremap_opts)
+keymap(NORMAL, "<leader>t", ":ToggleTerm<cr>", default_opts)
+
+-- Escape keybindings
+keymap(INSERT, "<c-j>", "<esc>", default_opts)
+keymap(VISUAL, "<c-j>", "<esc>", default_opts)
+
+-- Quit keybindings
+local smart_quit = function()
+    local filter_open_buffers = function(bufnr)
+        return
+            vim.fn.buflisted(bufnr) == 1               -- not help docs (:h 'buflisted')
+            and vim.api.nvim_buf_is_loaded(bufnr)      -- not unloaded  (:h api-buffer)
+            and vim.api.nvim_buf_get_name(bufnr) ~= "" -- not an empty buffer
+    end
+
+    local open_windows = vim.api.nvim_list_wins()
+    local open_buffers = vim.tbl_filter(filter_open_buffers, vim.api.nvim_list_bufs())
+
+    if #open_windows > 1 or #open_buffers == 0 then
+        vim.cmd("q")
+    else
+        vim.cmd("bw")
+    end
+end
+
+keymap(NORMAL, "<leader>q", smart_quit, default_opts) -- smart quit
+keymap(NORMAL, "<leader>Q", ":qa<cr>", default_opts)  -- quit buffer
+
+-- Window keybindings
+keymap(NORMAL, "<c-h>",   "<c-w>h",      noremap_opts)
+keymap(NORMAL, "<c-j>",   "<c-w>j",      noremap_opts)
+keymap(NORMAL, "<c-k>",   "<c-w>k",      noremap_opts)
+keymap(NORMAL, "<c-l>",   "<c-w>l",      noremap_opts)
+keymap(NORMAL, "<c-s-j>", ":split<cr>",  default_opts)
+keymap(NORMAL, "<c-s-l>", ":vsplit<cr>", default_opts)
+
+-- Buffer keybindings
+keymap(NORMAL, "<s-tab>", ":bprevious<cr>", default_opts)
+keymap(NORMAL, "<tab>",   ":bnext<cr>",     default_opts)
+
+-- Utility keybindings
+keymap(NORMAL, "<cr>", "o<esc>", noremap_opts) -- add new line
+keymap(NORMAL, "U",    "<c-r>",  noremap_opts) -- redo
+keymap(NORMAL, "H",    "^",      noremap_opts) -- Go to: line beginning
+keymap(NORMAL, "L",    "$",      noremap_opts) -- Go to: line ending
+keymap(VISUAL, "<",    "<gv",    noremap_opts) -- indent line
+keymap(VISUAL, ">",    ">gv",    noremap_opts) -- outdent line
+
+-- Disable arrow keys
+local all_modes = { NORMAL, VISUAL, INSERT }
+keymap(all_modes, "<left>",  "", default_opts)
+keymap(all_modes, "<up>",    "", default_opts)
+keymap(all_modes, "<down>",  "", default_opts)
+keymap(all_modes, "<right>", "", default_opts)
