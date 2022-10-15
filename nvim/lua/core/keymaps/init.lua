@@ -65,9 +65,9 @@ keymap(NORMAL, "<c-l>",   "<c-w>l",      noremap_opts)
 keymap(NORMAL, "<c-s-j>", ":split<cr>",  default_opts)
 keymap(NORMAL, "<c-s-l>", ":vsplit<cr>", default_opts)
 
--- Buffer keybindings
-keymap(NORMAL, "<s-tab>", ":bprevious<cr>", default_opts)
-keymap(NORMAL, "<tab>",   ":bnext<cr>",     default_opts)
+-- Buffer keybindings (DISABLED)
+-- keymap(NORMAL, "<s-tab>", ":bprevious<cr>", default_opts)
+-- keymap(NORMAL, "<tab>",   ":bnext<cr>",     default_opts)
 
 -- Utility keybindings
 keymap(NORMAL, "<cr>", "o<esc>", noremap_opts) -- add new line
