@@ -11,6 +11,7 @@ M.Plugins = {
     "leap",                 -- buffer navigation
     "marks",                -- mark highlight
     "mason",                -- lsp server installer
+    "modes",                -- cursorline highlighting
     -- "noice",                -- overhauled ui
     "nvim-cmp",             -- auto completion
     "nvim-surround",        -- smart parenthesis
