@@ -13,7 +13,7 @@ local TERM   = "t"
 
 -- Leader keybindings
 keymap(NORMAL, "<leader>w", ":w<cr>",   default_opts) -- write file
-keymap(VISUAL, "<leader>y", '"+y<cr>',  default_opts) -- yank to clipboard
+keymap(VISUAL, "<leader>y", '"+y',      default_opts) -- yank to clipboard
 keymap(NORMAL, "<leader>z", "<c-z>",    noremap_opts) -- suspend nvim
 keymap(NORMAL, "<leader>,", "",         default_opts) -- reload nvim
 keymap(NORMAL, "<leader>/", ":noh<cr>", default_opts) -- clear search
