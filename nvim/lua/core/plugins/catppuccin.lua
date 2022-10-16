@@ -33,8 +33,7 @@ M.Setup = function()
             treesitter = true,
         },
         custom_highlights = {
-            Comment = { fg = colors.flamingo },
-            Constant = { fg = colors.blue },
+            -- Comment = { fg = colors.flamingo },
         }
     })
     vim.cmd("colorscheme catppuccin")
