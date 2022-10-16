@@ -24,9 +24,9 @@ M.Setup = function()
         },
         sections = {
             lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics"},
+            lualine_b = {},
             lualine_c = {},
-            lualine_x = {},
+            lualine_x = { "branch", "diff", "diagnostics"},
             lualine_y = { "filetype", "location" },
             lualine_z = { "filename" },
         },
