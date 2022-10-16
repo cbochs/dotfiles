@@ -11,13 +11,18 @@ local action_set   = require("telescope.actions.set")
 vim.api.nvim_create_user_command(
     "ReloadConfig",
     function()
+        -- Unload all packages
         for name, _ in pairs(package.loaded) do
             if name:match("^core") then
                 package.loaded[name] = nil
             end
         end
 
+        -- Load all packages
         dofile(vim.env.MYVIMRC)
+
+        -- Compile plugins
+        vim.api.nvim_cmd({ cmd = "PackerCompile" }, { output = false })
     end,
     {}
 )
