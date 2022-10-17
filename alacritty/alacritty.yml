@@ -1,0 +1,53 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+import:
+  - ~/.config/alacritty/catppuccin.yml
+
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 4
+    y: 2
+  decorations: none
+
+font:
+  normal:
+    family: Iosevka Nerd Font
+    style: Regular
+  bold:
+    family: Iosevka Nerd Font
+    style: Bold
+  italic:
+    family: Iosevka Nerd Font
+    style: Italic
+  bold_italic:
+    family: Iosevka Nerd Font
+    style: Bold Italic
+  # size: 28.0
+  size: 18.0
+
+# Send ESC (\x1b) before characters when alt is pressed.
+alt_send_esc: false
+
+# Set some keybindings to override macOS alt characters
+#
+# Reference: https://github.com/alacritty/alacritty/issues/93
+#
+key_bindings:
+  - { key: H,          mods: Control|Shift, chars: "\x1b[72;5u" }
+  - { key: J,          mods: Control|Shift, chars: "\x1b[74;5u" }
+  - { key: L,          mods: Control|Shift, chars: "\x1b[76;5u" }
+
+  - { key: C,          mods: Alt, chars: "\x1bc" }
+  - { key: M,          mods: Alt, chars: "\x1bm" }
+  - { key: N,          mods: Alt, chars: "\x1bn" }
+  - { key: P,          mods: Alt, chars: "\x1bp" }
+  - { key: S,          mods: Alt, chars: "\x1bs" }
+  - { key: Apostrophe, mods: Alt, chars: "\x1b`" }
+  - { key: Comma,      mods: Alt, chars: "\x1b," }
+  - { key: Period,     mods: Alt, chars: "\x1b." }
+  - { key: LBracket,   mods: Alt, chars: "\x1b(" }
+  - { key: RBracket,   mods: Alt, chars: "\x1b)" }
+  - { key: Semicolon,  mods: Alt, chars: "\x1b;" }
