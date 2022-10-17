@@ -10,7 +10,7 @@ The dotfiles I prefer.
 
 ## Terminal: [Alacritty](https://alacritty.org/)
 
-**todo!()**
+[Alacritty Config](./alacritty)
 
 ## Shell: [Fish](https://fishshell.com/)
 
