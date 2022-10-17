@@ -2,11 +2,11 @@
 
 The dotfiles I prefer.
 
-## Editor: [Neovim)(https://neovim.io/)
+## Editor: [Neovim](https://neovim.io/)
 
 [Neovim Config](./nvim)
 
-<img width="540" alt="Screen Shot 2022-10-17 at 07 49 25" src="https://user-images.githubusercontent.com/2467016/196194970-d5ae3edd-4fbf-46b9-8438-492bcb8107d7.png">
+<img width="540" alt="Screen Shot 2022-10-17 at 08 06 59" src="https://user-images.githubusercontent.com/2467016/196198804-4a230b8d-96d4-4ed2-b09d-e9ae748b234d.png">
 
 ## Terminal: [Alacritty](https://alacritty.org/)
 
