@@ -20,18 +20,28 @@ M.Details = function()
 end
 
 M.Setup = function()
+    local filetypes = {
+        "bash",
+        "c",
+        "cpp",
+        "gitignore",
+        "javascript",
+        "json",
+        "jsonc",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "ruby",
+        "rust",
+        "typescript",
+        "yaml",
+    }
+
     require("nvim-treesitter.configs").setup({
+        ensure_installed = filetypes,
         highlight = {
             enable = true,
-        },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = "<M-n>",
-                node_incremental = "<M-n>",
-                scope_incremental = "<M-m>",
-                node_decremental = "<M-p>",
-            },
         },
         indent = {
             enable = true
