@@ -43,18 +43,14 @@ local lsp_cmp    = require("cmp_nvim_lsp")
 local default_caps = vim.lsp.protocol.make_client_capabilities()
 local capabilities = lsp_cmp.default_capabilities(default_caps)
 
-lsp_config.sumneko_lua.setup({
-    on_attach = on_attach,
+lsp_config.clangd.setup({
     capabilities = capabilities,
-    settings = {
-        Lua = {
-            diagnostics = { globals = { "vim", "use" } },
-            runtime   = { version = "LuaJIT" },
-            telemetry = { enabled = false },
-            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-        }
-    },
-    single_file_support = false,
+    on_attach = on_attach,
+})
+
+lsp_config.pyright.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
 })
 
 lsp_config.rust_analyzer.setup({
@@ -68,52 +64,16 @@ lsp_config.solargraph.setup({
     cmd = { "asdf", "exec", "solargraph", "stdio" },
 })
 
-lsp_config.pyright.setup({
+lsp_config.sumneko_lua.setup({
+    on_attach = on_attach,
     capabilities = capabilities,
-    on_attach = on_attach
+    settings = {
+        Lua = {
+            diagnostics = { globals = { "vim", "use" } },
+            runtime   = { version = "LuaJIT" },
+            telemetry = { enabled = false },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+        }
+    },
+    single_file_support = false,
 })
-    -- settings = {
-    --     python = {
-    --         analysis = {
-    --             autoImportCompletions = true,
-    --             autoSearchPaths = true,
-    --             diagnosticMode = 'workspace',
-    --             typeCheckingMode = 'on',
-    --             useLibraryCodeForTypes = true,
-    --             venvPath = '$HOME/.local/share/virtualenvs', -- pipenv
-    --         }
-    --     }
-    -- }
-
---[[
-vim.api.nvim_create_augroup("LanguageServers", { clear = true })
-
-local root_dir = function(file_paths)
-    local found_files = vim.fs.find(file_paths, { upward = true })
-    local root_dir = vim.fs.dirname(found_files[1])
-    return root_dir
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-    group = "LanguageServers",
-    pattern = "rust",
-    callback = function()
-        vim.lsp.start({
-            name = "rust-analyzer",
-            cmd = { "rust-analyzer" },
-            root_dir = root_dir({ "Cargo.toml" }),
-            capabilities = capabilities,
-        })
-    end
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = "LanguageServers",
-    pattern = "rust",
-    callback = function(args)
-        local keymap = vim.keymap.set
-        local buffer_opts = { silent = true, noremap = true, buffer = args.buf }
-        keymap("n", "K", vim.lsp.buf.hover, buffer_opts)
-    end
-})
---]]
