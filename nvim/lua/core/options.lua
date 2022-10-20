@@ -24,7 +24,7 @@ o.wrap          = false
 o.hidden     = true
 o.hlsearch   = false
 o.mouse      = "a"
-o.scrolloff  = 999
+-- o.scrolloff  = 999
 -- o.timeoutlen = 0
 o.wrapscan   = true
 
