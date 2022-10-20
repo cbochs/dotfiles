@@ -31,18 +31,36 @@ vim.api.nvim_create_user_command(
     "JanusRspec",
     function()
         local term = require("toggleterm")
+
+        -- Used for running a specific rspec test
+        local use_line_number = true
+
         local current_cursor = vim.api.nvim_win_get_cursor(0)
         local current_buffer = vim.api.nvim_buf_get_name(0)
         local current_dir    = vim.fn.getcwd()
+        local current_line   = current_cursor[1] -- [ line, col ]
 
-        term.exec(string.format("docker compose exec portal bin/rspec %s:%s",
-            string.gsub(
-                current_buffer,
-                string.gsub(current_dir, "%p", "%%%1") .. "/", -- sanitize pattern
-                ""
-            ),
-            current_cursor[1] -- [ line, col ]
-        ))
+        local sanitized_current_dir = string.gsub(current_dir, "%p", "%%%1")
+        local relative_buffer_path = string.gsub(current_buffer, sanitized_current_dir .. "/", "")
+
+        -- Use the correct rspec file when triggering from rails code
+        if string.match(relative_buffer_path, "^app") then
+            use_line_number = false
+            relative_buffer_path = string.gsub(relative_buffer_path, "^app", "spec")
+            relative_buffer_path = string.gsub(relative_buffer_path, ".rb$", "_spec.rb")
+        end
+
+        -- Run the whole rspec test when at the top of the file
+        if current_line == 1 then
+            use_line_number = false
+        end
+
+        local docker_command = "docker compose exec portal bin/rspec %s"
+        if use_line_number then
+            docker_command = docker_command .. ":%s"
+        end
+
+        term.exec(string.format(docker_command, relative_buffer_path, current_line))
     end,
     {}
 )
