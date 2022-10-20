@@ -36,6 +36,8 @@ alt_send_esc: false
 # Reference: https://github.com/alacritty/alacritty/issues/93
 #
 key_bindings:
+  - { key: W, mods: Command, action: None }
+
   - { key: H,          mods: Control|Shift, chars: "\x1b[72;5u" }
   - { key: J,          mods: Control|Shift, chars: "\x1b[74;5u" }
   - { key: L,          mods: Control|Shift, chars: "\x1b[76;5u" }
