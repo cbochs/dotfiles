@@ -6,6 +6,7 @@ local M = {}
 M.Plugins = {
     "catppuccin",           -- colour theme
     "comment",              -- comment out lines
+    "duck",                 -- a waddling companion
     "lualine",              -- statusbar
     "gitsigns",             -- git information
     "leap",                 -- buffer navigation
