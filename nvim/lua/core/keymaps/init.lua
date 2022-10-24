@@ -24,8 +24,8 @@ keymap(NORMAL, "<leader>)", "ysiW)", remap_opts)
 keymap(NORMAL, "<leader>{", "ysiW{", remap_opts)
 keymap(NORMAL, "<leader>[", "ysiW[", remap_opts)
 
--- Janus-rails keybindings
-keymap(NORMAL, "<leader>j", ":JanusRspec<cr>", default_opts)
+-- Janus-rails debug keybindings
+keymap(NORMAL, "<leader>dj", ":JanusRspec<cr>", default_opts)
 
 -- Toggle terminal keybindings
 keymap(TERM,   "<c-j>",     "<c-\\><c-n>", noremap_opts)
