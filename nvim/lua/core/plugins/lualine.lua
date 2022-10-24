@@ -24,6 +24,21 @@ M.Setup = function()
         { output = false }
     )
 
+    local marked_status = function()
+        local marks = require("grapple.marks")
+        local config = require("grapple.config")
+        local hl_group = "LualineCustomLspInactive"
+        local text  = "[U]"
+
+        local mark_key = marks.find_key(config.project_root, { buffer = 0 })
+        if mark_key ~= nil then
+            hl_group = "LualineCustomLspActive"
+            text  = "[" .. string.sub(tostring(mark_key), 1, 1) .. "]"
+        end
+
+        return "%#" .. hl_group .. "#" .. text .. "%*"
+    end
+
     local lsp_status = function()
         local attached_lsp = vim.lsp.get_active_clients()
         local hl_group = "LualineCustomLspInactive"
@@ -52,8 +67,8 @@ M.Setup = function()
         },
         sections = {
             lualine_a = { "mode" },
-            lualine_b = { lsp_status,  "diagnostics" },
-            lualine_c = {},
+            lualine_b = { marked_status, lsp_status,  "diagnostics" },
+            lualine_c = { },
             lualine_x = { { "branch", fmt = format_branch } },
             lualine_y = { "filetype", "location" },
             lualine_z = { { "filename", file_status = false } },

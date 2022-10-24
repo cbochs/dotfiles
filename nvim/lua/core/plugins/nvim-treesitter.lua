@@ -24,6 +24,7 @@ M.Setup = function()
         "bash",
         "c",
         "cpp",
+        "dockerfile",
         "gitignore",
         "javascript",
         "json",

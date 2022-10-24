@@ -52,7 +52,6 @@ M.Setup = function()
 
     keymap("n", "<leader>b", builtin.buffers, default_opts)
     keymap("n", "<leader>f", builtin.find_files, default_opts)
-    keymap("n", "<leader>m", builtin.marks, default_opts)
     keymap("n", "<leader>s", builtin.live_grep, default_opts)
     keymap("n", "<leader>.", customs_find_dotfiles, default_opts)
 end

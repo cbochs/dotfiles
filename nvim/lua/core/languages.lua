@@ -34,7 +34,7 @@ local on_attach = function(_, bufnr)
     keymap("n", "<leader>r", vim.lsp.buf.rename, buffer_opts)
     keymap("n", "<c-n>",     vim.diagnostic.goto_next, buffer_opts)
     keymap("n", "<c-p>",     vim.diagnostic.goto_prev, buffer_opts)
-    keymap("n", "<leader>l", vim.diagnostic.open_float, buffer_opts)
+    -- keymap("n", "<leader>l", vim.diagnostic.open_float, buffer_opts)
 end
 
 local lsp_config = require("lspconfig")

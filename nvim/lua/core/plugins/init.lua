@@ -9,7 +9,8 @@ M.Plugins = {
     "duck",                 -- a waddling companion
     "lualine",              -- statusbar
     "gitsigns",             -- git information
-    "leap",                 -- buffer navigation
+    "grapple",              -- buffer navigation
+    "leap",                 -- file navigation
     "marks",                -- mark highlight
     "mason",                -- lsp server installer
     "modes",                -- cursorline highlighting
@@ -23,7 +24,7 @@ M.Plugins = {
     -- "which-key"          -- keymap hints
 }
 
-M.Startup = function(plugins)
+function M.Startup(plugins)
     return require("packer").startup(function()
         use "wbthomason/packer.nvim"
         use "kyazdani42/nvim-web-devicons"

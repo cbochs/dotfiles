@@ -1,4 +1,4 @@
--- Quick Buffer Navigation
+-- Quick File Navigation
 -- Repo: https://github.com/ggandor/leap.nvim
 
 local M = {}
