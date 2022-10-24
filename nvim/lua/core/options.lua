@@ -21,12 +21,13 @@ o.termguicolors = true
 o.wrap          = false
 
 -- Buffer Options
-o.hidden     = true
-o.hlsearch   = false
-o.mouse      = "a"
--- o.scrolloff  = 999
--- o.timeoutlen = 0
-o.wrapscan   = true
+o.hidden      = true
+o.hlsearch    = false
+o.jumpoptions = "stack"
+o.mouse       = "a"
+o.scrolloff   = 999
+-- o.timeoutlen  = 0
+o.wrapscan    = true
 
 -- Left Gutter
 o.number         = true
