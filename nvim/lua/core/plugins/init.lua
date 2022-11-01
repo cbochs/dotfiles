@@ -1,15 +1,17 @@
 -- Plugins
 -- Reference: https://github.com/wbthomason/packer.nvim
 
+---@class Plugin
+---@field details function
+
 local M = {}
 
 M.Plugins = {
     "catppuccin",           -- colour theme
-    "comment",              -- comment out lines
+    "comment",              -- comments
     "duck",                 -- a waddling companion
     "lualine",              -- statusbar
     "gitsigns",             -- git information
-    "grapple",              -- buffer navigation
     "leap",                 -- file navigation
     "marks",                -- mark highlight
     "mason",                -- lsp server installer
@@ -18,10 +20,10 @@ M.Plugins = {
     "nvim-cmp",             -- auto completion
     "nvim-surround",        -- smart parenthesis
     "nvim-treesitter",      -- syntax highlighting
+    "portal",               -- jump navigation
     "telescope",            -- fuzzy search
     "telescope-fzf-native", -- fzf integration
     "toggleterm",           -- integrated terminal
-    -- "which-key"          -- keymap hints
 }
 
 function M.Startup(plugins)
