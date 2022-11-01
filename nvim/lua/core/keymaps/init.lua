@@ -18,11 +18,11 @@ keymap(NORMAL, "<leader>z", "<c-z>",    noremap_opts) -- suspend nvim
 keymap(NORMAL, "<leader>,", "",         default_opts) -- reload nvim
 keymap(NORMAL, "<leader>/", ":noh<cr>", default_opts) -- clear search
 
-keymap(NORMAL, '<leader>"', 'ysiW"', remap_opts)
-keymap(NORMAL, "<leader>'", "ysiW'", remap_opts)
-keymap(NORMAL, "<leader>)", "ysiW)", remap_opts)
-keymap(NORMAL, "<leader>{", "ysiW{", remap_opts)
-keymap(NORMAL, "<leader>[", "ysiW[", remap_opts)
+keymap(NORMAL, "<leader>\"", 'ysiW"', remap_opts)
+keymap(NORMAL, "<leader>'", "ysiW'",  remap_opts)
+keymap(NORMAL, "<leader>)", "ysiW)",  remap_opts)
+keymap(NORMAL, "<leader>{", "ysiW{",  remap_opts)
+keymap(NORMAL, "<leader>[", "ysiW[",  remap_opts)
 
 -- Janus-rails debug keybindings
 keymap(NORMAL, "<leader>dj", ":JanusRspec<cr>", default_opts)
@@ -36,26 +36,9 @@ keymap(INSERT, "<c-j>", "<esc>", default_opts)
 keymap(VISUAL, "<c-j>", "<esc>", default_opts)
 
 -- Quit keybindings
-local smart_quit = function()
-    local filter_open_buffers = function(bufnr)
-        return
-            vim.fn.buflisted(bufnr) == 1               -- not help docs (:h 'buflisted')
-            and vim.api.nvim_buf_is_loaded(bufnr)      -- not unloaded  (:h api-buffer)
-            and vim.api.nvim_buf_get_name(bufnr) ~= "" -- not an empty buffer
-    end
-
-    local open_windows = vim.api.nvim_list_wins()
-    local open_buffers = vim.tbl_filter(filter_open_buffers, vim.api.nvim_list_bufs())
-
-    if #open_windows > 1 or #open_buffers == 0 then
-        vim.cmd("q")
-    else
-        vim.cmd("bw")
-    end
-end
-
-keymap(NORMAL, "<leader>q", smart_quit, default_opts) -- smart quit
-keymap(NORMAL, "<leader>Q", ":qa<cr>", default_opts)  -- quit buffer
+local quit = require("core.keymaps.quit")
+keymap(NORMAL, "<leader>q", quit.smart, default_opts) -- smart quit
+keymap(NORMAL, "<leader>Q", ":qa<cr>", default_opts)  -- exit nvim
 
 -- Window keybindings
 keymap(NORMAL, "<c-h>",   "<c-w>h",      noremap_opts)
@@ -66,14 +49,15 @@ keymap(NORMAL, "<c-s-j>", ":split<cr>",  default_opts)
 keymap(NORMAL, "<c-s-l>", ":vsplit<cr>", default_opts)
 
 -- Buffer keybindings (DISABLED)
--- keymap(NORMAL, "<s-tab>", ":bprevious<cr>", default_opts)
--- keymap(NORMAL, "<tab>",   ":bnext<cr>",     default_opts)
+keymap(NORMAL, "<c-b>h", ":bprevious<cr>", default_opts)
+keymap(NORMAL, "<c-b>l", ":bnext<cr>",     default_opts)
 
 -- Utility keybindings
 keymap(NORMAL, "<cr>", "o<esc>", noremap_opts) -- add new line
 keymap(NORMAL, "U",    "<c-r>",  noremap_opts) -- redo
 keymap(NORMAL, "H",    "^",      noremap_opts) -- Go to: line beginning
 keymap(NORMAL, "L",    "$",      noremap_opts) -- Go to: line ending
+keymap(NORMAL, "x",    "\"_x",   noremap_opts) -- blackhole single chars
 keymap(VISUAL, "<",    "<gv",    noremap_opts) -- indent line
 keymap(VISUAL, ">",    ">gv",    noremap_opts) -- outdent line
 
