@@ -9,7 +9,7 @@ M.Details = function()
         after = {
             "catppuccin",
             "gitsigns.nvim",
-            "portal.nvim",
+            "grapple.nvim",
         },
         config = M.Setup,
     }
@@ -53,7 +53,7 @@ M.Setup = function()
         },
         sections = {
             lualine_a = { "mode" },
-            lualine_b = { "portal_status", lsp_status,  "diagnostics" },
+            lualine_b = { "grapple", lsp_status,  "diagnostics" },
             lualine_c = { },
             lualine_x = { { "branch", fmt = format_branch } },
             lualine_y = { "filetype", "location" },
