@@ -1,2 +1,13 @@
+asciinema
+configstore
+fish
+git
+helix
+kitty
+limelight
+nnn
+spicetify
+
+# Neovim
 nvim/plugin
 *.so
