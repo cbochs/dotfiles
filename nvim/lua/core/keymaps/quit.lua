@@ -21,7 +21,12 @@ function M.smart()
     local open_windows = vim.api.nvim_list_wins()
     local open_buffers = vim.tbl_filter(filter_open_buffers, vim.api.nvim_list_bufs())
 
-    if #open_windows > 1 or #open_buffers == 0 then
+    -- solargraph lsp takes long to load... Don't let me quit when working on a
+    -- rails project :p
+    local never_quit = #vim.lsp.get_active_clients() > 0
+        and vim.lsp.get_active_clients()[1].config.root_dir == "/Users/cbochula@cisco.com/git/janus-rails"
+
+    if #open_windows > 1 or (#open_buffers == 0 and not never_quit) then
         vim.cmd("quit") -- close window
     else
         vim.cmd("bwipe") -- close buffer

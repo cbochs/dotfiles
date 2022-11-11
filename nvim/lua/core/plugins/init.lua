@@ -15,6 +15,7 @@ M.Plugins = {
     "leap",                 -- file navigation
     "marks",                -- mark highlight
     "mason",                -- lsp server installer
+    "mini",                 -- assortment of plugins
     "modes",                -- cursorline highlighting
     -- "noice",                -- overhauled ui
     "nvim-cmp",             -- auto completion

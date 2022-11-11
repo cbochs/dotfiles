@@ -1,5 +1,3 @@
--- User Commands
-
 local actions  = require("telescope.actions")
 local defaults = require("telescope.config").values
 local finders  = require("telescope.finders")

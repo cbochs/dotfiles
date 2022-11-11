@@ -14,7 +14,7 @@ M.Setup = function()
     require("comment").setup({
         toggler = {
             line = "<leader>c",
-        }
+        },
     })
 end
 

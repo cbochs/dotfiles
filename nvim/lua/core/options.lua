@@ -26,7 +26,7 @@ o.hlsearch    = false
 o.jumpoptions = "stack"
 o.mouse       = "a"
 o.scrolloff   = 999
--- o.timeoutlen  = 0
+o.smartcase   = true
 o.wrapscan    = true
 
 -- Left Gutter
