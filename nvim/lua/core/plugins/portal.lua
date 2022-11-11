@@ -19,7 +19,7 @@ M.Setup = function()
     portal.setup({
         query = { "different", "grapple" },
         escape = {
-            ["<c-j>"] = true
+            ["<c-j>"] = true,
         },
         integrations = {
             grapple = true,
@@ -33,7 +33,7 @@ M.Setup = function()
         popup_options = {
             width = 80,
             height = 12,
-        }
+        },
     })
 
     vim.keymap.set("n", "<leader>o", portal.jump_backward, {})

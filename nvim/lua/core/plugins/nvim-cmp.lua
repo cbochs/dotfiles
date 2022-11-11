@@ -33,7 +33,7 @@ M.Setup = function()
         snippet = {
             expand = function(args)
                 vim.fn["vsnip#anonymous"](args.body)
-            end
+            end,
         },
         window = {
             completion = cmp.config.window.bordered(),
@@ -57,8 +57,8 @@ M.Setup = function()
             { name = "buffer", keyword_length = 2 },
         }),
         experimental = {
-            ghost_text = true
-        }
+            ghost_text = true,
+        },
     })
 
     -- Search auto-completion
@@ -66,8 +66,8 @@ M.Setup = function()
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
             { name = "buffer", max_item_count = 20 },
-            { name = "path",   max_item_count = 20 },
-        })
+            { name = "path", max_item_count = 20 },
+        }),
     })
 
     -- Command auto-completion
@@ -75,7 +75,7 @@ M.Setup = function()
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
             { name = "cmdline", max_item_count = 20 },
-        })
+        }),
     })
 end
 

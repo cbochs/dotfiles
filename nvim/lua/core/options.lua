@@ -13,40 +13,40 @@
 local o = vim.opt
 
 -- Buffer Appearance
-o.cmdheight     = 0
-o.colorcolumn   = "80,100"
-o.cursorline    = true
-o.laststatus    = 0
+o.cmdheight = 0
+o.colorcolumn = "80,100"
+o.cursorline = true
+o.laststatus = 0
 o.termguicolors = true
-o.wrap          = false
+o.wrap = false
 
 -- Buffer Options
-o.hidden      = true
-o.hlsearch    = false
+o.hidden = true
+o.hlsearch = false
 o.jumpoptions = "stack"
-o.mouse       = "a"
-o.scrolloff   = 999
-o.smartcase   = true
-o.wrapscan    = true
+o.mouse = "a"
+o.scrolloff = 999
+o.smartcase = true
+o.wrapscan = true
 
 -- Left Gutter
-o.number         = true
+o.number = true
 o.relativenumber = true
-o.signcolumn     = "yes"
+o.signcolumn = "yes"
 
 -- Tabbing / Spacing
-o.expandtab   = true -- convert tab press to spaces
-o.shiftwidth  = 4    -- auto tab indentation
-o.softtabstop = 4    -- manual tab indentation
-o.tabstop     = 4    -- visual representation of <tab>
+o.expandtab = true -- convert tab press to spaces
+o.shiftwidth = 4 -- auto tab indentation
+o.softtabstop = 4 -- manual tab indentation
+o.tabstop = 4 -- visual representation of <tab>
 
 -- Backup / Swap
-o.backup      = false -- disable file write backups
+o.backup = false -- disable file write backups
 o.writebackup = false -- disable file write backups
-o.swapfile    = false -- disable new file swapfile?
+o.swapfile = false -- disable new file swapfile?
 
 -- Statusline
-o.ruler    = false
+o.ruler = false
 o.showmode = false
 
 -- Split direction

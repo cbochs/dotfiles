@@ -34,7 +34,7 @@ M.Setup = function()
         },
         custom_highlights = {
             Comment = { fg = colors.flamingo },
-        }
+        },
     })
     vim.cmd("colorscheme catppuccin")
 end

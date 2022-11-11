@@ -22,12 +22,12 @@ M.Setup = function()
             layout_strategy = "horizontal",
             layout_config = {
                 prompt_position = "top",
-                width = 0.8
+                width = 0.8,
             },
             file_ignore_patterns = {
-                "node_modules",    -- ignore node packages
+                "node_modules", -- ignore node packages
                 "packer_compiled", -- ignore packer_compiled.lua
-                "vendor",          -- ignore bundled gems
+                "vendor", -- ignore bundled gems
             },
             selection_strategy = "reset",
             sorting_strategy = "ascending",
@@ -40,7 +40,7 @@ M.Setup = function()
         },
     })
 
-    telescope.load_extension('fzf')
+    telescope.load_extension("fzf")
 
     local builtin = require("telescope.builtin")
     local keymap = vim.keymap.set

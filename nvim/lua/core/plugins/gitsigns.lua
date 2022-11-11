@@ -19,7 +19,7 @@ M.Setup = function()
             vim.keymap.set("n", "<leader>gb", gitsigns.toggle_current_line_blame, default_opts)
             vim.keymap.set("n", "<leader>gd", gitsigns.diffthis, default_opts)
             vim.keymap.set("n", "<leader>gs", ":diffput<cr>", default_opts)
-        end
+        end,
     })
 end
 

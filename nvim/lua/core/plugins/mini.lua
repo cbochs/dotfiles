@@ -6,7 +6,7 @@ local M = {}
 M.Details = function()
     return {
         "echasnovski/mini.nvim",
-        config = M.Setup
+        config = M.Setup,
     }
 end
 

@@ -17,7 +17,7 @@ end
 M.Setup = function()
     require("modes").setup({
         colors = {
-            copy   = "#f9e2af", -- catppuccin.yellow,
+            copy = "#f9e2af", -- catppuccin.yellow,
             delete = "#f38ba8", -- catppuccin.red,
             insert = "#a6e3a1", -- catppuccin.green,
             visual = "#cba6f7", -- catppuccin.mauve,

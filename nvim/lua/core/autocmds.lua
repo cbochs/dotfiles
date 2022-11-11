@@ -7,20 +7,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
     callback = function()
         local patterns = {
-            [[%s/\s\+$//e]],          -- remove unwanted spaces
+            [[%s/\s\+$//e]], -- remove unwanted spaces
             [[%s/\($\n\s*\)\+\%$//]], -- trim last line
-            [[%s/\%^\n\+//]],         -- trim first line
+            [[%s/\%^\n\+//]], -- trim first line
         }
 
         local save = vim.fn.winsaveview()
         for _, pattern in ipairs(patterns) do
-            vim.api.nvim_exec(
-                string.format("keepjumps keeppatterns silent! %s", pattern),
-                false
-            )
+            vim.api.nvim_exec(string.format("keepjumps keeppatterns silent! %s", pattern), false)
         end
         vim.fn.winrestview(save)
-    end
+    end,
 })
 
 -- vim.api.nvim_create_augroup("LspFormat", { clear = true })

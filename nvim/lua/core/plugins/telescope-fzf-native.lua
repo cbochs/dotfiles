@@ -6,7 +6,7 @@ local M = {}
 M.Details = function()
     return {
         "nvim-telescope/telescope-fzf-native.nvim",
-        run = "make"
+        run = "make",
     }
 end
 

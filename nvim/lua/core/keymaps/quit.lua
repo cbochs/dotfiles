@@ -12,10 +12,10 @@ local M = {}
 function M.smart()
     local filter_open_buffers = function(bufnr)
         return
-            vim.api.nvim_buf_is_valid(bufnr)           -- i.e. buffer exists
-            and vim.api.nvim_buf_is_loaded(bufnr)      -- i.e. buffer not empty  (:h api-buffer)
-            and vim.fn.buflisted(bufnr) == 1           -- i.e. not help docs (:h 'buflisted')
-            and vim.api.nvim_buf_get_name(bufnr) ~= "" -- i.e. not the default buffer
+            vim.api.nvim_buf_is_valid(bufnr) -- i.e. buffer exists
+                and vim.api.nvim_buf_is_loaded(bufnr) -- i.e. buffer not empty  (:h api-buffer)
+                and vim.fn.buflisted(bufnr) == 1 -- i.e. not help docs (:h 'buflisted')
+                and vim.api.nvim_buf_get_name(bufnr) ~= "" -- i.e. not the default buffer
     end
 
     local open_windows = vim.api.nvim_list_wins()

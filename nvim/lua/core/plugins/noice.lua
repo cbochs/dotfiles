@@ -15,7 +15,6 @@ M.Details = function()
     }
 end
 
-M.Setup = function()
-end
+M.Setup = function() end
 
 return M

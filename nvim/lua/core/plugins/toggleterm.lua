@@ -12,7 +12,7 @@ end
 
 M.Setup = function()
     require("toggleterm").setup({
-        direction = "float"
+        direction = "float",
     })
 end
 

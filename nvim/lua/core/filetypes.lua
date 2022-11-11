@@ -7,5 +7,5 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "bash", "sh" },
     callback = function()
         vim.bo.expandtab = false
-    end
+    end,
 })

@@ -21,10 +21,10 @@ M.Setup = function()
     leap.setup({
         equivilence_classes = {
             " \t\r\n", -- space-like characters
-            "([{",     -- opening braces
-            ")]}",     -- closing braces
-            "`\"'",    -- quote-like characters
-        }
+            "([{", -- opening braces
+            ")]}", -- closing braces
+            "`\"'", -- quote-like characters
+        },
     })
 
     -- Detault "s" (normal) and "x" (visual) keybinds
