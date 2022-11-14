@@ -8,6 +8,7 @@ require("core.options")
 require("core.autocmds")
 require("core.keymaps")
 require("core.filetypes")
+-- require("core.centre_scroll")
 
 local plugins = require("core.plugins")
 plugins.Startup(plugins.Plugins)

@@ -7,6 +7,9 @@ local action_state = require("telescope.actions.state")
 local action_set = require("telescope.actions.set")
 
 vim.api.nvim_create_user_command("ReloadConfig", function()
+    -- Stop LSP servers
+    vim.api.nvim_cmd({ cmd = "LspStop" }, { output = false })
+
     -- Unload all packages
     for name, _ in pairs(package.loaded) do
         if name:match("^core") then

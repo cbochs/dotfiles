@@ -25,7 +25,7 @@ o.hidden = true
 o.hlsearch = false
 o.jumpoptions = "stack"
 o.mouse = "a"
-o.scrolloff = 999
+o.scrolloff = 7
 o.smartcase = true
 o.wrapscan = true
 
@@ -39,6 +39,7 @@ o.expandtab = true -- convert tab press to spaces
 o.shiftwidth = 4 -- auto tab indentation
 o.softtabstop = 4 -- manual tab indentation
 o.tabstop = 4 -- visual representation of <tab>
+o.autoindent = true -- fallback when treesitter sucks
 
 -- Backup / Swap
 o.backup = false -- disable file write backups

@@ -21,8 +21,8 @@ M.Setup = function()
     require("mason").setup()
     require("mason-lspconfig").setup({
         ensure_installed = {
-            "sumneko_lua",
             "solargraph",
+            "sumneko_lua",
         },
     })
 end

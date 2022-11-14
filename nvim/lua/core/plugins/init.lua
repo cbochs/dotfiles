@@ -17,10 +17,11 @@ M.Plugins = {
     "mason", -- lsp server installer
     "mini", -- assortment of plugins
     "modes", -- cursorline highlighting
-    -- "noice",                -- overhauled ui
+    -- "noice", -- overhauled ui
     "nvim-cmp", -- auto completion
     "nvim-surround", -- smart parenthesis
     "nvim-treesitter", -- syntax highlighting
+    "null-ls", -- lsp linting and formatting
     "portal", -- jump navigation
     "telescope", -- fuzzy search
     "telescope-fzf-native", -- fzf integration

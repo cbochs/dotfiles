@@ -7,13 +7,15 @@
 -- - :help vim.lsp.buf (quickstart)
 -- - :help vim.fs
 
+vim.api.nvim_create_augroup("LspFormat", { clear = true })
+
 local diagnostic_signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(diagnostic_signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local keymap = vim.keymap.set
     local buffer_opts = { silent = true, noremap = true, buffer = bufnr }
 
@@ -35,6 +37,20 @@ local on_attach = function(_, bufnr)
     keymap("n", "<c-n>", vim.diagnostic.goto_next, buffer_opts)
     keymap("n", "<c-p>", vim.diagnostic.goto_prev, buffer_opts)
     -- keymap("n", "<leader>l", vim.diagnostic.open_float, buffer_opts)
+
+    vim.api.nvim_clear_autocmds({ group = "LspFormat", buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = "LspFormat",
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format({
+                buffer = bufnr,
+                filter = function(_client)
+                    return _client.name == "null-ls"
+                end,
+            })
+        end,
+    })
 end
 
 local lsp_config = require("lspconfig")
@@ -69,10 +85,20 @@ lsp_config.sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
         Lua = {
-            diagnostics = { globals = { "vim", "use" } },
+            format = { enable = false },
+            diagnostics = {
+                enable = false,
+                globals = { "vim", "use" },
+            },
             runtime = { version = "LuaJIT" },
             telemetry = { enabled = false },
             workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+            -- workspace = {
+            --     library = {
+            --         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            --         [vim.fn.stdpath('config') .. '/lua'] = true,
+            --     }
+            -- }
         },
     },
     single_file_support = false,
