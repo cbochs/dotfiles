@@ -29,6 +29,7 @@ M.Setup = function()
             cmp = true,
             gitsigns = true,
             leap = true,
+            noice = true,
             telescope = true,
             treesitter = true,
         },

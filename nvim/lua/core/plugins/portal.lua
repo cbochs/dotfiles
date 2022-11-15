@@ -6,6 +6,7 @@ local M = {}
 M.Details = function()
     return {
         "cbochs/portal.nvim",
+        branch = "feat_nvim_0_9_float_title",
         requires = {
             { "cbochs/grapple.nvim", branch = "main" },
         },
@@ -21,10 +22,17 @@ M.Setup = function()
         escape = {
             ["<c-j>"] = true,
         },
-        integrations = {
-            grapple = true,
+        portal = {
+            body = {
+                render_empty = true,
+                options = {
+                    border = "rounded",
+                },
+            },
         },
     })
+    vim.api.nvim_set_hl(0, "PortalBorder", { fg = "#fab387" })
+    vim.api.nvim_set_hl(0, "PortalBorderNone", { fg = "#89b4fa" })
 
     local grapple = require("grapple")
     require("grapple.debug")

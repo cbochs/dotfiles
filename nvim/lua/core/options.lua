@@ -23,6 +23,7 @@ o.wrap = false
 -- Buffer Options
 o.hidden = true
 o.hlsearch = false
+o.ignorecase = true
 o.jumpoptions = "stack"
 o.mouse = "a"
 o.scrolloff = 7

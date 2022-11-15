@@ -12,6 +12,12 @@ end
 
 M.Setup = function()
     require("mini.ai").setup()
+    require("mini.align").setup()
+    require("mini.comment").setup({
+        mappings = {
+            comment_line = "<leader>c",
+        },
+    })
 end
 
 return M

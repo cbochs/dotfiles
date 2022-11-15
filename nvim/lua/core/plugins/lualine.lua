@@ -9,7 +9,7 @@ M.Details = function()
         after = {
             "catppuccin",
             "gitsigns.nvim",
-            "grapple.nvim",
+            -- "grapple.nvim",
         },
         config = M.Setup,
     }

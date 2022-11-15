@@ -18,8 +18,8 @@ M.Setup = function()
         width = 2,
         height = 1,
     })
-    vim.keymap.set("n", "<leader>xu", duck.hatch, { silent = true })
-    vim.keymap.set("n", "<leader>xd", duck.cook, { silent = true })
+    vim.keymap.set("n", "<leader><leader>dk", duck.hatch, { silent = true })
+    vim.keymap.set("n", "<leader><leader>kd", duck.cook, { silent = true })
 end
 
 return M

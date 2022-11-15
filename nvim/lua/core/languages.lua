@@ -15,7 +15,7 @@ for type, icon in pairs(diagnostic_signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local keymap = vim.keymap.set
     local buffer_opts = { silent = true, noremap = true, buffer = bufnr }
 
@@ -32,7 +32,6 @@ local on_attach = function(client, bufnr)
     keymap("n", "K", vim.lsp.buf.hover, buffer_opts)
     keymap("n", "ga", vim.lsp.buf.code_action, buffer_opts)
     keymap("n", "gf", vim.lsp.buf.format, buffer_opts)
-    keymap("v", "gf", vim.lsp.buf.format, buffer_opts)
     keymap("n", "<leader>r", vim.lsp.buf.rename, buffer_opts)
     keymap("n", "<c-n>", vim.diagnostic.goto_next, buffer_opts)
     keymap("n", "<c-p>", vim.diagnostic.goto_prev, buffer_opts)
@@ -45,8 +44,8 @@ local on_attach = function(client, bufnr)
         callback = function()
             vim.lsp.buf.format({
                 buffer = bufnr,
-                filter = function(_client)
-                    return _client.name == "null-ls"
+                filter = function(client)
+                    return client.name == "null-ls"
                 end,
             })
         end,
