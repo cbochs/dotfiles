@@ -7,9 +7,6 @@ M.Details = function()
     return {
         "mvllow/modes.nvim",
         tag = "v0.2.0",
-        after = {
-            "catppuccin",
-        },
         config = M.Setup,
     }
 end

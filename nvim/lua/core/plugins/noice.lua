@@ -16,6 +16,12 @@ M.Details = function()
 end
 
 M.Setup = function()
+    require("notify").setup({
+        render = "minimal",
+        stages = "static",
+        timeout = 1000,
+    })
+
     require("noice").setup({
         lsp = {
             override = {
@@ -32,14 +38,17 @@ M.Setup = function()
             lsp_doc_border = false,
         },
         routes = {
-            {
+            { -- filter annoying buffer messages
                 filter = {
                     event = "msg_show",
                     kind = "",
                     any = {
                         { find = "written" },
                         { find = "line less" },
+                        { find = "fewer lines" },
                         { find = "more line" },
+                        { find = "change; before" },
+                        { find = "change; after" },
                     },
                 },
                 opts = { skip = true },

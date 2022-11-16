@@ -17,7 +17,19 @@ M.Setup = function()
     local null_ls = require("null-ls")
     null_ls.setup({
         sources = {
-            null_ls.builtins.diagnostics.luacheck,
+            -- null_ls.builtins.diagnostics.selene.with({
+            --     args = { "--config", "selene.toml", "--display-style", "quiet", "-" },
+            -- }),
+            null_ls.builtins.diagnostics.luacheck.with({
+                cwd = function(_)
+                    local found_paths = vim.fs.find(".luacheckrc", { upward = true })
+                    if not found_paths then
+                        return
+                    end
+                    local file_path = found_paths[1]
+                    return vim.fs.dirname(file_path)
+                end,
+            }),
             null_ls.builtins.diagnostics.ruff,
             null_ls.builtins.formatting.black,
             null_ls.builtins.formatting.stylua,

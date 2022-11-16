@@ -55,7 +55,7 @@ keymap(NORMAL, "<c-b>l", ":bnext<cr>", default_opts)
 -- Utility keybindings
 keymap(NORMAL, "<cr>", "o<esc>", noremap_opts) -- add new line
 keymap(NORMAL, "U", "<c-r>", noremap_opts) -- redo
-keymap(NORMAL, "H", "0", noremap_opts) -- Go to: line beginning
+keymap(NORMAL, "H", "_", noremap_opts) -- Go to: line beginning
 keymap(NORMAL, "L", "$", noremap_opts) -- Go to: line ending
 keymap(NORMAL, "x", '"_x', noremap_opts) -- blackhole single chars
 keymap(VISUAL, "<", "<gv", noremap_opts) -- indent line

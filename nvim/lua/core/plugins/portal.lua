@@ -6,9 +6,9 @@ local M = {}
 M.Details = function()
     return {
         "cbochs/portal.nvim",
-        branch = "feat_nvim_0_9_float_title",
+        branch = "fix_harpoon_integration",
         requires = {
-            { "cbochs/grapple.nvim", branch = "main" },
+            "ThePrimeagen/harpoon",
         },
         config = M.Setup,
     }
@@ -30,28 +30,16 @@ M.Setup = function()
                 },
             },
         },
+        integrations = {
+            grapple = true,
+            harpoon = true,
+        },
     })
     vim.api.nvim_set_hl(0, "PortalBorder", { fg = "#fab387" })
     vim.api.nvim_set_hl(0, "PortalBorderNone", { fg = "#89b4fa" })
 
-    local grapple = require("grapple")
-    require("grapple.debug")
-    grapple.setup({
-        scope = "lsp",
-        popup_options = {
-            width = 80,
-            height = 12,
-        },
-    })
-
     vim.keymap.set("n", "<leader>o", portal.jump_backward, {})
     vim.keymap.set("n", "<leader>i", portal.jump_forward, {})
-
-    vim.keymap.set("n", "<leader>m", grapple.toggle, {})
-    vim.keymap.set("n", "<leader>M", grapple.reset, {})
-    vim.keymap.set("n", "<leader>j", grapple.cycle_backward, {})
-    vim.keymap.set("n", "<leader>k", grapple.popup_tags, {})
-    vim.keymap.set("n", "<leader>K", grapple.popup_scopes, {})
 end
 
 return M

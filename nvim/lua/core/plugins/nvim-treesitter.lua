@@ -37,6 +37,7 @@ M.Setup = function()
         "markdown",
         "markdown_inline",
         "python",
+        "regex",
         "ruby",
         "rust",
         "typescript",

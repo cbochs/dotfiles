@@ -9,7 +9,7 @@ M.Details = function()
         after = {
             "catppuccin",
             "gitsigns.nvim",
-            -- "grapple.nvim",
+            "noice.nvim",
         },
         config = M.Setup,
     }
@@ -49,7 +49,14 @@ M.Setup = function()
             lualine_a = { "mode" },
             lualine_b = { "grapple", lsp_status, "diagnostics" },
             lualine_c = {},
-            lualine_x = { { "branch", fmt = format_branch } },
+            lualine_x = {
+                {
+                    require("noice").api.statusline.mode.get,
+                    cond = require("noice").api.statusline.mode.has,
+                    color = { fg = "#ff9e64" },
+                },
+                { "branch", fmt = format_branch },
+            },
             lualine_y = { "filetype", "location" },
             lualine_z = { { "filename", file_status = true } },
         },
