@@ -15,7 +15,7 @@ M.Setup = function()
     local grapple = require("grapple")
 
     grapple.setup({
-        scope = "lsp",
+        scope = "directory",
         popup_options = {
             width = 80,
             height = 12,
