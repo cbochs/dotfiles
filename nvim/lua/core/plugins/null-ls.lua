@@ -18,7 +18,14 @@ M.Setup = function()
     null_ls.setup({
         sources = {
             -- null_ls.builtins.diagnostics.selene.with({
-            --     args = { "--config", "selene.toml", "--display-style", "quiet", "-" },
+            --     cwd = function(_)
+            --         local found_paths = vim.fs.find("selene.toml", { upward = true })
+            --         if not found_paths then
+            --             return
+            --         end
+            --         local file_path = found_paths[1]
+            --         return vim.fs.dirname(file_path)
+            --     end,
             -- }),
             null_ls.builtins.diagnostics.luacheck.with({
                 cwd = function(_)
