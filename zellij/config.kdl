@@ -1,9 +1,8 @@
 keybinds clear-defaults=true {
     normal {
-        bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Ctrl r" { SwitchToMode "pane"; }
         bind "Ctrl t" { SwitchToMode "tab"; }
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl q" { Detach; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
