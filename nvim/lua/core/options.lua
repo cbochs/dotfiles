@@ -30,6 +30,11 @@ o.scrolloff = 7
 o.smartcase = true
 o.wrapscan = true
 
+-- Folding
+-- o.foldmethod = "expr"
+-- o.foldexpr = "nvim_treesitter#foldexpr()"
+-- o.foldenable = false
+
 -- Left Gutter
 o.number = true
 o.relativenumber = true

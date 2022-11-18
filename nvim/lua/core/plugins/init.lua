@@ -5,16 +5,14 @@ local M = {}
 
 -- stylua: ignore start
 M.Plugins = {
+    "dirbuf",               -- simple file explorer
     "catppuccin",           -- colour theme
-    "duck",                 -- a waddling companion
     "gitsigns",             -- git information
     "grapple",              -- quick file navigation
     "leap",                 -- file navigation
     "lualine",              -- statusbar
-    "marks",                -- mark highlight
     "mason",                -- lsp server installer
     "mini",                 -- assortment of plugins
-    -- "modes",                -- cursorline highlighting
     "neodev",               -- better neovim environment
     "noice",                -- overhauled ui
     "null-ls",              -- lsp linting and formatting
@@ -23,7 +21,6 @@ M.Plugins = {
     "nvim-treesitter",      -- syntax highlighting
     "portal",               -- jump navigation
     "telescope",            -- fuzzy search
-    "telescope-fzf-native", -- fzf integration
     "toggleterm",           -- integrated terminal
 }
 -- stylua: ignore end

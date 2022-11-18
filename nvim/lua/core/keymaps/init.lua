@@ -1,6 +1,8 @@
 -- Keybindings
 -- Reference: https://neovim.io/doc/user/api.html#nvim_set_keymap()
 
+-- stylua: ignore start
+
 local keymap = vim.keymap.set
 local default_opts = { silent = true }
 local noremap_opts = { silent = true, noremap = true }
@@ -9,14 +11,15 @@ local remap_opts = { silent = true, remap = true }
 local NORMAL = "n"
 local VISUAL = "v"
 local INSERT = "i"
-local TERM = "t"
+local TERM   = "t"
 
 -- Leader keybindings
-keymap(NORMAL, "<leader>w", ":w<cr>", default_opts) -- write file
-keymap(VISUAL, "<leader>y", '"+y', default_opts) -- yank to clipboard
-keymap(NORMAL, "<leader>z", "<c-z>", noremap_opts) -- suspend nvim
-keymap(NORMAL, "<leader>,", "", default_opts) -- reload nvim
-keymap(NORMAL, "<leader>/", ":noh<cr>", default_opts) -- clear search
+keymap(NORMAL, "<leader>w", ":w<cr>",      default_opts) -- write file
+keymap(VISUAL, "<leader>y", '"+y',         default_opts) -- yank to clipboard
+keymap(NORMAL, "<leader>z", "<c-z>",       noremap_opts) -- suspend nvim
+keymap(NORMAL, "<leader>,", "",            default_opts) -- reload nvim
+keymap(NORMAL, "<leader>/", ":noh<cr>",    default_opts) -- clear search
+keymap(NORMAL, "<leader>e", ":Dirbuf<cr>", default_opts)
 
 keymap(NORMAL, '<leader>"', 'ysiW"', remap_opts)
 keymap(NORMAL, "<leader>'", "ysiW'", remap_opts)
@@ -67,3 +70,5 @@ keymap(all_modes, "<left>", "", default_opts)
 keymap(all_modes, "<up>", "", default_opts)
 keymap(all_modes, "<down>", "", default_opts)
 keymap(all_modes, "<right>", "", default_opts)
+
+-- stylua: ignore end

@@ -6,7 +6,7 @@ local M = {}
 M.Details = function()
     return {
         "cbochs/portal.nvim",
-        branch = "fix_harpoon_integration",
+        branch = "main",
         requires = {
             "ThePrimeagen/harpoon",
         },
@@ -22,17 +22,12 @@ M.Setup = function()
         escape = {
             ["<c-j>"] = true,
         },
+        lookback = 10,
         portal = {
-            body = {
-                render_empty = true,
-                options = {
-                    border = "rounded",
-                },
+            render_empty = false,
+            options = {
+                border = "rounded",
             },
-        },
-        integrations = {
-            grapple = true,
-            harpoon = true,
         },
     })
     vim.api.nvim_set_hl(0, "PortalBorder", { fg = "#fab387" })

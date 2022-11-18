@@ -9,14 +9,15 @@ read_globals = {
 }
 
 globals = {
-    "vim.g",
     "vim.b",
-    "vim.w",
-    "vim.o",
     "vim.bo",
-    "vim.wo",
-    "vim.go",
     "vim.env",
+    "vim.g",
+    "vim.go",
+    "vim.o",
+    "vim.opt",
+    "vim.w",
+    "vim.wo",
 }
 
 exclude_files = {

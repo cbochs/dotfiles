@@ -8,6 +8,7 @@ M.Details = function()
         "nvim-telescope/telescope.nvim",
         requires = {
             "nvim-lua/plenary.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
         },
         branch = "0.1.x",
         config = M.Setup,

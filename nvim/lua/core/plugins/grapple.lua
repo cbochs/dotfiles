@@ -6,7 +6,7 @@ local M = {}
 M.Details = function()
     return {
         "cbochs/grapple.nvim",
-        branch = "fix_expand_tag_file_path",
+        branch = "main",
         config = M.Setup,
     }
 end
@@ -16,10 +16,6 @@ M.Setup = function()
 
     grapple.setup({
         scope = "directory",
-        popup_options = {
-            width = 80,
-            height = 12,
-        },
     })
 
     vim.keymap.set("n", "<leader>m", grapple.toggle, {})

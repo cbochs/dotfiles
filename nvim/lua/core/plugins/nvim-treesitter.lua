@@ -23,29 +23,27 @@ M.Details = function()
 end
 
 M.Setup = function()
-    local filetypes = {
-        "bash",
-        "c",
-        "cpp",
-        "dockerfile",
-        "fish",
-        "gitignore",
-        "javascript",
-        "json",
-        "jsonc",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "regex",
-        "ruby",
-        "rust",
-        "typescript",
-        "yaml",
-    }
-
     require("nvim-treesitter.configs").setup({
-        ensure_installed = filetypes,
+        ensure_installed = {
+            "bash",
+            "c",
+            "cpp",
+            "dockerfile",
+            "fish",
+            "gitignore",
+            "javascript",
+            "json",
+            "jsonc",
+            "lua",
+            "markdown",
+            "markdown_inline",
+            "python",
+            "regex",
+            "ruby",
+            "rust",
+            "typescript",
+            "yaml",
+        },
         highlight = {
             enable = true,
         },
@@ -63,6 +61,14 @@ M.Setup = function()
             },
         },
         textobjects = {
+            select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                },
+            },
             swap = {
                 enable = true,
                 swap_next = {

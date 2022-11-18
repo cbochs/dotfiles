@@ -15,7 +15,7 @@ for type, icon in pairs(diagnostic_signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     local keymap = vim.keymap.set
     local buffer_opts = { silent = true, noremap = true, buffer = bufnr }
 
@@ -33,23 +33,9 @@ local on_attach = function(_, bufnr)
     keymap("n", "ga", vim.lsp.buf.code_action, buffer_opts)
     keymap("n", "gf", vim.lsp.buf.format, buffer_opts)
     keymap("n", "<leader>r", vim.lsp.buf.rename, buffer_opts)
-    keymap("n", "<c-n>", vim.diagnostic.goto_next, buffer_opts)
-    keymap("n", "<c-p>", vim.diagnostic.goto_prev, buffer_opts)
+    keymap("n", "]d", vim.diagnostic.goto_next, buffer_opts)
+    keymap("n", "[d", vim.diagnostic.goto_prev, buffer_opts)
     -- keymap("n", "<leader>l", vim.diagnostic.open_float, buffer_opts)
-
-    vim.api.nvim_clear_autocmds({ group = "LspFormat", buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = "LspFormat",
-        buffer = bufnr,
-        callback = function()
-            vim.lsp.buf.format({
-                buffer = bufnr,
-                filter = function(client)
-                    return client.name == "null-ls"
-                end,
-            })
-        end,
-    })
 end
 
 local lsp_config = require("lspconfig")
@@ -85,10 +71,7 @@ lsp_config.sumneko_lua.setup({
     settings = {
         Lua = {
             format = { enable = false },
-            diagnostics = {
-                enable = false,
-                globals = { "vim", "use" },
-            },
+            diagnostics = { enable = false },
             runtime = { version = "LuaJIT" },
             telemetry = { enabled = false },
             workspace = { library = vim.api.nvim_get_runtime_file("", true) },

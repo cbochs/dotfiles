@@ -42,6 +42,23 @@ M.Setup = function()
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.usort,
         },
+        on_attach = function(client, bufnr)
+            if client.supports_method("textDocument/formatting") then
+                vim.api.nvim_clear_autocmds({ group = "LspFormat", buffer = bufnr })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    group = "LspFormat",
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({
+                            buffer = bufnr,
+                            filter = function(client_)
+                                return client_.name == "null-ls"
+                            end,
+                        })
+                    end,
+                })
+            end
+        end,
     })
 end
 
