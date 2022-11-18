@@ -11,7 +11,9 @@ M.Details = function()
 end
 
 M.Setup = function()
-    require("mini.ai").setup()
+    require("mini.ai").setup({
+        f = false,
+    })
     require("mini.align").setup()
     require("mini.comment").setup({
         mappings = {
