@@ -16,8 +16,8 @@ M.Setup = function()
     local catppuccin = require("catppuccin")
     local colors = require("catppuccin.palettes").get_palette()
 
-    vim.g.catppuccin_flavour = "mocha"
     catppuccin.setup({
+        flavour = "mocha",
         term_colors = true,
         dim_inactive = {
             enabled = true,
@@ -33,11 +33,17 @@ M.Setup = function()
             telescope = true,
             treesitter = true,
         },
+        color_overrides = {
+            -- mocha = {
+            --     base = "#11111B",
+            -- },
+        },
         custom_highlights = {
             Comment = { fg = colors.flamingo },
         },
     })
-    vim.cmd("colorscheme catppuccin")
+
+    vim.cmd.colorscheme("catppuccin")
 end
 
 return M

@@ -6,7 +6,6 @@ local M = {}
 -- stylua: ignore start
 M.Plugins = {
     "dirbuf",               -- simple file explorer
-    "catppuccin",           -- colour theme
     "gitsigns",             -- git information
     "grapple",              -- quick file navigation
     "leap",                 -- file navigation
@@ -22,6 +21,10 @@ M.Plugins = {
     "portal",               -- jump navigation
     "telescope",            -- fuzzy search
     "toggleterm",           -- integrated terminal
+
+    -- colour themes
+    "catppuccin",
+    -- "oxocarbon",
 }
 -- stylua: ignore end
 
@@ -35,7 +38,7 @@ function M.Startup(plugins)
             if ok then
                 use(plugin.Details())
             else
-                vim.warn("Unable to load plugin: " .. plugin_name)
+                print("Unable to load plugin: " .. plugin_name)
             end
         end
     end)

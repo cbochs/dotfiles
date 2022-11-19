@@ -1,12 +1,22 @@
 asciinema
 configstore
-fish
 git
 helix
+iterm2
 kitty
 limelight
 nnn
 spicetify
+
+# Fish
+fish/completions
+fish/conf.d
+!fish/conf.d/abbreviations.fish
+!fish/conf.d/path.fish
+!fish/conf.d/variables.fish
+fish/functions
+fish/themes
+fish/fish_variables
 
 # Neovim
 nvim/plugin
