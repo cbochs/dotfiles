@@ -34,8 +34,8 @@ M.Setup = function()
             sorting_strategy = "ascending",
             mappings = {
                 i = {
-                    ["<C-j>"] = { "<esc>", type = "command" },
-                    ["<C-u>"] = false,
+                    ["<c-j>"] = { "<esc>", type = "command" },
+                    ["<c-u>"] = false,
                 },
             },
         },

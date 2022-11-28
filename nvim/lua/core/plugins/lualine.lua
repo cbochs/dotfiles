@@ -18,8 +18,13 @@ end
 M.Setup = function()
     -- Only show the jira associated with the branch
     -- PORTAL-XXXXX = 12 characters
-    local format_branch = function(str)
+    local function format_branch(str)
         return string.sub(str, 1, 12)
+    end
+
+    local function grapple()
+        local key = require("grapple").key()
+        return "  [" .. key .. "]"
     end
 
     require("lualine").setup({
@@ -34,8 +39,10 @@ M.Setup = function()
                 "mode",
             },
             lualine_b = {
-                -- "grapple",
-                -- "diagnostics",
+                {
+                    grapple,
+                    cond = require("grapple").exists,
+                },
             },
             lualine_c = {},
             lualine_x = {

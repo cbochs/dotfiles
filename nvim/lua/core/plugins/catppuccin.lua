@@ -42,8 +42,6 @@ M.Setup = function()
             Comment = { fg = colors.flamingo },
         },
     })
-
-    vim.cmd.colorscheme("catppuccin")
 end
 
 return M

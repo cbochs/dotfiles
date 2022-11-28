@@ -6,6 +6,8 @@
 -- - :help vim.lsp
 -- - :help vim.lsp.buf (quickstart)
 -- - :help vim.fs
+--
+-- vim.lsp.set_log_level("debug")
 
 vim.api.nvim_create_augroup("LspFormat", { clear = true })
 
@@ -15,7 +17,7 @@ for type, icon in pairs(diagnostic_signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local keymap = vim.keymap.set
     local buffer_opts = { silent = true, noremap = true, buffer = bufnr }
 
@@ -75,12 +77,6 @@ lsp_config.sumneko_lua.setup({
             runtime = { version = "LuaJIT" },
             telemetry = { enabled = false },
             workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-            -- workspace = {
-            --     library = {
-            --         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            --         [vim.fn.stdpath('config') .. '/lua'] = true,
-            --     }
-            -- }
         },
     },
     single_file_support = false,

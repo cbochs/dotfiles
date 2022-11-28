@@ -19,10 +19,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.fn.winrestview(save)
     end,
 })
-
--- vim.api.nvim_create_augroup("LspFormat", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePost", {
---     group = "LspFormat",
---     pattern = "*.rs",
---     callback = vim.lsp.buf.format
--- })

@@ -20,6 +20,7 @@ M.Setup = function()
         render = "minimal",
         stages = "static",
         timeout = 1000,
+        -- timeout = 10000,
     })
 
     require("noice").setup({

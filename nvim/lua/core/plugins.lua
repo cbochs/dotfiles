@@ -18,6 +18,7 @@ M.Plugins = {
     "nvim-cmp",             -- auto completion
     "nvim-surround",        -- smart parenthesis
     "nvim-treesitter",      -- syntax highlighting
+    "nvim-bqf",             -- better quickfix menu
     "portal",               -- jump navigation
     "telescope",            -- fuzzy search
     "toggleterm",           -- integrated terminal
