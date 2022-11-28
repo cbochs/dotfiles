@@ -12,6 +12,7 @@ abbr -a -U ze zellij
 abbr -a -U lg lazygit
 
 abbr -a -U g   git
+abbr -a -U gb  git branch
 abbr -a -U gc  git checkout
 abbr -a -U gl  git log
 abbr -a -U gm  git submodule update --recursive
