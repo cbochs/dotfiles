@@ -1,5 +1,5 @@
 -- Toggle Terminal
--- Repo: https://github.com/catppuccin/catppuccin
+-- Repo: https://github.com/akinsho/toggleterm.nvim
 
 local M = {}
 
