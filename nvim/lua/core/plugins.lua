@@ -15,17 +15,18 @@ M.Plugins = {
     "neodev",               -- better neovim environment
     "noice",                -- overhauled ui
     "null-ls",              -- lsp linting and formatting
+    "nvim-bqf",             -- better quickfix menu
     "nvim-cmp",             -- auto completion
     "nvim-surround",        -- smart parenthesis
     "nvim-treesitter",      -- syntax highlighting
-    "nvim-bqf",             -- better quickfix menu
     "portal",               -- jump navigation
     "telescope",            -- fuzzy search
     "toggleterm",           -- integrated terminal
 
     -- colour themes
     "catppuccin",
-    -- "oxocarbon",
+    "oxocarbon",
+    "kanagawa"
 }
 -- stylua: ignore end
 

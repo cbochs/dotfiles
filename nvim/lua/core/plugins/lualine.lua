@@ -7,7 +7,6 @@ M.Details = function()
     return {
         "nvim-lualine/lualine.nvim",
         after = {
-            "catppuccin",
             "gitsigns.nvim",
             "noice.nvim",
         },
@@ -22,14 +21,9 @@ M.Setup = function()
         return string.sub(str, 1, 12)
     end
 
-    local function grapple()
-        local key = require("grapple").key()
-        return "  [" .. key .. "]"
-    end
-
     require("lualine").setup({
         options = {
-            theme = "catppuccin",
+            theme = "kanagawa",
             globalstatus = true,
             component_separators = "",
             section_separators = "",
@@ -40,7 +34,10 @@ M.Setup = function()
             },
             lualine_b = {
                 {
-                    grapple,
+                    function()
+                        local key = require("grapple").key()
+                        return "  [" .. key .. "]"
+                    end,
                     cond = require("grapple").exists,
                 },
             },

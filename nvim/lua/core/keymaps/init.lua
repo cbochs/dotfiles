@@ -43,6 +43,10 @@ local quit = require("core.keymaps.quit")
 keymap(NORMAL, "<leader>q", quit.smart, default_opts) -- smart quit
 keymap(NORMAL, "<leader>Q", ":qa<cr>", default_opts) -- exit nvim
 
+-- Centring keybindings
+keymap(NORMAL, "<c-u>", "<c-u>zz", noremap_opts)
+keymap(NORMAL, "<c-d>", "<c-d>zz", noremap_opts)
+
 -- Window keybindings
 keymap(NORMAL, "<c-h>", "<c-w>h", noremap_opts)
 keymap(NORMAL, "<c-j>", "<c-w>j", noremap_opts)

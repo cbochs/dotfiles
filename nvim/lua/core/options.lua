@@ -30,6 +30,17 @@ o.scrolloff = 7
 o.smartcase = true
 o.wrapscan = true
 
+-- Window borders
+o.fillchars:append({
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┨",
+    vertright = "┣",
+    verthoriz = "╋",
+})
+
 -- Folding
 -- o.foldmethod = "expr"
 -- o.foldexpr = "nvim_treesitter#foldexpr()"
