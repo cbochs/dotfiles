@@ -50,7 +50,7 @@ vim.api.nvim_create_user_command("JanusRspec", function()
         use_line_number = false
     end
 
-    local docker_command = "docker compose exec portal bin/rspec %s"
+    local docker_command = "dev/portal.sh spec -e test %s"
     if use_line_number then
         docker_command = docker_command .. ":%s"
     end
