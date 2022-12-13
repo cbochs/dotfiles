@@ -134,7 +134,7 @@ pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "catppuccin-mocha"
+theme "kanagawa"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -228,5 +228,18 @@ themes {
         cyan 137 220 235
         white 205 214 244
         orange 250 179 135
+    }
+    kanagawa {
+        fg "#DCD7BA"
+        bg "#1F1F28"
+        red "#C34043"
+        green "#76946A"
+        yellow "#FF9E3B"
+        blue "#7E9CD8"
+        magenta "#957FB8"
+        orange "#FFA066"
+        cyan "#7FB4CA"
+        black "#16161D"
+        white "#DCD7BA"
     }
 }
