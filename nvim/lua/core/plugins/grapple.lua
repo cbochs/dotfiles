@@ -6,13 +6,17 @@ local M = {}
 M.Details = function()
     return {
         "cbochs/grapple.nvim",
-        branch = "main",
+        branch = "dev",
+        -- branch = "main",
         config = M.Setup,
     }
 end
 
 M.Setup = function()
     local grapple = require("grapple")
+    grapple.setup({
+        scope = "git",
+    })
     vim.keymap.set("n", "<leader>m", grapple.toggle, {})
     vim.keymap.set("n", "<leader>M", grapple.reset, {})
     vim.keymap.set("n", "<leader>j", grapple.cycle_backward, {})
