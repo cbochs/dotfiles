@@ -5,23 +5,24 @@ local M = {}
 
 -- stylua: ignore start
 M.Plugins = {
-    "dirbuf",               -- simple file explorer
-    "gitsigns",             -- git information
-    "grapple",              -- quick file navigation
-    "leap",                 -- file navigation
-    "lualine",              -- statusbar
-    "mason",                -- lsp server installer
-    "mini",                 -- assortment of plugins
-    "neodev",               -- better neovim environment
-    "noice",                -- overhauled ui
-    "null-ls",              -- lsp linting and formatting
-    "nvim-bqf",             -- better quickfix menu
-    "nvim-cmp",             -- auto completion
-    "nvim-surround",        -- smart parenthesis
-    "nvim-treesitter",      -- syntax highlighting
-    "portal",               -- jump navigation
-    "telescope",            -- fuzzy search
-    "toggleterm",           -- integrated terminal
+    "dirbuf",          -- simple file explorer
+    "gitsigns",        -- git information
+    "grapple",         -- quick file navigation
+    "leap",            -- file navigation
+    "lualine",         -- statusbar
+    "mason",           -- lsp server installer
+    "mini",            -- assortment of plugins
+    "neodev",          -- better neovim environment
+    "noice",           -- overhauled ui
+    "null-ls",         -- lsp linting and formatting
+    "nvim-bqf",        -- better quickfix menu
+    "nvim-cmp",        -- auto completion
+    "nvim-surround",   -- smart parenthesis
+    "nvim-treesitter", -- syntax highlighting
+    "portal",          -- jump navigation
+    "substitute",      -- text replacement
+    "telescope",       -- fuzzy search
+    "toggleterm",      -- integrated terminal
 
     -- colour themes
     "catppuccin",
