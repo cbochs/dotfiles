@@ -41,11 +41,6 @@ o.fillchars:append({
     verthoriz = "╋",
 })
 
--- Folding
--- o.foldmethod = "expr"
--- o.foldexpr = "nvim_treesitter#foldexpr()"
--- o.foldenable = false
-
 -- Left Gutter
 o.number = true
 o.relativenumber = true
