@@ -1,10 +1,10 @@
 -- Reference: https://github.com/wbthomason/packer.nvim
 
-local M = {}
+local plugins = {}
 
 
 -- stylua: ignore start
-M.Plugins = {
+plugins.packages = {
     "diffview",        -- git merge tool
     "dirbuf",          -- simple file explorer
     "gitsigns",        -- git information
@@ -32,12 +32,14 @@ M.Plugins = {
 }
 -- stylua: ignore end
 
-function M.Startup(plugins)
+function plugins.startup(packages)
+    packages = packages or plugins.packages
+
     return require("packer").startup(function()
         use("wbthomason/packer.nvim")
         use("kyazdani42/nvim-web-devicons")
 
-        for _, plugin_name in ipairs(plugins) do
+        for _, plugin_name in ipairs(packages) do
             local ok, plugin = pcall(require, "core.plugins." .. plugin_name)
             if ok then
                 use(plugin)
@@ -48,4 +50,4 @@ function M.Startup(plugins)
     end)
 end
 
-return M
+return plugins

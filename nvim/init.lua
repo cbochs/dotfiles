@@ -9,8 +9,7 @@ require("core.keymaps")
 require("core.filetypes")
 -- require("core.centre_scroll")
 
-local plugins = require("core.plugins")
-plugins.Startup(plugins.Plugins)
+require("core.plugins").startup()
 
 require("core.commands")
 require("core.languages")
