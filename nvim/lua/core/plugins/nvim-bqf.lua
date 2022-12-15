@@ -1,7 +1,4 @@
-local M = {}
+-- Repo:
+-- Description: Better quickfix and location list
 
-M.Details = function()
-    return { "kevinhwang91/nvim-bqf" }
-end
-
-return M
+return { "kevinhwang91/nvim-bqf" }

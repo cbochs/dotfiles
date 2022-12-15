@@ -1,14 +1,13 @@
--- Keymap Hints
 -- Repo: https://github.com/folke/which-key.nvim
+-- Description: Keymap hints and descriptions
 
-local M = {}
-
-M.details = function()
-    return { "folke/which-key.nvim" }
-end
-
-M.setup = function()
-    require("which-key").setup({})
-end
-
-return M
+return {
+    "folke/which-key.nvim",
+    config = function()
+        local ok, which_key = pcall(require, "which-key")
+        if not ok then
+            return
+        end
+        which_key.setup({})
+    end,
+}

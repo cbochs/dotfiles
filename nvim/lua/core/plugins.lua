@@ -1,10 +1,11 @@
--- Plugins
 -- Reference: https://github.com/wbthomason/packer.nvim
 
 local M = {}
 
+
 -- stylua: ignore start
 M.Plugins = {
+    "diffview",        -- git merge tool
     "dirbuf",          -- simple file explorer
     "gitsigns",        -- git information
     "grapple",         -- quick file navigation
@@ -26,8 +27,8 @@ M.Plugins = {
 
     -- colour themes
     "catppuccin",
+    "kanagawa",
     "oxocarbon",
-    "kanagawa"
 }
 -- stylua: ignore end
 
@@ -39,9 +40,9 @@ function M.Startup(plugins)
         for _, plugin_name in ipairs(plugins) do
             local ok, plugin = pcall(require, "core.plugins." .. plugin_name)
             if ok then
-                use(plugin.Details())
+                use(plugin)
             else
-                print("Unable to load plugin: " .. plugin_name)
+                print(string.format("No module file found for %s", plugin_name))
             end
         end
     end)

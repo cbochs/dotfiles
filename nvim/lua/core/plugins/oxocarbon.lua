@@ -1,13 +1,7 @@
--- Colour Theme
 -- Repo: https://github.com/shaunsingh/oxocarbon.nvim
+-- Description: IBM-style colour theme
 
-local M = {}
-
-M.Details = function()
-    return {
-        "shaunsingh/oxocarbon.nvim",
-        run = "./install.sh",
-    }
-end
-
-return M
+return {
+    "shaunsingh/oxocarbon.nvim",
+    run = "./install.sh",
+}

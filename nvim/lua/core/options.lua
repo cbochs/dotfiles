@@ -62,6 +62,10 @@ o.swapfile = false -- disable new file swapfile?
 o.ruler = false
 o.showmode = false
 
+-- Completion list options
+-- :h 'completeopt'
+o.completeopt = { "menu", "menuone", "noselect" }
+
 -- Split direction
 o.splitbelow = true
 o.splitright = true

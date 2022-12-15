@@ -1,25 +1,20 @@
--- Mini Plugins
 -- Repo: https://github.com/echasnovski/mini.nvim
+-- Description: Collection of "mini" plugins
 
-local M = {}
+return {
+    "echasnovski/mini.nvim",
+    config = function()
+        -- Adds "q" (quote) and "b" (bracket) textobjects
+        require("mini.ai").setup({ f = false })
 
-M.Details = function()
-    return {
-        "echasnovski/mini.nvim",
-        config = M.Setup,
-    }
-end
+        -- Adds visual "ga" and "gA" alignment keymaps
+        require("mini.align").setup()
 
-M.Setup = function()
-    require("mini.ai").setup({
-        f = false,
-    })
-    require("mini.align").setup()
-    require("mini.comment").setup({
-        mappings = {
-            comment_line = "<leader>c",
-        },
-    })
-end
-
-return M
+        -- Simple commenting
+        require("mini.comment").setup({
+            mappings = {
+                comment_line = "<leader>c",
+            },
+        })
+    end,
+}

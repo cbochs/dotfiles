@@ -1,19 +1,15 @@
--- Toggle Terminal
 -- Repo: https://github.com/akinsho/toggleterm.nvim
+-- Description: Toggleable terminal
 
-local M = {}
-
-M.Details = function()
-    return {
-        "akinsho/toggleterm.nvim",
-        config = M.Setup,
-    }
-end
-
-M.Setup = function()
-    require("toggleterm").setup({
-        direction = "float",
-    })
-end
-
-return M
+return {
+    "akinsho/toggleterm.nvim",
+    config = function()
+        local ok, toggleterm = pcall(require, "toggleterm")
+        if not ok then
+            return
+        end
+        toggleterm.setup({
+            direction = "float",
+        })
+    end,
+}

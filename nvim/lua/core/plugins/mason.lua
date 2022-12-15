@@ -1,30 +1,38 @@
--- LSP Installation & Configuration
 -- Repos:
 -- - https://github.com/williamboman/mason.nvim
 -- - https://github.com/williamboman/mason-lspconfig.nvim
 -- - https://github.com/neovim/nvim-lspconfig
+-- Description: LSP server installation
 
-local M = {}
+return {
+    "williamboman/mason.nvim",
+    requires = {
+        "neovim/nvim-lspconfig",
+        "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+        local ok, _ = pcall(require, "mason")
+        if not ok then
+            return
+        end
 
-M.Details = function()
-    return {
-        "williamboman/mason.nvim",
-        requires = {
-            "neovim/nvim-lspconfig",
-            "williamboman/mason-lspconfig.nvim",
-        },
-        config = M.Setup,
-    }
-end
-
-M.Setup = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup({
-        ensure_installed = {
-            "solargraph",
-            "sumneko_lua",
-        },
-    })
-end
-
-return M
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "clangd",
+                "pyright",
+                "solargraph",
+                "sumneko_lua",
+                -- Error: "not a valid entry in ensure_installed"
+                -- "lua-language-server",
+                -- "luacheck",
+                -- "ruff",
+                -- "rust-analyzer",
+                -- "selene",
+                -- "stylua",
+                -- "usort",
+            },
+            --
+        })
+    end,
+}
