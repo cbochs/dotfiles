@@ -10,6 +10,7 @@ abbr -a -U s ssh
 
 abbr -a -U ze zellij
 abbr -a -U lg lazygit
+abbr -a -U dk lazydocker
 
 abbr -a -U g   git
 abbr -a -U gb  git branch
