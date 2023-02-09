@@ -5,6 +5,7 @@ local plugins = {}
 
 -- stylua: ignore start
 plugins.packages = {
+    "chatgpt",         -- ai-driven search
     "diffview",        -- git merge tool
     "dirbuf",          -- simple file explorer
     "gitsigns",        -- git information
@@ -21,9 +22,11 @@ plugins.packages = {
     "nvim-surround",   -- smart parenthesis
     "nvim-treesitter", -- syntax highlighting
     "portal",          -- jump navigation
+    "rust-tools",      -- everything rust
     "substitute",      -- text replacement
     "telescope",       -- fuzzy search
     "toggleterm",      -- integrated terminal
+    "zen-mode",        -- zen mode
 
     -- colour themes
     "catppuccin",

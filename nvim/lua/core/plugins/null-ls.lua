@@ -3,9 +3,8 @@
 
 return {
     "jose-elias-alvarez/null-ls.nvim",
-    requires = {
-        "nvim-lua/plenary.nvim",
-    },
+    requires = "nvim-lua/plenary.nvim",
+    after = "mason-null-ls.nvim",
     config = function()
         local ok, null_ls = pcall(require, "null-ls")
         if not ok then

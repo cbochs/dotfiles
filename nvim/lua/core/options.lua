@@ -53,6 +53,12 @@ o.softtabstop = 4 -- manual tab indentation
 o.tabstop = 4 -- visual representation of <tab>
 o.autoindent = true -- fallback when treesitter sucks
 
+-- Folding (from nvim-ufo)
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 -- Backup / Swap
 o.backup = false -- disable file write backups
 o.writebackup = false -- disable file write backups

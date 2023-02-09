@@ -56,9 +56,10 @@ lsp_config.pyright.setup({
     on_attach = on_attach,
 })
 
-lsp_config.rust_analyzer.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+require("rust-tools").setup({
+    server = {
+        on_attach = on_attach,
+    },
 })
 
 lsp_config.solargraph.setup({

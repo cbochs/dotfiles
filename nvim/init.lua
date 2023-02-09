@@ -7,11 +7,10 @@ require("core.options")
 require("core.autocmds")
 require("core.keymaps")
 require("core.filetypes")
--- require("core.centre_scroll")
 
-require("core.plugins").startup()
+require("core.lazy")
 
+-- require("core.plugins").startup()
 require("core.commands")
-require("core.languages")
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("kanagawa")
