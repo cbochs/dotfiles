@@ -27,8 +27,8 @@ font:
   bold_italic:
     family: Iosevka Nerd Font
     style: Bold Italic
-  # size: 32.0
-  size: 18.0
+  # size: 28.0
+  size: 16.0
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: false
