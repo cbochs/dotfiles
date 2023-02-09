@@ -19,6 +19,8 @@ keymap(NORMAL, "<leader>z", "<c-z>",       opts) -- suspend nvim
 keymap(NORMAL, "<leader>,", "",            opts) -- reload nvim
 keymap(NORMAL, "<leader>/", ":noh<cr>",    opts) -- clear search
 keymap(NORMAL, "<leader>e", ":Dirbuf<cr>", opts)
+keymap(NORMAL, "<leader>-", ":split<cr>",  opts)
+keymap(NORMAL, "<leader>|", ":vsplit<cr>", opts)
 
 -- Yank keybindings
 keymap(NORMAL, "<leader>y", '"+y',         opts)
@@ -35,7 +37,6 @@ keymap(NORMAL, "<leader>dj", ":JanusRspec<cr>", opts)
 
 -- Toggle terminal keybindings
 keymap(TERM,   "<c-j>",     "<c-\\><c-n>",     opts)
-keymap(NORMAL, "<leader>t", ":ToggleTerm<cr>", opts)
 
 -- Escape keybindings
 keymap(INSERT, "<c-j>", "<esc>", opts)
@@ -46,20 +47,22 @@ local quit = require("core.keymaps.quit")
 keymap(NORMAL, "<leader>q", quit.smart, opts) -- smart quit
 keymap(NORMAL, "<leader>Q", ":qa<cr>",  opts) -- exit nvim
 
+-- Switch ";" and ":"
+keymap(NORMAL, ":", ";")
+keymap(NORMAL, ";", ":")
+
 -- Centring keybindings
 keymap(NORMAL, "<c-u>", "<c-u>zz", opts)
 keymap(NORMAL, "<c-d>", "<c-d>zz", opts)
 
 -- Window keybindings
-keymap(NORMAL, "<c-h>",   "<c-w>h",      opts)
-keymap(NORMAL, "<c-j>",   "<c-w>j",      opts)
-keymap(NORMAL, "<c-k>",   "<c-w>k",      opts)
-keymap(NORMAL, "<c-l>",   "<c-w>l",      opts)
-keymap(NORMAL, "<c-s-j>", ":split<cr>",  opts)
-keymap(NORMAL, "<c-s-l>", ":vsplit<cr>", opts)
+keymap(NORMAL, "<c-h>", "<c-w>h", opts)
+keymap(NORMAL, "<c-j>", "<c-w>j", opts)
+keymap(NORMAL, "<c-k>", "<c-w>k", opts)
+keymap(NORMAL, "<c-l>", "<c-w>l", opts)
 
 -- Utility keybindings
-keymap(NORMAL, "<cr>",  "o<esc>",        opts) -- add new line
+-- keymap(NORMAL, "<cr>",  "o<esc>",        opts) -- add new line
 keymap(NORMAL, "U",     "<c-r>",         opts) -- redo
 keymap(NORMAL, "H",     "_",             opts) -- Go to: line beginning
 keymap(NORMAL, "L",     "$",             opts) -- Go to: line ending
