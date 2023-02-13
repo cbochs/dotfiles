@@ -1,41 +1,55 @@
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    config = function()
-        -- Only show the jira associated with the branch
-        -- PORTAL-XXXXX = 12 characters
-        local function format_branch(str)
-            return string.sub(str, 1, 12)
+    opts = function(_)
+        local icons = require("lazyvim.config").icons
+
+        local function fg(name)
+            return function()
+                ---@type {foreground?:number}?
+                local hl = vim.api.nvim_get_hl_by_name(name, true)
+                return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+            end
         end
 
-        require("lualine").setup({
+        return {
             options = {
-                theme = "kanagawa",
+                theme = "auto",
                 globalstatus = true,
+                disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha", "grapple" } },
                 component_separators = "",
                 section_separators = "",
             },
             sections = {
-                lualine_a = {
-                    "mode",
-                },
+                lualine_a = { "mode" },
                 lualine_b = {
+                    -- stylua: ignore
                     {
-                        function()
-                            local key = require("grapple").key()
-                            return "  [" .. key .. "]"
-                        end,
+                        function() local key = require("grapple").key() return "  [" .. key .. "]" end,
                         cond = require("grapple").exists,
                     },
                 },
-                lualine_c = {},
+                lualine_c = { "diagnostics" },
                 lualine_x = {
+                    -- stylua: ignore
                     {
-                        require("noice").api.statusline.mode.get,
-                        cond = require("noice").api.statusline.mode.has,
-                        color = { fg = "#ff9e64" },
+                        function() return require("noice").api.status.mode.get() end,
+                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                        color = fg("Constant"),
                     },
-                    { "branch", fmt = format_branch },
+                    {
+                        "diff",
+                        symbols = {
+                            added = icons.git.added,
+                            modified = icons.git.modified,
+                            removed = icons.git.removed,
+                        },
+                    },
+                    -- stylua: ignore
+                    {
+                        "branch",
+                        fmt = function(str) return string.sub(str, 1, 12) end,
+                    },
                 },
                 lualine_y = {
                     { "filetype", icon = false },
@@ -45,7 +59,7 @@ return {
                     { "filename", file_status = true },
                 },
             },
-            winbar = {},
-        })
+            extensions = { "neo-tree" },
+        }
     end,
 }
