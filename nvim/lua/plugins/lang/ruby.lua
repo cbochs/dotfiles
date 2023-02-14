@@ -8,7 +8,7 @@ return {
         end,
     },
 
-    -- correctly setup lspconfig for Ruby
+    -- setup lspconfig for Ruby
     {
         "neovim/nvim-lspconfig",
         opts = {

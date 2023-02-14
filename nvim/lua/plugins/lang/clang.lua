@@ -8,7 +8,7 @@ return {
         end,
     },
 
-    -- correctly setup lspconfig
+    -- setup lspconfig for c/c++
     {
         "neovim/nvim-lspconfig",
         dependencies = {

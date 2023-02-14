@@ -8,7 +8,7 @@ return {
         end,
     },
 
-    -- correctly setup lspconfig for Rust
+    -- setup lspconfig for Rust
     {
         "neovim/nvim-lspconfig",
         dependencies = { "simrat39/rust-tools.nvim" },
