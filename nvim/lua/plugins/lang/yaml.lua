@@ -27,7 +27,7 @@ return {
         },
     },
 
-    -- setup null-ls for YAML
+    -- setup OpenAPI linting for YAML
     {
         "jose-elias-alvarez/null-ls.nvim",
         opts = function(_, opts)
