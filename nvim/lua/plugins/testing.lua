@@ -24,7 +24,7 @@ return {
         config = function(_, _)
             vim.cmd([[ 
                 let test#strategy = "neovim"
-                let test#neovim#term_position = "vert"
+                "let test#neovim#term_position = "vert"
                 let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e DEPENDENCIES_NEXT=0 portal bin/rspec"
             ]])
         end,
