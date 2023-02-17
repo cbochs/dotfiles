@@ -5,6 +5,34 @@ return {
     },
 
     {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            textobjects = {
+                move = {
+                    enable = true,
+                    set_jump = true,
+                    goto_next_start = {
+                        ["]b"] = { query = "@block.outer", desc = "Next block" },
+                        ["]c"] = { query = "@class.outer", desc = "Next class" },
+                        ["]f"] = { query = "@function.outer", desc = "Next function" },
+                    },
+                    goto_previous_start = {
+                        ["[b"] = { query = "@block.outer", desc = "Prev block" },
+                        ["[c"] = { query = "@class.outer", desc = "Prev class" },
+                        ["[f"] = { query = "@function.outer", desc = "Prev function" },
+                    },
+                },
+            },
+        },
+    },
+
+    { -- prefer this over mini.surround
+        "kylechui/nvim-surround",
+        event = "VeryLazy",
+        config = true,
+    },
+
+    {
         "gbprod/substitute.nvim",
         keys = {
             { "r", "<cmd>lua require('substitute').operator()<cr>" },
@@ -16,23 +44,10 @@ return {
     },
 
     {
-        "kylechui/nvim-surround",
-        event = "VeryLazy",
-        config = true,
-    },
-
-    {
         "kevinhwang91/nvim-ufo",
-        dependencies = {
-            "kevinhwang91/promise-async",
-        },
+        dependencies = { "kevinhwang91/promise-async" },
+        event = "VeryLazy",
         keys = {
-            "za",
-            "zA",
-            "zc",
-            "zC",
-            "zo",
-            "zO",
             { "zR", "<cmd>lua require('ufo').openAllFolds()<cr>", desc = "Open folds" },
             { "zM", "<cmd>lua require('ufo').closeAllFolds()<cr>", desc = "Close folds" },
         },
