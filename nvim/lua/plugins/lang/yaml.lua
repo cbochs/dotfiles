@@ -1,6 +1,6 @@
 return {
 
-    -- add YAML to treesitter
+    -- add yaml to treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
@@ -8,7 +8,7 @@ return {
         end,
     },
 
-    -- setup lspconfig for YAML
+    -- setup lspconfig for yaml
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -27,7 +27,7 @@ return {
         },
     },
 
-    -- setup OpenAPI linting for YAML
+    -- setup OpenAPI linting for yaml
     {
         "jose-elias-alvarez/null-ls.nvim",
         opts = function(_, opts)
