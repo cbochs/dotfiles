@@ -9,26 +9,27 @@ return {
 
     {
         "nvim-neorg/neorg",
+        dependencies = { "nvim-lua/plenary.nvim" },
         ft = "norg",
-        {
-            "nvim-neorg/neorg",
-            dependencies = { { "nvim-lua/plenary.nvim" } },
-            build = ":Neorg sync-parsers",
-            opts = {
-                load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-                    -- ["core.norg.completion"] = {
-                    --     config = {
-                    --         engine = { "nvim-cmp" },
-                    --     },
-                    -- },
-                    -- ["core.integrations.nvim-cmp"] = {},
-                    ["core.norg.dirman"] = { -- Manages Neorg workspaces
-                        config = {
-                            workspaces = {
-                                work = "~/git_personal/notes",
-                            },
+        keys = {
+            { "<leader>nr", "<cmd>Neorg return<cr>", desc = "Return" },
+            { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Index" },
+        },
+        build = ":Neorg sync-parsers",
+        opts = {
+            load = {
+                ["core.defaults"] = {}, -- Loads default behaviour
+                ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+                -- ["core.norg.completion"] = {
+                --     config = {
+                --         engine = { "nvim-cmp" },
+                --     },
+                -- },
+                ["core.norg.dirman"] = { -- Manages Neorg workspaces
+                    config = {
+                        default_workspace = "work",
+                        workspaces = {
+                            work = "~/git_personal/notes",
                         },
                     },
                 },
