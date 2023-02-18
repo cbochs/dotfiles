@@ -26,6 +26,21 @@ return {
         },
     },
 
+    {
+        "AndrewRadev/splitjoin.vim",
+        event = "VeryLazy",
+        keys = {
+            { "gj", "<cmd>SplitjoinJoin<cr>", desc = "Join" },
+            { "gk", "<cmd>SplitjoinSplit<cr>", desc = "Split" },
+        },
+        config = function(_, _)
+            vim.cmd([[
+                let g:splitjoin_split_mapping = ""
+                let g:splitjoin_join_mapping = ""
+            ]])
+        end,
+    },
+
     { -- prefer this over mini.surround
         "kylechui/nvim-surround",
         event = "VeryLazy",
