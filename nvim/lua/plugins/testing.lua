@@ -1,16 +1,5 @@
 return {
     {
-        "folke/which-key.nvim",
-        config = function(_, _)
-            local wk = require("which-key")
-            wk.register({
-                mode = { "n" },
-                ["<leader>t"] = { name = "+test" },
-            })
-        end,
-    },
-
-    {
         "vim-test/vim-test",
         ft = "ruby",
         keys = {

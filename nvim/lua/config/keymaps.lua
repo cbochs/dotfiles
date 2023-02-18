@@ -7,3 +7,10 @@ vim.keymap.set("n", "U", "<c-r>")
 vim.keymap.set("n", ":", ";")
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("t", "<c-j>", "<c-\\><c-n>")
+
+local wk = require("which-key")
+wk.register({
+    mode = { "n" },
+    ["<leader>t"] = { name = "+test" },
+    ["<leader>n"] = { name = "+neorg" },
+})
