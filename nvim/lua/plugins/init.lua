@@ -4,7 +4,37 @@ return {
         opts = { labeled_modes = "v" },
     },
 
-    {
+    { -- use "/" instead of "g" for search
+        "goolord/alpha-nvim",
+        opts = function(_, dashboard)
+            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
+            dashboard.section.buttons.val[4].opts.shortcut = "/"
+        end,
+    },
+
+    { -- add message filters
+        "folke/noice.nvim",
+        opts = {
+            routes = {
+                { -- filter annoying buffer messages
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                    },
+                    opts = { skip = true },
+                },
+                {
+                    filter = {
+                        event = "msg_show",
+                        kind = "search_count",
+                    },
+                    opts = { skip = true },
+                },
+            },
+        },
+    },
+
+    { -- add extra motions
         "nvim-treesitter/nvim-treesitter",
         opts = {
             textobjects = {
@@ -27,6 +57,15 @@ return {
     },
 
     {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function(_, _)
+            require("treesitter-context").setup({
+                enable = true,
+            })
+        end,
+    },
+
+    {
         "AndrewRadev/splitjoin.vim",
         event = "VeryLazy",
         keys = {
@@ -37,6 +76,7 @@ return {
             vim.cmd([[
                 let g:splitjoin_split_mapping = ""
                 let g:splitjoin_join_mapping = ""
+                let g:splitjoin_quiet = 1
             ]])
         end,
     },
