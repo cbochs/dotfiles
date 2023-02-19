@@ -13,6 +13,7 @@ spicetify
 fish/completions
 fish/conf.d
 !fish/conf.d/abbreviations.fish
+!fish/conf.d/keys.fish
 !fish/conf.d/path.fish
 !fish/conf.d/variables.fish
 fish/functions
