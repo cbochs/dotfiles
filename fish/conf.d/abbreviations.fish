@@ -21,7 +21,7 @@ abbr -a -U gp  git push
 abbr -a -U gpm git pull
 abbr -a -U gpu git pull upstream master
 abbr -a -U gr  git remote
-abbr -a -U gs  git status
+abbr -a -U gs  git st
 
 abbr -a -U mk minikube
 abbr -a -U mi minikube
