@@ -10,6 +10,8 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 
 vim.keymap.set("n", "U", "<c-r>")
 
+vim.keymap.set("n", "<leader>ut", "<cmd>split | terminal<cr>a", { desc = "Toggle terminal" })
+
 local wk = require("which-key")
 wk.register({
     mode = { "n" },
