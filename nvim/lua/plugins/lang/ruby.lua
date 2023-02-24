@@ -25,8 +25,8 @@ return {
         "tpope/vim-rails",
         ft = "ruby",
         keys = {
-            { "gA", "<cmd>AV<cr>", desc = "Goto alternate file (Rails)" },
-            { "gR", "<cmd>RV<cr>", desc = "Goto related file (Rails)" },
+            { "ga", "<cmd>A<cr>", desc = "Goto alternate file (Rails)" },
+            { "gb", "<cmd>R<cr>", desc = "Goto related file (Rails)" },
         },
     },
 }
