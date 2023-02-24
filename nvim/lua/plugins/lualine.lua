@@ -26,7 +26,7 @@ return {
                     -- stylua: ignore
                     {
                         function() local key = require("grapple").key() return "  [" .. key .. "]" end,
-                        cond = require("grapple").exists,
+                        cond = function() return require("grapple").exists() end,
                     },
                 },
                 lualine_c = { "diagnostics" },

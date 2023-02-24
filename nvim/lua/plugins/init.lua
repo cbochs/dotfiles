@@ -16,13 +16,13 @@ return {
         "folke/noice.nvim",
         opts = {
             routes = {
-                { -- filter annoying buffer messages
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                    },
-                    opts = { skip = true },
-                },
+                -- { -- filter annoying buffer messages
+                --     filter = {
+                --         event = "msg_show",
+                --         kind = "",
+                --     },
+                --     opts = { skip = true },
+                -- },
                 {
                     filter = {
                         event = "msg_show",
@@ -36,7 +36,11 @@ return {
 
     { -- add extra motions
         "nvim-treesitter/nvim-treesitter",
+        dependencies = { "nvim-treesitter/playground" },
         opts = {
+            playground = {
+                enable = true,
+            },
             textobjects = {
                 move = {
                     enable = true,
@@ -58,30 +62,33 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter-context",
+        event = "VeryLazy",
         config = function(_, _)
-            require("treesitter-context").setup({
-                enable = true,
-            })
+            require("treesitter-context").setup({ enable = true })
         end,
     },
 
     {
-        "AndrewRadev/splitjoin.vim",
-        event = "VeryLazy",
+        "cbochs/grapple.nvim",
         keys = {
-            { "gj", "<cmd>SplitjoinJoin<cr>", desc = "Join" },
-            { "gk", "<cmd>SplitjoinSplit<cr>", desc = "Split" },
+            { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
+            { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
+            { "<leader>j", "<cmd>GrappleCycle forward<cr>", desc = "Grapple cycle forward" },
+            { "<leader>J", "<cmd>GrappleCycle backward<cr>", desc = "Grapple cycle backward" },
         },
-        config = function(_, _)
-            vim.cmd([[
-                let g:splitjoin_split_mapping = ""
-                let g:splitjoin_join_mapping = ""
-                let g:splitjoin_quiet = 1
-            ]])
-        end,
+        config = true,
     },
 
-    { -- prefer this over mini.surround
+    {
+        "Wansmer/treesj",
+        branch = "feat/foreach",
+        keys = {
+            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
+        },
+        opts = { use_default_keymaps = false },
+    },
+
+    {
         "kylechui/nvim-surround",
         event = "VeryLazy",
         config = true,
