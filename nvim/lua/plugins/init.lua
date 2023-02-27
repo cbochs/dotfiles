@@ -81,7 +81,6 @@ return {
 
     {
         "Wansmer/treesj",
-        branch = "feat/foreach",
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
         },
