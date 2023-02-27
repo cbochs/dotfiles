@@ -15,7 +15,6 @@ return {
             { "<leader>nr", "<cmd>Neorg return<cr>", desc = "Return" },
             { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Index" },
         },
-        build = ":Neorg sync-parsers",
         opts = {
             load = {
                 ["core.defaults"] = {}, -- Loads default behaviour
