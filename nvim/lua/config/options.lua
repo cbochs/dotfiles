@@ -11,6 +11,9 @@ vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
+-- Jumplist (from portal.nvim)
+vim.opt.jumpoptions = "stack"
+
 -- Disable comment continuation
 vim.opt.formatoptions:remove("o") -- Don't continue after 'o' or 'O'
 vim.opt.formatoptions:remove("r") -- Don't continue after <cr>
