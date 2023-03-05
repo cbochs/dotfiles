@@ -11,10 +11,13 @@ return {
             { "<leader>tv", "<cmd>TestVisit<cr>", desc = "Visit test" },
         },
         config = function(_, _)
-            vim.cmd([[ 
+            vim.cmd([[
                 let test#strategy = "neovim"
-                "let test#neovim#term_position = "vert"
-                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e DEPENDENCIES_NEXT=0 portal bin/rspec"
+
+                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test portal bin/rspec"
+
+                let test#lua#lua#executable = "make test"
+                let test#lua#lua#file_pattern = "_spec.lua"
             ]])
         end,
     },
