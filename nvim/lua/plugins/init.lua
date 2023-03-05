@@ -76,7 +76,25 @@ return {
             { "<leader>j", "<cmd>GrappleCycle forward<cr>", desc = "Grapple cycle forward" },
             { "<leader>J", "<cmd>GrappleCycle backward<cr>", desc = "Grapple cycle backward" },
         },
-        config = true,
+    },
+
+    -- stylua: ignore
+    {
+        "ThePrimeagen/harpoon",
+        keys = {
+            { "gh", function() require("harpoon.mark").add_file() end, desc = "Harpoon mark" },
+            { "gH", function() print("Marked: " .. require("harpoon.mark").status(0)) end, desc = "Harpoon status" },
+        },
+    },
+
+    {
+        "cbochs/portal.nvim",
+        -- dir = "~/git_personal/portal.nvim",
+        -- branch = "apply_base_filter",
+        keys = {
+            { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal forward" },
+            { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal backward" },
+        },
     },
 
     {
