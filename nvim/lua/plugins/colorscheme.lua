@@ -3,6 +3,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
+            compile = true,
             colorscheme = "kanagawa",
         },
     },
