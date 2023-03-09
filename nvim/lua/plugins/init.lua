@@ -34,28 +34,15 @@ return {
         },
     },
 
-    { -- add extra motions
+    { -- TODO: enable as needed
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/playground" },
+        keys = {
+            { "<leader>up", "<cmd>TSPlaygroundToggle<cr>" },
+        },
         opts = {
             playground = {
                 enable = true,
-            },
-            textobjects = {
-                move = {
-                    enable = true,
-                    set_jump = true,
-                    goto_next_start = {
-                        ["]b"] = { query = "@block.outer", desc = "Next block" },
-                        ["]c"] = { query = "@class.outer", desc = "Next class" },
-                        ["]f"] = { query = "@function.outer", desc = "Next function" },
-                    },
-                    goto_previous_start = {
-                        ["[b"] = { query = "@block.outer", desc = "Prev block" },
-                        ["[c"] = { query = "@class.outer", desc = "Prev class" },
-                        ["[f"] = { query = "@function.outer", desc = "Prev function" },
-                    },
-                },
             },
         },
     },
@@ -70,6 +57,7 @@ return {
 
     {
         "cbochs/grapple.nvim",
+        -- dir = "~/git_personal/grapple.nvim",
         keys = {
             { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
             { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
@@ -78,31 +66,23 @@ return {
         },
     },
 
-    -- stylua: ignore
-    {
-        "ThePrimeagen/harpoon",
-        keys = {
-            { "gh", function() require("harpoon.mark").add_file() end, desc = "Harpoon mark" },
-            { "gH", function() print("Marked: " .. require("harpoon.mark").status(0)) end, desc = "Harpoon status" },
-        },
-    },
-
     {
         "cbochs/portal.nvim",
         -- dir = "~/git_personal/portal.nvim",
-        -- branch = "apply_base_filter",
         keys = {
             { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal forward" },
             { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal backward" },
+            {
+                "<leader>O",
+                function()
+                    require("portal").tunnel({
+                        require("portal.builtin").grapple.query({ max_results = 1 }),
+                        require("portal.builtin").jumplist.query({ max_results = 3 }),
+                    })
+                end,
+                desc = "Portal somewhere",
+            },
         },
-    },
-
-    {
-        "Wansmer/treesj",
-        keys = {
-            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-        },
-        opts = { use_default_keymaps = false },
     },
 
     {
