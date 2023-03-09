@@ -1,9 +1,15 @@
 return {
-    { "rebelot/kanagawa.nvim" },
+    {
+        "rebelot/kanagawa.nvim",
+        build = ":KanagawaCompile",
+        opts = {
+            compile = true,
+            dimInactive = true,
+        },
+    },
     {
         "LazyVim/LazyVim",
         opts = {
-            compile = true,
             colorscheme = "kanagawa",
         },
     },
