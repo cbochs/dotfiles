@@ -17,6 +17,11 @@ return {
                 rust_analyzer = {
                     settings = {
                         ["rust-analyzer"] = {
+                            diagnostics = {
+                                disabled = {
+                                    "unresolved-proc-macro",
+                                },
+                            },
                             cargo = {
                                 allFeatures = true,
                             },
