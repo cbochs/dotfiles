@@ -35,7 +35,7 @@ return {
         end,
     },
 
-    {
+    { -- add treesitter playground
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/playground" },
         keys = {
@@ -48,9 +48,36 @@ return {
         },
     },
 
-    -- {
-    --     "nvim-telescope/telescope.nvim",
-    -- },
+    { -- add more keymaps
+        "nvim-telescope/telescope.nvim",
+        opts = function(_, opts)
+            opts.defaults.file_ignore_patterns = {
+                "node_modules", -- ignore node packages
+                "packer_compiled", -- ignore packer_compiled.lua
+                "vendor", -- ignore bundled gems
+            }
+            opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
+                ["<c-j>"] = { "<esc>", type = "command" },
+                ["<c-u>"] = false,
+            })
+            opts.pickers = {
+                live_grep = {
+                    mappings = {
+                        i = {
+                            ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
+                        },
+                    },
+                },
+                find_files = {
+                    mappings = {
+                        i = {
+                            ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
+                        },
+                    },
+                },
+            }
+        end,
+    },
 
     {
         "nvim-treesitter/nvim-treesitter-context",
@@ -86,6 +113,12 @@ return {
                     })
                 end,
                 desc = "Portal somewhere",
+            },
+        },
+        opts = {
+            escape = {
+                ["<c-j>"] = true,
+                ["q"] = true,
             },
         },
     },
