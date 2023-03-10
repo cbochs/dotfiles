@@ -13,14 +13,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "bash", "ruby" },
+    pattern = { "bash", "ruby", "sh" },
     callback = function()
         vim.b.autoformat = false
     end,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "bash", "go" },
+    pattern = { "bash", "go", "sh" },
     callback = function()
         vim.b.expandtab = false
     end,
