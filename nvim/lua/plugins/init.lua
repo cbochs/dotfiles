@@ -14,27 +14,28 @@ return {
 
     { -- add message filters
         "folke/noice.nvim",
-        opts = {
-            routes = {
-                -- { -- filter annoying buffer messages
-                --     filter = {
-                --         event = "msg_show",
-                --         kind = "",
-                --     },
-                --     opts = { skip = true },
-                -- },
-                {
+        opts = function(_, opts)
+            opts.routes = {
+                { -- filter write messages "xxxL, xxxB"
                     filter = {
                         event = "msg_show",
-                        kind = "search_count",
+                        find = "%dL",
                     },
                     opts = { skip = true },
                 },
-            },
-        },
+                { -- filter search messages
+                    filter = {
+                        event = "msg_show",
+                        find = "search hit BOTTOM, continuing at TOP",
+                        warning = true,
+                    },
+                    opts = { skip = true },
+                },
+            }
+        end,
     },
 
-    { -- TODO: enable as needed
+    {
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/playground" },
         keys = {
@@ -46,6 +47,10 @@ return {
             },
         },
     },
+
+    -- {
+    --     "nvim-telescope/telescope.nvim",
+    -- },
 
     {
         "nvim-treesitter/nvim-treesitter-context",
