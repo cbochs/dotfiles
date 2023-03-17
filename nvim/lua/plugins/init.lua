@@ -26,8 +26,7 @@ return {
                 { -- filter search messages
                     filter = {
                         event = "msg_show",
-                        find = "search hit BOTTOM, continuing at TOP",
-                        warning = true,
+                        find = "search hit",
                     },
                     opts = { skip = true },
                 },
@@ -86,6 +85,8 @@ return {
             require("treesitter-context").setup({ enable = true })
         end,
     },
+
+    { "kkharji/sqlite.lua" },
 
     {
         "cbochs/grapple.nvim",
