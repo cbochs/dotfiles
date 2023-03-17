@@ -1,7 +1,10 @@
+if true then
+    return {}
+end
+
 return {
     {
         "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-cmdline" },
         opts = function(_, opts)
             local cmp = require("cmp")
 
@@ -21,10 +24,10 @@ return {
             opts.cmdline = {}
             opts.cmdline.command = {
                 -- stylua: ignore
-                mapping = cmp.mapping.preset.cmdline({
-                    ["<C-N>"] = function(fb) fb() end,
-                    ["<C-P>"] = function(fb) fb() end,
-                }),
+                -- mapping = cmp.mapping.preset.cmdline({
+                --     ["<C-N>"] = function(fb) fb() end,
+                --     ["<C-P>"] = function(fb) fb() end,
+                -- }),
                 sources = cmp.config.sources({
                     { name = "cmdline" },
                     { name = "path" },
@@ -39,8 +42,8 @@ return {
             -- vim.pretty_print(opts)
             local cmp = require("cmp")
             cmp.setup(opts)
-            cmp.setup.cmdline(":", opts.cmdline.command)
-            cmp.setup.cmdline("/", opts.cmdline.search)
+            -- cmp.setup.cmdline(":", opts.cmdline.command)
+            -- cmp.setup.cmdline("/", opts.cmdline.search)
         end,
     },
 }
