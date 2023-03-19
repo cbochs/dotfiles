@@ -14,15 +14,39 @@ return {
         opts = {
             servers = {
                 yamlls = {
-                    yaml = {
-                        schemas = {
-                            ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "/*",
-                        },
-                        schemaStore = {
-                            url = "https://www.schemastore.org/api/json/catalog.json",
+                    settings = {
+                        yaml = {
+                            keyOrdering = false,
+                            schemas = {
+                                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "/*",
+                                -- ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"] = "/*",
+                            },
+                            schemaStore = {
+                                url = "https://www.schemastore.org/api/json/catalog.json",
+                            },
                         },
                     },
                 },
+            },
+            setup = {
+                yamlls = function(_, _)
+                    -- TODO: Remove me once we've moved to OAS 3.1.0
+                    require("lazyvim.util").on_attach(function(client, _)
+                        if client.name == "yamlls" then
+                            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                                function(_, result, ctx, config)
+                                    result.diagnostics = vim.tbl_filter(function(diagnostic)
+                                        return (diagnostic.source:find("yaml-schema") or 0) > 0
+                                    end, result.diagnostics)
+                                    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+                                end,
+                                {}
+                            )
+                            -- local ns = vim.lsp.diagnostic.get_namespace(client.id)
+                            -- vim.diagnostic.disable(nil, ns)
+                        end
+                    end)
+                end,
             },
         },
     },
@@ -30,55 +54,18 @@ return {
     -- setup OpenAPI linting for yaml
     {
         "jose-elias-alvarez/null-ls.nvim",
+        dir = "~/git_personal/null-ls.nvim",
         opts = function(_, opts)
-            local h = require("null-ls.helpers")
-            local methods = require("null-ls.methods")
-
-            local DIAGNOSTICS = methods.internal.DIAGNOSTICS
-            local severities = { 1, 2, 3, 4 }
-
-            local vacuum = {
-                name = "vacuum",
-                meta = {
-                    url = "https://quobix.com/vacuum",
-                    description = "The world’s fastest and most scalable OpenAPI linter.",
-                },
-                method = DIAGNOSTICS,
-                filetypes = { "yaml", "json" },
-                generator = h.generator_factory({
-                    command = "vacuum",
-                    args = {
-                        "spectral-report",
-                        "--stdin",
-                        "--stdout",
+            local nls = require("null-ls")
+            opts.sources = vim.list_extend(opts.sources, {
+                nls.builtins.diagnostics.vacuum.with({
+                    extra_args = {
+                        "--ruleset",
+                        "/Users/cbochula@cisco.com/git/janus-rails/.vacuum.yaml",
+                        -- "janus-rails/.vacuum.yaml",
                     },
-                    format = "json",
-                    to_stdin = true,
-                    ignore_stderr = true,
-                    check_exit_code = function(code)
-                        return code <= 1
-                    end,
-                    on_output = function(params)
-                        local diags = {}
-                        for _, d in ipairs(params.output) do
-                            table.insert(diags, {
-                                row = d.range.start.line,
-                                col = d.range.start.character,
-                                end_row = d.range["end"].line,
-                                end_col = d.range["end"].character,
-                                source = "Vacuum",
-                                message = d.message,
-                                severity = severities[d.severity + 1],
-                                code = d.code,
-                                path = d.path,
-                            })
-                        end
-                        return diags
-                    end,
                 }),
-            }
-
-            opts.sources = vim.list_extend(opts.sources, { vacuum })
+            })
         end,
     },
 }
