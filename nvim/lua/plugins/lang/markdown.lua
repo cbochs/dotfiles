@@ -1,5 +1,4 @@
 return {
-
     -- add markdown to treesitter
     {
         "nvim-treesitter/nvim-treesitter",
