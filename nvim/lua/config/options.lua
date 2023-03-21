@@ -5,17 +5,21 @@
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
--- Folding (from nvim-ufo)
+-- Reduce command buffer size
+vim.opt.cmdwinheight = 1
+
+-- Conceal (Neorg)
+-- vim.opt.conceallevel = 2
+-- vim.opt.concealcursor = "nc"
+
+-- Folding (nvim-ufo)
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
--- Jumplist (from portal.nvim)
+-- Jumplist (portal.nvim)
 vim.opt.jumpoptions = "stack"
-
--- Reduce command buffer size
-vim.opt.cmdwinheight = 1
 
 -- Disable comment continuation
 vim.opt.formatoptions:remove("o") -- Don't continue after 'o' or 'O'
