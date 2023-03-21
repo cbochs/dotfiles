@@ -11,15 +11,29 @@ return {
         "nvim-neorg/neorg",
         dependencies = { "nvim-lua/plenary.nvim" },
         ft = "norg",
+        cmd = "Neorg",
         keys = {
             { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Index" },
             { "<leader>nj", "<cmd>Neorg journal today<cr>", desc = "Journal" },
             { "<leader>nr", "<cmd>Neorg return<cr>", desc = "Return" },
+            { "<leader>ns", "<cmd>Neorg sync-parsers<cr>", desc = "Sync parsers" },
         },
         opts = {
             load = {
                 ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+                ["core.norg.concealer"] = {
+                    config = {
+                        dim_code_blocks = {
+                            padding = { left = 4 },
+                        },
+                        icons = {
+                            done = { icon = "x" },
+                            pending = { icon = "-" },
+                            undone = { icon = " " },
+                            urgent = { icon = "!" },
+                        },
+                    },
+                }, -- Adds pretty icons to your documents
                 ["core.norg.completion"] = {
                     config = { engine = "nvim-cmp" },
                 },
