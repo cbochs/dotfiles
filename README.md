@@ -21,7 +21,7 @@
 * Package manager: [brew](https://github.com/homebrew)
 * Version manager: [asdf](https://github.com/asdf-vm/asdf)
 
-## Multiplexer: [Zellij](https://github.com/zellij-org/zellij) [[config](./zellij) ]
+## Multiplexer: [Zellij](https://github.com/zellij-org/zellij) [[config](./zellij)]
 
 * Theme: [Kanagawa](https://github.com/zellij-org/zellij/blob/main/example/themes/kanagawa.kdl)
 * Prefix: `Ctrl b`
