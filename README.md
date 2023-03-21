@@ -1,17 +1,29 @@
 # Dotfiles
 
-The dotfiles I prefer.
+<p align="center">
+<img width="1774" alt="image" src="https://user-images.githubusercontent.com/2467016/226668608-ada9c1f2-b5a6-436f-a50d-748b50c3a505.png">
+</p>
 
-## Editor: [Neovim](https://neovim.io/)
+## Editor: [Neovim](https://neovim.io/) [[config](./nvim)]
 
-[Neovim Config](./nvim)
+* Distro: [LazyVim](https://www.lazyvim.org/)
+* Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+* Custom: [Grapple.nvim](https://github.com/cbochs/grapple.nvim) and [Portal.nvim](https://github.com/cbochs/portal.nvim)
 
-<img width="540" alt="Screen Shot 2022-10-17 at 08 06 59" src="https://user-images.githubusercontent.com/2467016/196198804-4a230b8d-96d4-4ed2-b09d-e9ae748b234d.png">
+## Terminal: [Alacritty](https://alacritty.org/) [[config](./alacritty)]
 
-## Terminal: [Alacritty](https://alacritty.org/)
+* Font: [Hack Nerd Font](https://www.nerdfonts.com/) (patched)
+* Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
 
-[Alacritty Config](./alacritty)
+## Shell: [Fish](https://fishshell.com/) [[config](./fish)]
 
-## Shell: [Fish](https://fishshell.com/)
+* Prompt: [Starship](https://github.com/starship/starship) [[config](./starship.toml)]
+* Package manager: (brew)[https://github.com/homebrew]
+* Version manager: [asdf](https://github.com/asdf-vm/asdf)
 
-**todo!()**
+## Multiplexer: [Zellij](https://github.com/zellij-org/zellij) [[config](./zellij) ]
+
+* Theme: [Kanagawa](https://github.com/zellij-org/zellij/blob/main/example/themes/kanagawa.kdl)
+* Prefix: `Ctrl b`
+* Modes: tmux-bindings only
+
