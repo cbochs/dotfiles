@@ -16,19 +16,19 @@ window:
 
 font:
   normal:
-    family: Iosevka Nerd Font
+    family: Hack Nerd Font
     style: Regular
   bold:
-    family: Iosevka Nerd Font
+    family: Hack Nerd Font
     style: Bold
   italic:
-    family: Iosevka Nerd Font
+    family: Hack Nerd Font
     style: Italic
   bold_italic:
-    family: Iosevka Nerd Font
+    family: Hack Nerd Font
     style: Bold Italic
   # size: 28.0
-  size: 16.0
+  size: 14.0
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: false
@@ -39,6 +39,8 @@ alt_send_esc: false
 #
 key_bindings:
   - { key: W, mods: Command, action: None }
+
+  - { key: Space,      mods: Control, chars: "\x00" }
 
   - { key: H,          mods: Control|Shift, chars: "\x1b[72;5u" }
   - { key: J,          mods: Control|Shift, chars: "\x1b[74;5u" }
