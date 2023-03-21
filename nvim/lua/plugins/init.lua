@@ -34,7 +34,7 @@ return {
         end,
     },
 
-    { -- add treesitter playground
+    { -- add treesitter playground + help neorg sync-parsers
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/playground" },
         keys = {
@@ -45,6 +45,10 @@ return {
                 enable = true,
             },
         },
+        config = function(_, opts)
+            require("nvim-treesitter.install").compilers = { "gcc-12" }
+            require("nvim-treesitter.configs").setup(opts)
+        end,
     },
 
     { -- add more keymaps
@@ -86,11 +90,19 @@ return {
         end,
     },
 
-    { "kkharji/sqlite.lua" },
+    {
+        cmd = "CellularAutomaton",
+        keys = {
+            { "gol", "<cmd>CellularAutomaton game_of_life<cr>" },
+            { "gor", "<cmd>CellularAutomaton make_it_rain<cr>" },
+        },
+        "eandrju/cellular-automaton.nvim",
+    },
+    -- { event = "VeryLazy", "kkharji/sqlite.lua" },
 
     {
         "cbochs/grapple.nvim",
-        -- dir = "~/git_personal/grapple.nvim",
+        dir = "~/git_personal/grapple.nvim",
         keys = {
             { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
             { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
