@@ -54,7 +54,7 @@ return {
     -- setup OpenAPI linting for yaml
     {
         "jose-elias-alvarez/null-ls.nvim",
-        dir = "~/git_personal/null-ls.nvim",
+        -- dir = "~/git_personal/null-ls.nvim",
         opts = function(_, opts)
             local nls = require("null-ls")
             opts.sources = vim.list_extend(opts.sources, {
