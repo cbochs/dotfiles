@@ -18,7 +18,7 @@
 ## Shell: [Fish](https://fishshell.com/) [[config](./fish)]
 
 * Prompt: [Starship](https://github.com/starship/starship) [[config](./starship.toml)]
-* Package manager: (brew)[https://github.com/homebrew]
+* Package manager: [brew](https://github.com/homebrew)
 * Version manager: [asdf](https://github.com/asdf-vm/asdf)
 
 ## Multiplexer: [Zellij](https://github.com/zellij-org/zellij) [[config](./zellij) ]
