@@ -14,7 +14,7 @@ return {
             vim.cmd([[
                 let test#strategy = "neovim"
 
-                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test portal bin/rspec"
+                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=-W0 portal bin/rspec"
 
                 let test#lua#lua#executable = "make test"
                 let test#lua#lua#file_pattern = "_spec.lua"
