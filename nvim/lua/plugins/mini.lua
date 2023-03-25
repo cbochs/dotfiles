@@ -20,20 +20,6 @@ return {
         end,
     },
 
-    { -- TODO: Try out plugin on ruby files
-        "echasnovski/mini.splitjoin",
-        event = "VeryLazy",
-        enabled = false,
-        opts = {
-            mappings = {
-                toggle = "gj",
-            },
-        },
-        config = function(_, opts)
-            require("mini.splitjoin").setup(opts)
-        end,
-    },
-
     {
         "Wansmer/treesj",
         keys = {
@@ -66,10 +52,5 @@ return {
             { "]t", false },
             { "[t", false },
         },
-    },
-
-    { -- Disable in preference of nvim-surround
-        "echasnovski/mini.surround",
-        enabled = false,
     },
 }
