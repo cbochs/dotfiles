@@ -129,8 +129,10 @@ return {
             },
         },
         opts = {
+            select_first = true,
             escape = {
                 ["<c-j>"] = true,
+                ["<esc>"] = true,
                 ["q"] = true,
             },
         },
@@ -151,6 +153,11 @@ return {
             { "r", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
         },
         config = true,
+    },
+
+    {
+        ft = "qf",
+        "kevinhwang91/nvim-bqf",
     },
 
     {
