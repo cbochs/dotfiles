@@ -8,6 +8,8 @@ abbr -a -U n nvim
 abbr -a -U v nvim
 abbr -a -U s ssh
 
+abbr -a -U nvim-copilot NVIM_APPNAME=nvim-copilot nvim
+
 abbr -a -U ze zellij
 abbr -a -U lg lazygit
 abbr -a -U dk lazydocker
@@ -18,8 +20,9 @@ abbr -a -U gc  git checkout
 abbr -a -U gl  git log
 abbr -a -U gm  git submodule update --recursive
 abbr -a -U gp  git push
-abbr -a -U gpm git pull
+abbr -a -U gP  git pull
 abbr -a -U gpu git pull upstream master
+abbr -a -U gcm git checkout master
 abbr -a -U gr  git remote
 abbr -a -U gs  git st
 
