@@ -52,7 +52,7 @@ keybinds clear-defaults=true {
     }
 
     shared_except "normal" {
-        bind "Enter" "Esc" { SwitchToMode "normal"; }
+        bind "Esc" { SwitchToMode "normal"; }
     }
 }
 
