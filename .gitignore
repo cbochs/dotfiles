@@ -1,25 +1,21 @@
-asciinema
-configstore
-git
-gitui
-helix
-iterm2
-kitty
-limelight
-nnn
-spicetify
+/*
 
-# Fish
-fish/completions
-fish/conf.d
-!fish/conf.d/abbreviations.fish
-!fish/conf.d/keys.fish
+!alacritty
+!nvim
+!tmux
+!zellij
+!README.md
+!starship.toml
+
+# Fish: only include common config
+!fish
+
+fish/*
+!fish/conf.d
+!fish/config.fish
+!fish/fish_plugins.fish
+
+fish/conf.d/*
 !fish/conf.d/path.fish
 !fish/conf.d/variables.fish
-fish/functions
-fish/themes
-fish/fish_variables
 
-# Neovim
-nvim/plugin
-*.so
