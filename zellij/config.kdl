@@ -2,6 +2,7 @@ default_layout "compact"
 on_force_close "detach"
 pane_frames false
 simplified_ui true
+scrollback_editor "nvim -u scrollback.lua"
 
 theme "kanagawa"
 
@@ -12,10 +13,12 @@ keybinds clear-defaults=true {
 
     renametab {
         bind "Ctrl c" { SwitchToMode "normal"; }
+        bind "Enter" { SwitchToMode "normal"; }
         bind "Esc" { UndoRenameTab; SwitchToMode "tmux"; }
     }
 
     scroll {
+        bind "/" { EditScrollback; SwitchToMode "Normal"; }
         bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
         bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
@@ -29,14 +32,14 @@ keybinds clear-defaults=true {
     }
 
     tmux {
-        bind "[" { SwitchToMode "scroll"; }
         bind "%" { NewPane "Right"; SwitchToMode "normal"; }
         bind "," { SwitchToMode "RenameTab"; }
         bind "-" { NewPane "Down"; SwitchToMode "normal"; }
+        bind "/" { EditScrollback; SwitchToMode "Normal"; }
         bind "Ctrl b" { SwitchToMode "normal"; }
-        bind "q" { Detach; }
         bind "Enter" { SwitchToMode "normal"; }
         bind "Space" { NextSwapLayout; }
+        bind "[" { SwitchToMode "scroll"; }
         bind "\"" { NewPane "Down"; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
         bind "h" { MoveFocus "Left"; }
@@ -46,6 +49,7 @@ keybinds clear-defaults=true {
         bind "n" { GoToNextTab; }
         bind "o" { FocusNextPane; }
         bind "p" { GoToPreviousTab; }
+        bind "q" { Detach; }
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
         bind "|" { NewPane "Right"; SwitchToMode "normal"; }
