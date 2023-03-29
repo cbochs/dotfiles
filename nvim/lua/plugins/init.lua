@@ -184,6 +184,7 @@ return {
             { "e", function() require("spider").motion("e") end, mode = { "n", "o", "x" } },
             { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" } },
         },
+        enabled = false,
         "chrisgrieser/nvim-spider",
     },
 }
