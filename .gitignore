@@ -1,11 +1,12 @@
 /*
 
+!README.md
 !alacritty
+!lazygit
 !nvim
+!starship.toml
 !tmux
 !zellij
-!README.md
-!starship.toml
 
 # Fish: only include common config
 !fish
