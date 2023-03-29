@@ -1,6 +1,7 @@
 return {
     {
         "vim-test/vim-test",
+        -- dir = "~/git_personal/vim-test",
         ft = "ruby",
         keys = {
             { "<leader>T", "<cmd>TestFile<cr>", desc = "Run test (file)" },
@@ -12,12 +13,15 @@ return {
         },
         config = function(_, _)
             vim.cmd([[
-                let test#strategy = "neovim"
+                function! Zellij(cmd)
+                    let bin = join(['zellij', 'run', '--direction', 'right', '--cwd', getcwd()])
+                    let cmd = join([bin, '--', a:cmd])
+                    execute 'silent !'.cmd
+                endfunction
 
-                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=-W0 portal bin/rspec"
-
-                let test#lua#lua#executable = "make test"
-                let test#lua#lua#file_pattern = "_spec.lua"
+                let g:test#custom_strategies = { 'zellij': function('Zellij') }
+                let test#strategy = 'zellij'
+                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT='-W0 -W:no-deprecated' portal bin/rspec"
             ]])
         end,
     },
