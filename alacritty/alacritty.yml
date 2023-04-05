@@ -11,6 +11,7 @@ window:
     x: 4
     y: 2
   decorations: none
+  option_as_alt: Both
 
 font:
   normal:
@@ -26,9 +27,6 @@ font:
     family: Hack Nerd Font
     style: Bold Italic
   size: 14.0
-
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: false
 
 # Set some keybindings to override macOS alt characters
 #
