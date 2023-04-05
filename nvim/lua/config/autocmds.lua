@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "bash", "go", "sh" },
     callback = function()
-        vim.b.expandtab = false
+        vim.opt_local.expandtab = false
     end,
 })
 
