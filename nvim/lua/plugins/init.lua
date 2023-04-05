@@ -1,10 +1,11 @@
 return {
-    { -- override defaults
+
+    { -- override: default options
         "ggandor/flit.nvim",
         opts = { labeled_modes = "v" },
     },
 
-    { -- use "/" instead of "g" for search
+    { -- override: use "/" instead of "g" for search
         "goolord/alpha-nvim",
         opts = function(_, dashboard)
             dashboard.section.buttons.val[4].opts.keymap[2] = "/"
@@ -12,7 +13,7 @@ return {
         end,
     },
 
-    { -- add message filters
+    { -- override: add message filters
         "folke/noice.nvim",
         opts = function(_, opts)
             opts.routes = {
@@ -34,7 +35,7 @@ return {
         end,
     },
 
-    { -- add treesitter playground + help neorg sync-parsers
+    { -- override: add treesitter playground + help neorg sync-parsers
         "nvim-treesitter/nvim-treesitter",
         dependencies = { "nvim-treesitter/playground" },
         keys = {
@@ -51,7 +52,7 @@ return {
         end,
     },
 
-    { -- add more keymaps
+    { -- override: setup better keymaps
         "nvim-telescope/telescope.nvim",
         opts = function(_, opts)
             opts.defaults.file_ignore_patterns = {
@@ -98,7 +99,6 @@ return {
         },
         "eandrju/cellular-automaton.nvim",
     },
-    -- { event = "VeryLazy", "kkharji/sqlite.lua" },
 
     {
         "cbochs/grapple.nvim",
@@ -157,8 +157,8 @@ return {
     },
 
     {
-        ft = "qf",
         "kevinhwang91/nvim-bqf",
+        ft = "qf",
     },
 
     {
@@ -177,6 +177,8 @@ return {
     },
 
     {
+        "chrisgrieser/nvim-spider",
+        enabled = false,
         -- stylua: ignore
         keys = {
             { "w", function() require("spider").motion("w") end, mode = { "n", "o", "x" } },
@@ -184,7 +186,40 @@ return {
             { "e", function() require("spider").motion("e") end, mode = { "n", "o", "x" } },
             { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" } },
         },
-        enabled = false,
-        "chrisgrieser/nvim-spider",
+    },
+
+    {
+        "https://github.com/notomo/gesture.nvim",
+        opts = { show_board = false },
+        -- stylua: ignore
+        config = function(_, opts)
+            local Util = require("lazy.util")
+            local enabled = false
+
+            local function vim_keymap_set(mode, lhs, rhs)
+                vim.keymap.set(mode, lhs, function()
+                    if enabled then
+                        rhs()
+                    else
+                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(lhs, true, true, true), "n", true)
+                    end
+                end)
+            end
+
+            vim_keymap_set("n", "<LeftDrag>", function() require("gesture").draw(opts) end)
+            vim_keymap_set("n", "<LeftRelease>", function() require("gesture").suspend() end)
+            vim_keymap_set("n", "<2-LeftMouse>", function() require("gesture").finish() end)
+
+            vim.keymap.set("n", "<leader>uD", function()
+                enabled = not enabled
+                if enabled then
+                    vim.diagnostic.enable()
+                    Util.info("Enabled draw", { title = "Draw" })
+                else
+                    vim.diagnostic.disable()
+                    Util.warn("Disabled draw", { title = "Draw" })
+                end
+            end, { desc = "Draw" })
+        end,
     },
 }
