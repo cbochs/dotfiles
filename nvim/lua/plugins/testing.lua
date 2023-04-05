@@ -21,7 +21,8 @@ return {
 
                 let g:test#custom_strategies = { 'zellij': function('Zellij') }
                 let test#strategy = 'zellij'
-                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT='-W0 -W:no-deprecated' portal bin/rspec"
+                let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=W0 portal bin/rspec"
+                " let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=-W0 portal echo $RUBYOPT"
             ]])
         end,
     },
