@@ -35,17 +35,8 @@ return {
         end,
     },
 
-    { -- override: add treesitter playground + help neorg sync-parsers
+    { -- override: help neorg sync-parsers
         "nvim-treesitter/nvim-treesitter",
-        dependencies = { "nvim-treesitter/playground" },
-        keys = {
-            { "<leader>up", "<cmd>TSPlaygroundToggle<cr>" },
-        },
-        opts = {
-            playground = {
-                enable = true,
-            },
-        },
         config = function(_, opts)
             require("nvim-treesitter.install").compilers = { "gcc-12" }
             require("nvim-treesitter.configs").setup(opts)
