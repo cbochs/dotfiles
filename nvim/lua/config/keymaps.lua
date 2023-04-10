@@ -12,6 +12,7 @@ vim.keymap.set("n", "U", "<c-r>")
 
 vim.keymap.set("n", "<leader>utj", "<cmd>split | terminal<cr>a", { desc = "Toggle terminal (down)" })
 vim.keymap.set("n", "<leader>utl", "<cmd>vsplit | terminal<cr>a", { desc = "Toggle terminal (right)" })
+vim.keymap.set("n", "<leader>up", "<cmd>InspectTree<cr>", { desc = "Toggle treesitter" })
 
 local wk = require("which-key")
 wk.register({
