@@ -1,7 +1,7 @@
 return {
     {
         "echasnovski/mini.bracketed",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             comment = { suffix = "k" },
             indent = { options = { change_type = "diff" } },
@@ -21,16 +21,8 @@ return {
     },
 
     {
-        "Wansmer/treesj",
-        keys = {
-            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-        },
-        opts = { use_default_keymaps = false },
-    },
-
-    {
         "echasnovski/mini.trailspace",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile" },
         config = function(_, opts)
             require("mini.trailspace").setup(opts)
         end,
@@ -43,14 +35,6 @@ return {
                 goto_top = "",
                 goto_bottom = "",
             },
-        },
-    },
-
-    { -- Disable some keymaps in favour of mini.bracketed "treesitter"
-        "folke/todo-comments.nvim",
-        keys = {
-            { "]t", false },
-            { "[t", false },
         },
     },
 }

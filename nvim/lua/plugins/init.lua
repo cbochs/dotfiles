@@ -35,6 +35,14 @@ return {
         end,
     },
 
+    { -- override: disable some keymaps in favour of mini.bracketed "treesitter"
+        "folke/todo-comments.nvim",
+        keys = {
+            { "]t", false },
+            { "[t", false },
+        },
+    },
+
     { -- override: help neorg sync-parsers
         "nvim-treesitter/nvim-treesitter",
         config = function(_, opts)
@@ -71,6 +79,15 @@ return {
                     },
                 },
             }
+        end,
+    },
+
+    {
+        "L3MON4D3/LuaSnip",
+        opts = function(_, opts)
+            opts.history = true
+            opts.region_check_events = "InsertEnter"
+            opts.delete_check_events = "TextChanged,InsertLeave"
         end,
     },
 
@@ -168,6 +185,14 @@ return {
     },
 
     {
+        "Wansmer/treesj",
+        keys = {
+            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
+        },
+        opts = { use_default_keymaps = false },
+    },
+
+    {
         "chrisgrieser/nvim-spider",
         enabled = false,
         -- stylua: ignore
@@ -176,6 +201,20 @@ return {
             { "b", function() require("spider").motion("b") end, mode = { "n", "o", "x" } },
             { "e", function() require("spider").motion("e") end, mode = { "n", "o", "x" } },
             { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" } },
+        },
+    },
+
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            {
+                "SmiteshP/nvim-navbuddy",
+                dependencies = {
+                    "SmiteshP/nvim-navic",
+                    "MunifTanjim/nui.nvim",
+                },
+                opts = { lsp = { auto_attach = true } },
+            },
         },
     },
 
