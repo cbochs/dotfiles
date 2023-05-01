@@ -21,7 +21,7 @@ return {
         opts = {
             load = {
                 ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.norg.concealer"] = {
+                ["core.concealer"] = {
                     config = {
                         dim_code_blocks = {
                             padding = { left = 4 },
@@ -34,10 +34,10 @@ return {
                         },
                     },
                 }, -- Adds pretty icons to your documents
-                ["core.norg.completion"] = {
+                ["core.completion"] = {
                     config = { engine = "nvim-cmp" },
                 },
-                ["core.norg.dirman"] = { -- Manages Neorg workspaces
+                ["core.dirman"] = { -- Manages Neorg workspaces
                     config = {
                         default_workspace = "work",
                         workspaces = { work = "~/git_personal/notes" },
