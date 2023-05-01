@@ -19,10 +19,15 @@ return {
                     execute 'silent !'.cmd
                 endfunction
 
+                function! Tmux(cmd)
+                    let bin = join(['tmux', 'split-window'])
+                    let cmd = join([bin, '--', a:cmd])
+                    execute 'silent !'.cmd
+                endfunction
+
                 let g:test#custom_strategies = { 'zellij': function('Zellij') }
                 let test#strategy = 'zellij'
                 let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=W0 portal bin/rspec"
-                " let test#ruby#rspec#executable = "docker compose exec -e RAILS_ENV=test -e RUBYOPT=-W0 portal echo $RUBYOPT"
             ]])
         end,
     },
