@@ -2,13 +2,12 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
--- Inspired by https://github.com/cappyzawa/trim.nvim
-
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("TrimWhitespace", { clear = true }),
     pattern = "*",
     callback = function()
         MiniTrailspace.trim()
+        MiniTrailspace.trim_last_lines()
     end,
 })
 
