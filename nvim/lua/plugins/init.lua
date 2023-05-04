@@ -46,7 +46,7 @@ return {
     { -- override: help neorg sync-parsers
         "nvim-treesitter/nvim-treesitter",
         config = function(_, opts)
-            require("nvim-treesitter.install").compilers = { "gcc-12" }
+            require("nvim-treesitter.install").compilers = { "gcc-13" }
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
