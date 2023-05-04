@@ -33,7 +33,7 @@ keybinds clear-defaults=true {
 
     tmux {
         bind "%" { NewPane "Right"; SwitchToMode "normal"; }
-        bind "," { SwitchToMode "RenameTab"; }
+        bind "," { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "-" { NewPane "Down"; SwitchToMode "normal"; }
         bind "/" { EditScrollback; SwitchToMode "Normal"; }
         bind "Ctrl b" { SwitchToMode "normal"; }
