@@ -8,6 +8,23 @@ return {
     { -- override: use "/" instead of "g" for search
         "goolord/alpha-nvim",
         opts = function(_, dashboard)
+            local logo = [[
+            __:.__
+           (_:..'"=
+            ::/ o o\         AHAH!
+           ;'-'   (_)     Spaceman Spiff      .
+           '-._  ;-'        wins again !  _'._|\/:
+           .:;  ;                .         '- '   /_
+          :.. ; ;,                \       _/,    "_<
+         :.|..| ;:                 \__   '._____  _)
+         :.|.'| ||                            _/ /
+         :.|..| :'                           `;--:
+         '.|..|:':       _               _ _ :|_\:
+      .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
+:....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
+ ''''      '-''-'-'.__)-'
+            ]]
+            dashboard.section.header.val = vim.split(logo, "\n")
             dashboard.section.buttons.val[4].opts.keymap[2] = "/"
             dashboard.section.buttons.val[4].opts.shortcut = "/"
         end,
