@@ -15,7 +15,7 @@ return {
             servers = {
                 solargraph = {
                     mason = false,
-                    initialization_options = {
+                    initializationOptions = {
                         autoformat = true,
                         diagnostics = true,
                         formatting = true,
@@ -25,21 +25,21 @@ return {
                 --     mason = false,
                 --     initializationOptions = {
                 --         enabledFeatures = {
-                --             documentSymbol = true,
+                --             codeActionResolve = true,
+                --             codeActions = true,
+                --             codeLens = true,
+                --             diagnostics = true,
+                --             documentHighlight = true,
                 --             documentLink = true,
-                --             hover = true,
+                --             documentSymbol = true,
                 --             foldingRanges = true,
+                --             formatting = true,
+                --             hover = true,
+                --             inlayHints = true,
+                --             onTypeFormatting = false,
+                --             pathCompletion = true,
                 --             selectionRanges = true,
                 --             semanticHighlighting = true,
-                --             formatting = true,
-                --             onTypeFormatting = false,
-                --             diagnostics = true,
-                --             codeActions = true,
-                --             codeActionResolve = true,
-                --             documentHighlight = true,
-                --             inlayHints = true,
-                --             pathCompletion = true,
-                --             codeLens = true,
                 --         },
                 --     },
                 -- },
@@ -47,33 +47,34 @@ return {
             setup = {
                 ruby_ls = function(server, server_opts)
                     require("lazyvim.util").on_attach(function(client, buffer)
-                        local callback = function()
+                        local diagnostic_handler = function()
                             local params = vim.lsp.util.make_text_document_params(buffer)
-
                             client.request("textDocument/diagnostic", { textDocument = params }, function(err, result)
                                 if err then
+                                    local err_msg = string.format("ruby-lsp - diagnostics error - %s", vim.inspect(err))
+                                    vim.notify(err_msg)
+                                end
+                                if not result then
                                     return
                                 end
-
                                 vim.lsp.diagnostic.on_publish_diagnostics(
                                     nil,
-                                    result,
                                     vim.tbl_extend("keep", params, { diagnostics = result.items }),
                                     { client_id = client.id }
                                 )
                             end)
                         end
 
-                        callback() -- call on attach
+                        diagnostic_handler()
 
-                        vim.api.nvim_create_autocmd(
-                            { "BufEnter", "BufWritePre", "BufReadPost", "InsertLeave", "TextChanged" },
-                            {
-                                buffer = buffer,
-                                callback = callback,
-                            }
-                        )
+                        local ruby_group = vim.api.nvim_create_augroup("ruby_ls", { clear = false })
+                        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre", "InsertLeave", "TextChanged" }, {
+                            buffer = buffer,
+                            callback = diagnostic_handler,
+                            group = ruby_group,
+                        })
                     end)
+
                     require("lspconfig")[server].setup(server_opts)
                 end,
             },
