@@ -27,10 +27,12 @@ return {
                             padding = { left = 4 },
                         },
                         icons = {
-                            done = { icon = "x" },
-                            pending = { icon = "-" },
-                            undone = { icon = " " },
-                            urgent = { icon = "!" },
+                            todo = {
+                                done = { icon = "x" },
+                                pending = { icon = "-" },
+                                undone = { icon = " " },
+                                urgent = { icon = "!" },
+                            },
                         },
                     },
                 }, -- Adds pretty icons to your documents
