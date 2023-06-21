@@ -81,20 +81,10 @@ return {
         },
     },
 
-    -- -- setup rubocop formatting for ruby
-    -- {
-    --     "jose-elias-alvarez/null-ls.nvim",
-    --     opts = function(_, opts)
-    --         local nls = require("null-ls")
-    --         opts.sources = vim.list_extend(opts.sources, {
-    --             nls.builtins.formatting.rubocop,
-    --         })
-    --     end,
-    -- },
-
     -- add "alternate" and "related" keybinds for Rails projects
     {
         "tpope/vim-rails",
+        enabled = false,
         ft = "ruby",
         keys = {
             { "ga", "<cmd>A<cr>", desc = "Goto alternate file (Rails)" },
