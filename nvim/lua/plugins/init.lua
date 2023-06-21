@@ -220,11 +220,12 @@ return {
 
     {
         "Wansmer/treesj",
-        event = { "BufReadPost", "BufNewFile" },
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
         },
-        opts = { use_default_keymaps = false },
+        opts = {
+            use_default_keymaps = false,
+        },
     },
 
     {
@@ -247,12 +248,12 @@ return {
 
     {
         "rgroli/other.nvim",
-        event = { "BufReadPost", "BufNewFile" },
         keys = {
             { "ga", "<cmd>Other<cr>", desc = "Other file" },
         },
-        config = function(_, opts)
+        config = function(_, _)
             require("other-nvim").setup({
+                showMissingFiles = false,
                 mappings = {
                     "rails",
                     {
