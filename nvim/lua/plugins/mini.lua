@@ -15,17 +15,12 @@ return {
             undo = { suffix = "" },
             window = { suffix = "" },
         },
-        config = function(_, opts)
-            require("mini.bracketed").setup(opts)
-        end,
     },
 
     {
         "echasnovski/mini.trailspace",
         event = { "BufReadPost", "BufNewFile" },
-        config = function(_, opts)
-            require("mini.trailspace").setup(opts)
-        end,
+        config = true,
     },
 
     { -- Disable some keymaps in favour of mini.bracketed "indent"
