@@ -7,6 +7,9 @@ set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 
+set -gx LDFLAGS "-L/opt/homebrew/opt/imagemagick@6/lib"
+set -gx CPPFLAGS "-I/opt/homebrew/opt/imagemagick@6/include"
+
 # Lazygit config
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 
