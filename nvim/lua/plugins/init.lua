@@ -1,5 +1,14 @@
 return {
 
+    { -- override: enable inlay hints
+        "neovim/nvim-lspconfig",
+        opts = {
+            inlay_hints = {
+                enabled = false,
+            },
+        },
+    },
+
     { -- override: default options
         "ggandor/flit.nvim",
         opts = { labeled_modes = "v" },
@@ -167,7 +176,15 @@ return {
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",
-        config = true,
+        config = function()
+            require("nvim-surround").setup({
+                -- change visual keymap to allow flash.nvim to use 'S'
+                keymaps = {
+                    visual = "gS",
+                    visual_line = "gSS",
+                },
+            })
+        end,
     },
 
     {
@@ -203,22 +220,11 @@ return {
 
     {
         "Wansmer/treesj",
+        event = { "BufReadPost", "BufNewFile" },
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
         },
         opts = { use_default_keymaps = false },
-    },
-
-    {
-        "chrisgrieser/nvim-spider",
-        enabled = false,
-        -- stylua: ignore
-        keys = {
-            { "w", function() require("spider").motion("w") end, mode = { "n", "o", "x" } },
-            { "b", function() require("spider").motion("b") end, mode = { "n", "o", "x" } },
-            { "e", function() require("spider").motion("e") end, mode = { "n", "o", "x" } },
-            { "ge", function() require("spider").motion("ge") end, mode = { "n", "o", "x" } },
-        },
     },
 
     {
@@ -230,14 +236,57 @@ return {
                     "SmiteshP/nvim-navic",
                     "MunifTanjim/nui.nvim",
                 },
-                opts = { lsp = { auto_attach = true } },
+                opts = {
+                    lsp = {
+                        auto_attach = true,
+                    },
+                },
             },
         },
     },
 
     {
+        "rgroli/other.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        keys = {
+            { "ga", "<cmd>Other<cr>", desc = "Other file" },
+        },
+        config = function(_, opts)
+            require("other-nvim").setup({
+                mappings = {
+                    "rails",
+                    {
+                        pattern = "(.+)/spec/(.*)/(.*)/(.*)_spec.rb",
+                        target = {
+                            { target = "%1/db/%3/%4.rb" },
+                            { target = "%1/app/%3/%4.rb" },
+                            { target = "%1/%3/%4.rb" },
+                        },
+                    },
+                    {
+                        pattern = "(.+)/spec/(.*)/(.*)_spec.rb",
+                        target = {
+                            { target = "%1/db/%2/%3.rb" },
+                            { target = "%1/app/%2/%3.rb" },
+                            { target = "%1/lib/%2/%3.rb" },
+                        },
+                    },
+                    {
+                        pattern = "(.+)/spec/(.*)/(.*)_(.*)_spec.rb",
+                        target = {
+                            { target = "%1/app/%4s/%3_%4.rb" },
+                        },
+                    },
+                },
+            })
+        end,
+    },
+
+    {
         "https://github.com/notomo/gesture.nvim",
-        opts = { show_board = false },
+        opts = {
+            show_board = false,
+        },
         -- stylua: ignore
         config = function(_, opts)
             local Util = require("lazy.util")
@@ -260,10 +309,8 @@ return {
             vim.keymap.set("n", "<leader>uD", function()
                 enabled = not enabled
                 if enabled then
-                    vim.diagnostic.enable()
                     Util.info("Enabled draw", { title = "Draw" })
                 else
-                    vim.diagnostic.disable()
                     Util.warn("Disabled draw", { title = "Draw" })
                 end
             end, { desc = "Draw" })
