@@ -1,5 +1,26 @@
 return {
 
+    { -- override: remove ";" char, disable backdrop
+        "folke/flash.nvim",
+        opts = {
+            modes = {
+                char = {
+                    keys = { "f", "F", "t", "T", "," },
+                    highlight = {
+                        backdrop = false,
+                    },
+                },
+                treesitter = {
+                    label = {
+                        rainbow = {
+                            enabled = true,
+                        },
+                    },
+                },
+            },
+        },
+    },
+
     { -- override: enable inlay hints
         "neovim/nvim-lspconfig",
         opts = {
@@ -256,6 +277,15 @@ return {
                 showMissingFiles = false,
                 mappings = {
                     "rails",
+                    {
+                        -- generic test mapping for minitest and rspec
+                        pattern = "/app/(.*)/(.*).rb",
+                        target = {
+                            { context = "test", target = "/spec/requests/%1/%2_spec.rb" },
+                            { context = "test", target = "/spec/requests/%2_spec.rb" },
+                            { context = "test", target = "/spec/requests/**/%2_spec.rb" },
+                        },
+                    },
                     {
                         pattern = "(.+)/spec/(.*)/(.*)/(.*)_spec.rb",
                         target = {
