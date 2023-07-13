@@ -6,7 +6,6 @@ return {
 
         local function fg(name)
             return function()
-                ---@type {foreground?:number}?
                 local hl = vim.api.nvim_get_hl_by_name(name, true)
                 return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
             end
@@ -21,20 +20,31 @@ return {
                 section_separators = "",
             },
             sections = {
-                lualine_a = { "mode" },
+                lualine_a = {
+                    "mode",
+                },
                 lualine_b = {
-                    -- stylua: ignore
                     {
-                        function() local key = require("grapple").key() return "  [" .. key .. "]" end,
-                        cond = function() return require("grapple").exists() end,
+                        function()
+                            local key = require("grapple").key()
+                            return "  [" .. key .. "]"
+                        end,
+                        cond = function()
+                            return require("grapple").exists()
+                        end,
                     },
                 },
-                lualine_c = { "diagnostics" },
+                lualine_c = {
+                    "diagnostics",
+                },
                 lualine_x = {
-                    -- stylua: ignore
                     {
-                        function() return require("noice").api.status.mode.get() end,
-                        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                        function()
+                            return require("noice").api.status.mode.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"] and require("noice").api.status.mode.has()
+                        end,
                         color = fg("Constant"),
                     },
                     {
@@ -45,10 +55,11 @@ return {
                             removed = icons.git.removed,
                         },
                     },
-                    -- stylua: ignore
                     {
                         "branch",
-                        fmt = function(str) return string.sub(str, 1, 12) end,
+                        fmt = function(str)
+                            return string.sub(str, 1, 12)
+                        end,
                     },
                 },
                 lualine_y = {

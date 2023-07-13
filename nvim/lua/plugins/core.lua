@@ -1,5 +1,9 @@
 return {
-    { "folke/lazy.nvim", version = false },
+    {
+        "folke/lazy.nvim",
+        version = false,
+    },
+
     {
         "LazyVim/LazyVim",
         version = false,

@@ -2,7 +2,6 @@ return {
     {
         "vim-test/vim-test",
         -- dir = "~/git_personal/vim-test",
-        ft = "ruby",
         keys = {
             { "<leader>T", "<cmd>TestFile<cr>", desc = "Run test (file)" },
             { "<leader>tf", "<cmd>TestFile<cr>", desc = "Run test (file)" },

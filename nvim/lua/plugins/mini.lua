@@ -20,7 +20,7 @@ return {
     {
         "echasnovski/mini.trailspace",
         event = { "BufReadPost", "BufNewFile" },
-        config = true,
+        opts = {},
     },
 
     { -- Disable some keymaps in favour of mini.bracketed "indent"

@@ -30,11 +30,6 @@ return {
         },
     },
 
-    { -- override: default options
-        "ggandor/flit.nvim",
-        opts = { labeled_modes = "v" },
-    },
-
     { -- override: use "/" instead of "g" for search
         "goolord/alpha-nvim",
         opts = function(_, dashboard)
@@ -107,26 +102,26 @@ return {
                 "vendor", -- ignore bundled gems
             }
             opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
+                ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
                 ["<c-j>"] = { "<esc>", type = "command" },
                 ["<c-u>"] = false,
             })
-            opts.pickers = {
-                live_grep = {
-                    mappings = {
-                        i = {
-                            ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
-                        },
-                    },
-                },
-                find_files = {
-                    mappings = {
-                        i = {
-                            ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
-                        },
-                    },
-                },
-            }
         end,
+    },
+
+    {
+        "kevinhwang91/nvim-bqf",
+        ft = "qf",
+    },
+
+    {
+        "Wansmer/treesj",
+        keys = {
+            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
+        },
+        opts = {
+            use_default_keymaps = false,
+        },
     },
 
     {
@@ -172,16 +167,6 @@ return {
         keys = {
             { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal forward" },
             { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal backward" },
-            {
-                "<leader>O",
-                function()
-                    require("portal").tunnel({
-                        require("portal.builtin").grapple.query({ max_results = 1 }),
-                        require("portal.builtin").jumplist.query({ max_results = 3 }),
-                    })
-                end,
-                desc = "Portal somewhere",
-            },
         },
         opts = {
             wrap = true,
@@ -220,11 +205,6 @@ return {
     },
 
     {
-        "kevinhwang91/nvim-bqf",
-        ft = "qf",
-    },
-
-    {
         "kevinhwang91/nvim-ufo",
         dependencies = { "kevinhwang91/promise-async" },
         event = "VeryLazy",
@@ -236,34 +216,6 @@ return {
             provider_selector = function(_, _, _)
                 return { "treesitter", "indent" }
             end,
-        },
-    },
-
-    {
-        "Wansmer/treesj",
-        keys = {
-            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-        },
-        opts = {
-            use_default_keymaps = false,
-        },
-    },
-
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            {
-                "SmiteshP/nvim-navbuddy",
-                dependencies = {
-                    "SmiteshP/nvim-navic",
-                    "MunifTanjim/nui.nvim",
-                },
-                opts = {
-                    lsp = {
-                        auto_attach = true,
-                    },
-                },
-            },
         },
     },
 
@@ -310,41 +262,6 @@ return {
                     },
                 },
             })
-        end,
-    },
-
-    {
-        "https://github.com/notomo/gesture.nvim",
-        opts = {
-            show_board = false,
-        },
-        -- stylua: ignore
-        config = function(_, opts)
-            local Util = require("lazy.util")
-            local enabled = false
-
-            local function vim_keymap_set(mode, lhs, rhs)
-                vim.keymap.set(mode, lhs, function()
-                    if enabled then
-                        rhs()
-                    else
-                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(lhs, true, true, true), "n", true)
-                    end
-                end)
-            end
-
-            vim_keymap_set("n", "<LeftDrag>", function() require("gesture").draw(opts) end)
-            vim_keymap_set("n", "<LeftRelease>", function() require("gesture").suspend() end)
-            vim_keymap_set("n", "<2-LeftMouse>", function() require("gesture").finish() end)
-
-            vim.keymap.set("n", "<leader>uD", function()
-                enabled = not enabled
-                if enabled then
-                    Util.info("Enabled draw", { title = "Draw" })
-                else
-                    Util.warn("Disabled draw", { title = "Draw" })
-                end
-            end, { desc = "Draw" })
         end,
     },
 }
