@@ -152,6 +152,7 @@ return {
 
     {
         "cbochs/grapple.nvim",
+        enabled = false,
         dir = "~/git_personal/grapple.nvim",
         keys = {
             { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },

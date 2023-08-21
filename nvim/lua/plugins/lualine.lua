@@ -24,17 +24,6 @@ return {
                     "mode",
                 },
                 lualine_b = {
-                    {
-                        function()
-                            local key = require("grapple").key()
-                            return "  [" .. key .. "]"
-                        end,
-                        cond = function()
-                            return require("grapple").exists()
-                        end,
-                    },
-                },
-                lualine_c = {
                     "diagnostics",
                 },
                 lualine_x = {
