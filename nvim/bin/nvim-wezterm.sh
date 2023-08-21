@@ -32,6 +32,9 @@ case "${subcommand}" in
 			"rs")
 				run_command="cargo test"
 				;;
+			"lua")
+				run_command="echo 'hello, world!'"
+				;;
 		esac
 		;;
 esac

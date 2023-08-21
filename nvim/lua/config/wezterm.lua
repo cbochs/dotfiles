@@ -1,7 +1,7 @@
 local Wezterm = {}
 
 Wezterm.run = function(...)
-    vim.fn.system(("nvim-wezterm.sh %s"):format(table.concat({ ... }, " ")))
+    vim.fn.jobstart(("nvim-wezterm.sh %s"):format(table.concat({ ... }, " ")))
 end
 
 Wezterm.lazygit = function()
@@ -15,9 +15,9 @@ Wezterm.test.run = function(file_name, line_number)
     Wezterm.test.history.line_number = line_number
 
     if line_number then
-        Wezterm.run(("test %s %s"):format(file_name, line_number))
+        Wezterm.run("test", file_name, line_number)
     else
-        Wezterm.run(("test %s %s"):format(file_name))
+        Wezterm.run("test", file_name)
     end
 end
 
