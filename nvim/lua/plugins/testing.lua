@@ -1,5 +1,6 @@
 return {
     {
+        enabled = false,
         "vim-test/vim-test",
         -- dir = "~/git_personal/vim-test",
         keys = {
