@@ -45,3 +45,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         vim.opt_local.shiftwidth = 1
     end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "todo.norg",
+    command = "norm zM",
+})
