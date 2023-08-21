@@ -4,9 +4,9 @@
 # 3. $HOME/.config/fish/config.fish
 # 4. $HOME/.config/fish/path.fish
 # 5. $HOME/.ssh/environment (ssh only)
-# 
+#
 # Reference: https://fishshell.com/docs/current/cmds/fish_add_path.html
-# 
+#
 
 # Added by me to use ARM64-based Homebrew
 fish_add_path /opt/homebrew/sbin
@@ -25,3 +25,5 @@ fish_add_path $HOME/.cargo/bin
 # Added by me to include neovim bob in PATH
 fish_add_path $HOME/.local/share/neovim/bin
 
+# Added by me to include neovim custom scripts
+fish_add_path $HOME/.config/nvim/bin
