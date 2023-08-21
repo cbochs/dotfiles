@@ -6,6 +6,7 @@
 !nvim
 !starship.toml
 !tmux
+!wezterm
 !zellij
 
 # Fish: only include common config
@@ -19,4 +20,3 @@ fish/*
 fish/conf.d/*
 !fish/conf.d/path.fish
 !fish/conf.d/variables.fish
-
