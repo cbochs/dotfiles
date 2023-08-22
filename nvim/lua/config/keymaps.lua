@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>tl", require("config.wezterm").test.last)
 vim.keymap.set("n", "<leader>tn", require("config.wezterm").test.near)
 vim.keymap.set("n", "<leader>tt", require("config.wezterm").test.file)
 vim.keymap.set("n", "<leader>ua", require("config.wezterm").lazygit)
-vim.keymap.set("n", "<leader>uA", require("config.wezterm").open_in_github)
+vim.keymap.set("n", "<leader>o", require("config.wezterm").open_in_github)
 
 vim.keymap.set({ "i", "x" }, "<c-j>", "<esc>")
 vim.keymap.set("t", "<c-j>", "<c-\\><c-n>")
