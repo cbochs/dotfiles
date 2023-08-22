@@ -153,7 +153,6 @@ return {
     {
         "cbochs/grapple.nvim",
         enabled = false,
-        dir = "~/git_personal/grapple.nvim",
         keys = {
             { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
             { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
@@ -164,7 +163,7 @@ return {
 
     {
         "cbochs/portal.nvim",
-        -- dir = "~/git_personal/portal.nvim",
+        enabled = false,
         keys = {
             { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal forward" },
             { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal backward" },
