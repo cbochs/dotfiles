@@ -8,6 +8,10 @@ Wezterm.lazygit = function()
     Wezterm.run("lazygit")
 end
 
+Wezterm.open_in_github = function()
+    Wezterm.run("open", vim.fn.expand("%"))
+end
+
 Wezterm.test = {}
 Wezterm.test.history = {}
 Wezterm.test.run = function(file_name, line_number)
