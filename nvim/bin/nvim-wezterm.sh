@@ -6,6 +6,16 @@ split_pane() {
 	then
 		pane_id=$(wezterm cli split-pane --right)
 	fi
+
+	wezterm cli activate-pane --pane-id $pane_id
+
+	send_to_bottom_pane="wezterm cli send-text --no-paste --pane-id $pane_id"
+
+	program=$(wezterm cli list | awk -v pane_id=$pane_id '$3==pane_id { print $6 }')
+	if [ "${program}" == "lazygit" ]
+	then
+		echo "q" | $send_to_bottom_pane
+	fi
 }
 
 subcommand=$1
@@ -16,8 +26,6 @@ basedir=$(dirname "$file_name")
 basename=$(basename "$file_name")
 basename_without_extension="${basename%.*}"
 extension="${file_name##*.}"
-
-send_to_bottom_pane="wezterm cli send-text --no-paste --pane-id $pane_id"
 
 case "${subcommand}" in
 	"lazygit")
