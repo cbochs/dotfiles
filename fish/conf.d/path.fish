@@ -25,5 +25,5 @@ fish_add_path $HOME/.cargo/bin
 # Added by me to include neovim bob in PATH
 fish_add_path $HOME/.local/share/neovim/bin
 
-# Added by me to include neovim custom scripts
+# Added by me to include custom neovim scripts
 fish_add_path $HOME/.config/nvim/bin

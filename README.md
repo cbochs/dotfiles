@@ -10,20 +10,14 @@
 * Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
 * Custom: [Grapple.nvim](https://github.com/cbochs/grapple.nvim) and [Portal.nvim](https://github.com/cbochs/portal.nvim)
 
-## Terminal: [Alacritty](https://alacritty.org/) [[config](./alacritty)]
+## Terminal: [Wezterm](https://wezfurlong.org/wezterm/index.html) [[config](./wezterm)]
 
-* Font: [Hack Nerd Font](https://www.nerdfonts.com/) (patched)
+* Font: Default font
 * Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
+* Leader: `Ctrl b`
 
 ## Shell: [Fish](https://fishshell.com/) [[config](./fish)]
 
 * Prompt: [Starship](https://github.com/starship/starship) [[config](./starship.toml)]
 * Package manager: [brew](https://github.com/homebrew)
 * Version manager: [asdf](https://github.com/asdf-vm/asdf)
-
-## Multiplexer: [Zellij](https://github.com/zellij-org/zellij) [[config](./zellij)]
-
-* Theme: [Kanagawa](https://github.com/zellij-org/zellij/blob/main/example/themes/kanagawa.kdl)
-* Prefix: `Ctrl b`
-* Modes: tmux-bindings only
-
