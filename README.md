@@ -16,8 +16,7 @@
 * Theme: [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
 * Leader: `Ctrl b`
 
-## Shell: [Fish](https://fishshell.com/) [[config](./fish)]
+## Shell: [Zsh](https://www.zsh.org/) [[config](./zsh)]
 
 * Prompt: [Starship](https://github.com/starship/starship) [[config](./starship.toml)]
-* Package manager: [brew](https://github.com/homebrew)
-* Version manager: [asdf](https://github.com/asdf-vm/asdf)
+* Package manager: [homebrew](https://github.com/homebrew)
