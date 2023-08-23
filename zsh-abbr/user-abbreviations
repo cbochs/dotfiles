@@ -1,0 +1,28 @@
+abbr "nvim-copilot"="NVIM_APPNAME=nvim-copilot nvim"
+
+abbr "b"="bat"
+abbr "c"="cd"
+abbr "f"="fg"
+abbr "l"="exa"
+abbr "n"="nvim"
+abbr "v"="nvim"
+abbr "s"="ssh"
+
+abbr "ll"="exa -la"
+abbr "lg"="lazygit"
+
+abbr "g"="git"
+abbr "gP"="git push"
+abbr "gb"="git branch"
+abbr "gp"="git pull"
+abbr "gr"="git remote"
+abbr "gs"="git st"
+abbr "gcm"="git checkout master"
+abbr "gco"="git checkout"
+abbr "gpu"="git pull upstream master"
+abbr "gsm"="git submodule update --recursive"
+
+abbr "d"="docker"
+abbr "di"="docker image"
+abbr "dc"="docker compose"
+abbr "dv"="docker volume"
