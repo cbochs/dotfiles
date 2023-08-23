@@ -8,6 +8,7 @@
 !tmux
 !wezterm
 !zellij
+!zsh
 
 # Fish: only include common config
 !fish
@@ -20,3 +21,7 @@ fish/*
 fish/conf.d/*
 !fish/conf.d/path.fish
 !fish/conf.d/variables.fish
+
+zsh/*
+!zsh/.zshenv
+!zsh/.zshrc
