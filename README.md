@@ -1,7 +1,7 @@
 # Dotfiles
 
 <p align="center">
-<img width="1774" alt="image" src="https://user-images.githubusercontent.com/2467016/226668608-ada9c1f2-b5a6-436f-a50d-748b50c3a505.png">
+<img width="1840" alt="Screenshot 2023-08-23 at 16 50 30" src="https://github.com/cbochs/dotfiles/assets/2467016/d7062a78-bce5-4c17-b3f6-3797d7172f5f">
 </p>
 
 ## Editor: [Neovim](https://neovim.io/) [[config](./nvim)]
