@@ -18,7 +18,7 @@ abbr "gp"="git pull"
 abbr "gr"="git remote"
 abbr "gs"="git st"
 abbr "gcm"="git checkout master"
-abbr "gco"="git checkout"
+abbr "gco"="git checkout $(git branch | fzf --layout=reverse --height=10)"
 abbr "gpu"="git pull upstream master"
 abbr "gsm"="git submodule update --recursive"
 
