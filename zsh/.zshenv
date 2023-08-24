@@ -32,9 +32,20 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 #
 export GPG_TTY="$(tty)"
 
-# Path: homebrew binaries
-path=("/opt/homebrew/sbin" $path)
-path=("/opt/homebrew/bin" $path)
+# Let's take a moment to understand where PATH is loaded from:
+#
+# File types
+#     .zshenv   | always
+#     .zprofile | interactive-only
+#     .zshrc    | not scripts
+#     .zlogin   | interactive-only
+#     .zlogout  | interactive-only
+#
+# Files are sources from /etc and then $ZDOTDIR
+#
+# Reference: man zsh(1) FILES
+#
+#
 
 # Path: rust and cargo binaries
 path=("$HOME/.cargo/bin" $path)
@@ -50,5 +61,3 @@ path=("$HOME/.config/nvim/bin" $path)
 
 # ensure path has unique elements
 typeset -aU path
-
-export PATH

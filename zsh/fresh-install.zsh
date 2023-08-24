@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 
-ln -sf $HOME/.config/zsh/.zshenv $HOME/.zshenv
+# Don't use ~/.zshenv on macOS
+#
+# Reference: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
+#
+ln -sf $HOME/.config/zsh/.zshenv $HOME/.zprofile
 
 source $HOME/.zshenv
 
