@@ -20,7 +20,7 @@
 #
 ln -sf $HOME/.config/zsh/.zshenv $HOME/.zprofile
 
-source $HOME/.zshenv
+source $HOME/.zprofile
 
 rm -rf $ZPLUGINDIR
 mkdir  $ZPLUGINDIR
