@@ -23,6 +23,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Lazygit
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 
+# Helix
+export HELIX_RUNTIME="$HOME/git/helix/runtime"
+
 # GPG
 #
 # References:
