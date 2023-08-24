@@ -1,13 +1,16 @@
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-bindkey '^F' autosuggest-accept
-bindkey '^N' history-beginning-search-forward
-bindkey '^P' history-beginning-search-backward
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^F" autosuggest-accept
+bindkey "^N" history-beginning-search-forward
+bindkey "^P" history-beginning-search-backward
 
-source "$HOME/.config/zsh/zsh-abbr/zsh-abbr.plugin.zsh"
-source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-source "$HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+for plugin in $(echo $ZPLUGINS)
+do
+	plugin_user=$(echo $plugin | awk -F/ '{ print $1 }')
+	plugin_name=$(echo $plugin | awk -F/ '{ print $2 }')
+
+    source "$ZPLUGINDIR/$plugin_name/$plugin_name.plugin.zsh"
+done
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 

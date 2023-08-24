@@ -1,5 +1,15 @@
 export ZDOTDIR="$HOME/.config/zsh"
 
+# Zsh Plugins
+export zplugins=(
+	marlonrichert/zsh-autocomplete
+	olets/zsh-abbr
+	zsh-users/zsh-autosuggestions
+	zsh-users/zsh-syntax-highlighting
+)
+export ZPLUGINDIR="$HOME/.config/zsh/plugins"
+export ZPLUGINS="$(echo $zplugins)"
+
 # Editor
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -35,7 +45,7 @@ path=("$HOME/.cargo/bin" $path)
 path=("$HOME/.local/bin" $path)
 
 # Path: neovim bob binaries
-path=("$HOME/.local/share/neovim/bin" $path)
+path=("$HOME/.local/share/bob/nvim-bin" $path)
 
 # Path: neovim custom scripts
 path=("$HOME/.config/nvim/bin" $path)
