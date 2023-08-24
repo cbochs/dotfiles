@@ -18,9 +18,7 @@ export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
 
 # Homebrew
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Lazygit
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
