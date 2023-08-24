@@ -25,3 +25,4 @@ fish/conf.d/*
 zsh/*
 !zsh/.zshenv
 !zsh/.zshrc
+!zsh/fresh-install.sh
