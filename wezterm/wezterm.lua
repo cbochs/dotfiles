@@ -52,7 +52,6 @@ config = {
 
         tab_bar = {
             background = "#1f1f28",
-            foreground = "#dcd7ba",
 
             active_tab = {
                 bg_color = "#2d4f67",
