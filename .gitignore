@@ -9,6 +9,7 @@
 !wezterm
 !zellij
 !zsh
+!zsh-abbr
 
 # Fish: only include common config
 !fish
