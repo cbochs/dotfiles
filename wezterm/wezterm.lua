@@ -19,7 +19,7 @@ config = {
     leader = { key = "b", mods = "CTRL" },
     keys = {
         -- tmux
-        { key = "|", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
         { key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
         { key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
         { key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
