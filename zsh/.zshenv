@@ -32,26 +32,14 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml"
 #
 export GPG_TTY="$(tty)"
 
-# Let's take a moment to understand where PATH is loaded from:
-#
-# File types
-#     .zshenv   | always
-#     .zprofile | interactive-only
-#     .zshrc    | not scripts
-#     .zlogin   | interactive-only
-#     .zlogout  | interactive-only
-#
-# Files are sources from /etc and then $ZDOTDIR
-#
-# Reference: man zsh(1) FILES
-#
-#
-
 # Path: rust and cargo binaries
 path=("$HOME/.cargo/bin" $path)
 
 # Path: pipx binaries
 path=("$HOME/.local/bin" $path)
+
+# Path: cmake binaries
+path=("/Applications/CMake.app/Contents/bin" $path)
 
 # Path: neovim bob binaries
 path=("$HOME/.local/share/bob/nvim-bin" $path)

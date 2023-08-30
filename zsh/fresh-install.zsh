@@ -1,5 +1,19 @@
 #!/usr/bin/env zsh
 
+
+# Let's take a moment to understand where PATH is loaded from:
+#
+# File types
+#     .zshenv   | always
+#     .zprofile | interactive-only
+#     .zshrc    | not scripts
+#     .zlogin   | interactive-only
+#     .zlogout  | interactive-only
+#
+# Files are sources from /etc and then $ZDOTDIR
+#
+# Reference: man zsh(1) FILES
+#
 # Don't use ~/.zshenv on macOS
 #
 # Reference: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
