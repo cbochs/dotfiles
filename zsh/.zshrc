@@ -3,6 +3,9 @@ bindkey "^E" end-of-line
 bindkey "^F" autosuggest-accept
 bindkey "^N" history-beginning-search-forward
 bindkey "^P" history-beginning-search-backward
+bindkey "^J" backward-word
+bindkey "^K" forward-word
+bindkey "^W" backward-kill-word
 
 for plugin in $(echo $ZPLUGINS)
 do
