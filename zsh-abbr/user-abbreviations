@@ -26,3 +26,8 @@ abbr "d"="docker"
 abbr "di"="docker image"
 abbr "dc"="docker compose"
 abbr "dv"="docker volume"
+
+abbr "j"="bin/janus-setup"
+abbr "p"="docker compose exec portal"
+abbr "pr"="docker compose exec portal bin/rails"
+abbr "pw"="docker compose exec portal bin/webpacker"
