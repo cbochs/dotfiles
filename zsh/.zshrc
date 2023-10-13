@@ -17,6 +17,8 @@ done
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
+
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
