@@ -2,7 +2,7 @@
 
 split_pane() {
 	pane_id=$(wezterm cli get-pane-direction right)
-	if [ -z "${pane_id}" ]
+	if [ -z "$pane_id" ]
 	then
 		pane_id=$(wezterm cli split-pane --right)
 	fi
@@ -37,13 +37,13 @@ case "${subcommand}" in
 		;;
 	"test")
 		split_pane
-		case "${extension}" in
+		case "$extension" in
 			"rb")
-				if [ -z "${line_number}" ]
+				if [ -z "$line_number" ]
 				then
-					run_command="docker compose exec portal bin/rspec ${file_name}"
+					run_command="docker compose exec portal bin/rspec $file_name"
 				else
-					run_command="docker compose exec portal bin/rspec ${file_name}:${line_number}"
+					run_command="docker compose exec portal bin/rspec $file_name:$line_number"
 				fi
 				;;
 			"rs")
@@ -53,6 +53,6 @@ case "${subcommand}" in
 				run_command="echo 'hello, world!'"
 				;;
 		esac
-		echo "${run_command}" | $send_to_bottom_pane
+		echo "$run_command" | $send_to_bottom_pane
 		;;
 esac
