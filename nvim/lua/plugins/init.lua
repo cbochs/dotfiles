@@ -21,15 +21,6 @@ return {
         },
     },
 
-    { -- override: enable inlay hints
-        "neovim/nvim-lspconfig",
-        opts = {
-            inlay_hints = {
-                enabled = false,
-            },
-        },
-    },
-
     { -- override: use "/" instead of "g" for search
         "goolord/alpha-nvim",
         opts = function(_, dashboard)
@@ -152,7 +143,7 @@ return {
 
     {
         "cbochs/grapple.nvim",
-        enabled = false,
+        enabled = true,
         keys = {
             { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
             { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
