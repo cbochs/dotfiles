@@ -13,33 +13,37 @@ Wezterm.open_in_github = function()
 end
 
 Wezterm.test = {}
-Wezterm.test.history = {}
-Wezterm.test.run = function(file_name, line_number)
-    Wezterm.test.history.file_name = file_name
-    Wezterm.test.history.line_number = line_number
 
-    if line_number then
-        Wezterm.run("test", file_name, line_number)
-    else
-        Wezterm.run("test", file_name)
-    end
+local test_history = {}
+
+Wezterm.test.run = function(...)
+    local args = { ... }
+    test_history.file_name = args[1]
+    test_history.line_number = args[2]
+
+    Wezterm.run("test", ...)
 end
 
 Wezterm.test.file = function()
-    Wezterm.run("test", vim.fn.expand("%"))
+    local file_name = vim.fn.expand("%")
+
+    Wezterm.test.run(file_name)
 end
 
 Wezterm.test.near = function()
-    Wezterm.run("test", vim.fn.expand("%"), vim.fn.line("."))
+    local file_name = vim.fn.expand("%")
+    local line_number = vim.fn.line(".")
+
+    Wezterm.test.run(file_name, line_number)
 end
 
 Wezterm.test.last = function()
-    if not Wezterm.test.history.file_name then
+    if not test_history.file_name then
         vim.notify("No test run yet.")
         return
     end
 
-    Wezterm.run("test", Wezterm.last_run.file_name, Wezterm.last_run.line_number)
+    Wezterm.test.run(test_history.file_name, test_history.line_number)
 end
 
 return Wezterm
