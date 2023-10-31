@@ -25,13 +25,13 @@ Wezterm.test.run = function(...)
 end
 
 Wezterm.test.file = function()
-    local file_name = vim.fn.expand("%")
+    local file_name = vim.fn.expand("%:~:.")
 
     Wezterm.test.run(file_name)
 end
 
 Wezterm.test.near = function()
-    local file_name = vim.fn.expand("%")
+    local file_name = vim.fn.expand("%:~:.")
     local line_number = vim.fn.line(".")
 
     Wezterm.test.run(file_name, line_number)
