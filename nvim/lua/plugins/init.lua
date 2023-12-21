@@ -1,4 +1,13 @@
 return {
+    {
+        "stevearc/oil.nvim",
+        keys = {
+            { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+        },
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 
     { -- override: remove ";" char, disable backdrop
         "folke/flash.nvim",
@@ -53,13 +62,15 @@ return {
                 { -- filter write messages "xxxL, xxxB"
                     filter = {
                         event = "msg_show",
-                        find = "%dL",
+                        kind = "",
+                        find = "written",
                     },
                     opts = { skip = true },
                 },
                 { -- filter search messages
                     filter = {
                         event = "msg_show",
+                        kind = "",
                         find = "search hit",
                     },
                     opts = { skip = true },
@@ -74,14 +85,6 @@ return {
             { "]t", false },
             { "[t", false },
         },
-    },
-
-    { -- override: help neorg sync-parsers
-        "nvim-treesitter/nvim-treesitter",
-        config = function(_, opts)
-            require("nvim-treesitter.install").compilers = { "gcc-13" }
-            require("nvim-treesitter.configs").setup(opts)
-        end,
     },
 
     { -- override: setup better keymaps
