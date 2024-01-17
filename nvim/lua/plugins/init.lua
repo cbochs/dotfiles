@@ -2,11 +2,9 @@ return {
     {
         "stevearc/oil.nvim",
         keys = {
-            { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+            { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
         },
         opts = {},
-        -- Optional dependencies
-        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
     { -- override: remove ";" char, disable backdrop
