@@ -2,11 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-vim.keymap.set("n", "<leader>tl", require("config.wezterm").test.last)
-vim.keymap.set("n", "<leader>tn", require("config.wezterm").test.near)
-vim.keymap.set("n", "<leader>tt", require("config.wezterm").test.file)
-vim.keymap.set("n", "<leader>jj", require("config.wezterm").lazygit)
-vim.keymap.set("n", "<leader>oo", require("config.wezterm").open_in_github)
+vim.keymap.set("n", "<leader>tl", require("config.wezterm").test.last, { desc = "Test last" })
+vim.keymap.set("n", "<leader>tn", require("config.wezterm").test.near, { desc = "Test nearest" })
+vim.keymap.set("n", "<leader>tt", require("config.wezterm").test.file, { desc = "Test file" })
+vim.keymap.set("n", "<leader>jj", require("config.wezterm").lazygit, { desc = "Open lazygit" })
+vim.keymap.set("n", "<leader>gho", require("config.wezterm").github_open, { desc = "Open in Github" })
+vim.keymap.set("n", "<leader>ghl", require("config.wezterm").github_link, { desc = "Copy Github link" })
 
 vim.keymap.set({ "i", "x" }, "<c-j>", "<esc>")
 

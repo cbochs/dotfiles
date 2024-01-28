@@ -32,8 +32,11 @@ case "${subcommand}" in
 		split_pane
 		echo "lazygit" | $send_to_bottom_pane
 		;;
-	"open")
-		gh browse $file_name
+	"github-open")
+		gh browse $file_name:$line_number
+		;;
+	"github-link")
+		gh browse $file_name:$line_number --no-browser
 		;;
 	"test")
 		split_pane

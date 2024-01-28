@@ -1,15 +1,38 @@
 local Wezterm = {}
 
+Wezterm.run_with_callback = function(on_exit, ...)
+    vim.system({ "nvim-wezterm.sh", ... }, { text = true }, on_exit)
+end
+
 Wezterm.run = function(...)
-    vim.fn.jobstart(("nvim-wezterm.sh %s"):format(table.concat({ ... }, " ")))
+    Wezterm.run_with_callback(nil, ...)
 end
 
 Wezterm.lazygit = function()
     Wezterm.run("lazygit")
 end
 
-Wezterm.open_in_github = function()
-    Wezterm.run("open", vim.fn.expand("%"))
+Wezterm.github_open = function()
+    local file_name = vim.fn.expand("%:~:.")
+    local line_number = vim.fn.line(".")
+
+    Wezterm.run("github-open", file_name, line_number)
+end
+
+Wezterm.github_link = function()
+    local file_name = vim.fn.expand("%:~:.")
+    local line_number = vim.fn.line(".")
+
+    Wezterm.run_with_callback(function(result)
+        if result.code ~= 0 then
+            return
+        end
+
+        vim.schedule(function()
+            vim.fn.setreg("+", result.stdout)
+            vim.notify("Copied Github link.")
+        end)
+    end, "github-link", file_name, line_number)
 end
 
 Wezterm.test = {}
