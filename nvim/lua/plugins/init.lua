@@ -11,17 +11,13 @@ return {
         "folke/flash.nvim",
         opts = {
             modes = {
+                search = {
+                    enabled = false,
+                },
                 char = {
                     keys = { "f", "F", "t", "T", "," },
                     highlight = {
                         backdrop = false,
-                    },
-                },
-                treesitter = {
-                    label = {
-                        rainbow = {
-                            enabled = true,
-                        },
                     },
                 },
             },
