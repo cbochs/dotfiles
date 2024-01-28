@@ -15,8 +15,6 @@ require("lazy").setup({
         lazy = false,
         version = false, -- always use the latest git commit
     },
-    install = {},
-    checker = { enabled = true },
     performance = {
         rtp = {
             disabled_plugins = {
