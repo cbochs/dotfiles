@@ -1,6 +1,5 @@
 #!/usr/bin/env zsh
 
-
 # Let's take a moment to understand where PATH is loaded from:
 #
 # File types
@@ -14,7 +13,8 @@
 #
 # Reference: man zsh(1) FILES
 #
-# Don't use ~/.zshenv on macOS
+# Avoid using ~/.zshenv on macOS, path_helper overrides and reorders the PATH.
+# Instead, link .zshenv to ~/.zprofile so it is sourced AFTER /etc/zshenv
 #
 # Reference: https://gist.github.com/Linerre/f11ad4a6a934dcf01ee8415c9457e7b2
 #
