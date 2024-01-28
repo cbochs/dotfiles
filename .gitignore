@@ -2,6 +2,8 @@
 
 !README.md
 !alacritty
+!fish
+!karabiner
 !lazygit
 !nvim
 !starship.toml
@@ -11,9 +13,6 @@
 !zsh
 !zsh-abbr
 
-# Fish: only include common config
-!fish
-
 fish/*
 !fish/conf.d
 !fish/config.fish
@@ -22,6 +21,9 @@ fish/*
 fish/conf.d/*
 !fish/conf.d/path.fish
 !fish/conf.d/variables.fish
+
+karabiner/*
+!karabiner/karabiner.json
 
 zsh/*
 !zsh/.zshenv
