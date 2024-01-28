@@ -27,3 +27,6 @@ zsh/*
 !zsh/.zshenv
 !zsh/.zshrc
 !zsh/fresh-install.zsh
+
+zsh-abbr/*
+!zsh-abbr/user-abbreviations
