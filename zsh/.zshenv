@@ -50,5 +50,8 @@ path=("$HOME/.local/share/bob/nvim-bin" $path)
 # Path: neovim custom scripts
 path=("$HOME/.config/nvim/bin" $path)
 
+# Path: cisco secure client vpn
+path=("/opt/cisco/secureclient/bin" $path)
+
 # ensure path has unique elements
 typeset -aU path
