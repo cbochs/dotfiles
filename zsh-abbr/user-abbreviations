@@ -2,8 +2,6 @@
 #
 # Reference: https://zsh-abbr.olets.dev/advanced.html#configuration-variables
 
-abbr "nvim-copilot"="NVIM_APPNAME=nvim-copilot nvim"
-
 abbr "b"="bat"
 abbr "c"="cd"
 abbr "f"="fg"
