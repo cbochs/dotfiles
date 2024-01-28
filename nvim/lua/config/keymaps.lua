@@ -9,7 +9,6 @@ vim.keymap.set("n", "<leader>jj", require("config.wezterm").lazygit)
 vim.keymap.set("n", "<leader>oo", require("config.wezterm").open_in_github)
 
 vim.keymap.set({ "i", "x" }, "<c-j>", "<esc>")
-vim.keymap.set("t", "<c-j>", "<c-\\><c-n>")
 
 vim.keymap.set({ "n", "v" }, ":", ";")
 vim.keymap.set({ "n", "v" }, ";", ":")
