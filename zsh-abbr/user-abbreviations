@@ -1,3 +1,7 @@
+# zsh-abbr will look for this file and load all abbrevations from it.
+#
+# Reference: https://zsh-abbr.olets.dev/advanced.html#configuration-variables
+
 abbr "nvim-copilot"="NVIM_APPNAME=nvim-copilot nvim"
 
 abbr "b"="bat"
