@@ -26,6 +26,15 @@ return {
                 lualine_b = {
                     "diagnostics",
                 },
+                lualine_c = {
+                    {
+                        function()
+                            local key = require("grapple").name_or_index()
+                            return " " .. key .. ""
+                        end,
+                        cond = require("grapple").exists,
+                    },
+                },
                 lualine_x = {
                     {
                         function()
