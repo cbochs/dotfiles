@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "javascript", "javascriptreact" },
+    pattern = { "coffee", "javascript", "javascriptreact" },
     callback = function()
         vim.opt_local.shiftwidth = 2
     end,
