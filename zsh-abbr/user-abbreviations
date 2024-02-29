@@ -31,6 +31,8 @@ abbr "dc"="docker compose"
 abbr "dv"="docker volume"
 
 abbr "j"="bin/janus-setup"
+abbr "jc"="bin/janus-start wezterm"
+
 abbr "p"="docker compose exec portal"
 abbr "pr"="docker compose exec portal bin/rails"
 abbr "pw"="docker compose exec portal bin/webpacker"
