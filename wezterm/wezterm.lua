@@ -16,9 +16,12 @@ config = {
     use_fancy_tab_bar = false,
     window_decorations = "RESIZE",
 
+    -- Disable font ligatures
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+
+    -- Tmux-like keybindings
     leader = { key = "b", mods = "CTRL" },
     keys = {
-        -- tmux
         { key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
         { key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
         { key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
