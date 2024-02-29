@@ -1,4 +1,6 @@
 return {
+    { "kchmck/vim-coffee-script" },
+
     {
         "stevearc/oil.nvim",
         keys = {
