@@ -59,7 +59,7 @@ return {
                     filter = {
                         event = "msg_show",
                         kind = "",
-                        find = "written",
+                        find = "%dL",
                     },
                     opts = { skip = true },
                 },
@@ -143,20 +143,37 @@ return {
     {
         "cbochs/grapple.nvim",
         enabled = true,
+        dev = true,
+        event = { "BufReadPost", "BufNewFile" },
+        command = "Grapple",
         keys = {
-            { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple toggle tag" },
-            { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple popup tags" },
-            { "<leader>j", "<cmd>GrappleCycle forward<cr>", desc = "Grapple cycle forward" },
-            { "<leader>J", "<cmd>GrappleCycle backward<cr>", desc = "Grapple cycle backward" },
+            -- { "<leader>k", "<cmd>GrapplePopup tags<cr>", desc = "Grapple open tags" },
+            -- { "<leader>m", "<cmd>GrappleToggle<cr>", desc = "Grapple open tags" },
+            -- { "<leader>j", "<cmd>GrappleCycle forward<cr>", desc = "Grapple open tags" },
+            -- { "<leader>J", "<cmd>GrappleCycle backward<cr>", desc = "Grapple open tags" },
+            { "<leader>k", "<cmd>Grapple open_tags<cr>", desc = "Grapple open tags" },
+            { "<leader>K", "<cmd>Grapple open_scopes<cr>", desc = "Grapple open tags" },
+            { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
+            { "<leader>M", "<cmd>Grapple quickfix<cr>", desc = "Grapple toggle tag" },
+            { "<leader>j", "<cmd>Grapple cycle_forward<cr>", desc = "Grapple cycle forward" },
+            { "<leader>J", "<cmd>Grapple cycle_backward<cr>", desc = "Grapple cycle backward" },
+        },
+        opts = {
+            scope = "git_branch",
+            win_opts = {
+                width = 60,
+                height = 12,
+            },
         },
     },
 
     {
         "cbochs/portal.nvim",
-        enabled = false,
+        enabled = true,
+        dev = true,
         keys = {
-            { "<leader>i", "<cmd>Portal jumplist forward<cr>", desc = "Portal forward" },
-            { "<leader>o", "<cmd>Portal jumplist backward<cr>", desc = "Portal backward" },
+            { "<leader>i", "<cmd>Portal grapple forward<cr>", desc = "Portal forward" },
+            { "<leader>o", "<cmd>Portal grapple backward<cr>", desc = "Portal backward" },
         },
         opts = {
             wrap = true,
@@ -172,15 +189,13 @@ return {
     {
         "kylechui/nvim-surround",
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- change visual keymap to allow flash.nvim to use 'S'
-                keymaps = {
-                    visual = "gS",
-                    visual_line = "gSS",
-                },
-            })
-        end,
+        opts = {
+            -- change visual keymap to allow flash.nvim to use 'S'
+            keymaps = {
+                visual = "gS",
+                visual_line = "gSS",
+            },
+        },
     },
 
     {
