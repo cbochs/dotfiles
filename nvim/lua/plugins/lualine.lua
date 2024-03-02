@@ -28,10 +28,7 @@ return {
                 },
                 lualine_c = {
                     {
-                        function()
-                            local key = require("grapple").name_or_index()
-                            return " " .. key .. ""
-                        end,
+                        require("grapple").statusline,
                         cond = require("grapple").exists,
                     },
                 },
