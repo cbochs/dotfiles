@@ -143,23 +143,23 @@ return {
     {
         "cbochs/grapple.nvim",
         enabled = true,
-        -- dev = true,
+        dev = true,
         event = { "BufReadPost", "BufNewFile" },
         command = "Grapple",
         keys = {
             { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
-            { "<leader>j", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
-            { "<leader>k", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
-            { "<leader>M", "<cmd>Grapple open_tags<cr>", desc = "Grapple open tags" },
-            { "<leader>J", "<cmd>Grapple open_scopes<cr>", desc = "Grapple open scopes" },
-            { "<leader>K", "<cmd>Grapple open_loaded<cr>", desc = "Grapple open loaded" },
+            { "<leader>M", "<cmd>Grapple toggle_loaded<cr>", desc = "Grapple toggle loaded" },
+            { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
+            { "<leader>K", "<cmd>Grapple toggle_scopes<cr>", desc = "Grapple toggle scopes" },
+            { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
+            { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
+            { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
+            { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
+            { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
+            { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
         },
         opts = {
             scope = "git_branch",
-            win_opts = {
-                width = 60,
-                height = 12,
-            },
         },
     },
 
