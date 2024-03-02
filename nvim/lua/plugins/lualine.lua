@@ -28,8 +28,12 @@ return {
                 },
                 lualine_c = {
                     {
-                        require("grapple").statusline,
-                        cond = require("grapple").exists,
+                        function()
+                            return require("grapple").statusline()
+                        end,
+                        cond = function()
+                            return require("grapple").exists()
+                        end,
                     },
                 },
                 lualine_x = {
