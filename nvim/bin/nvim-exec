@@ -3,6 +3,6 @@
 script=$1
 file=$(mktemp)
 
-nvim -c "redir @a | silent execute('lua=$1') | redir END | enew | put a | write! $file | quit" \
-	&& cat $file \
-	&& rm $file
+nvim -c "redir @a | silent execute('lua=$1') | redir END | enew | put a | write! $file | quit" >/dev/null
+cat $file | tail -n +3
+rm -f $file
