@@ -9,6 +9,7 @@ vim.keymap.set("n", "<leader>tt", Wezterm.test.file, { desc = "Test file" })
 -- vim.keymap.set("n", "<leader>jj", Wezterm.lazygit, { desc = "Open lazygit" })
 vim.keymap.set("n", "<leader>gho", Wezterm.github_open, { desc = "Open in Github" })
 vim.keymap.set("n", "<leader>ghl", Wezterm.github_link, { desc = "Copy Github link" })
+vim.keymap.set("n", "<leader>rp", Wezterm.preview_readme, { desc = "Preview README" })
 
 vim.keymap.set({ "i", "x" }, "<c-j>", "<esc>")
 

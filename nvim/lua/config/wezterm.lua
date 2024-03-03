@@ -1,7 +1,7 @@
 local Wezterm = {}
 
 Wezterm.run_with_callback = function(on_exit, ...)
-    vim.system({ "nvim-wezterm.sh", ... }, { text = true }, on_exit)
+    vim.system({ "nvim-wezterm", ... }, { text = true }, on_exit)
 end
 
 Wezterm.run = function(...)
@@ -33,6 +33,13 @@ Wezterm.github_link = function()
             vim.notify("Copied Github link.")
         end)
     end, "github-link", file_name, line_number)
+end
+
+Wezterm.preview_readme = function()
+    local file_name = vim.fn.expand("%:~:.")
+    local line_number = vim.fn.line(".")
+
+    Wezterm.run("vscode-open", file_name, line_number)
 end
 
 Wezterm.test = {}
