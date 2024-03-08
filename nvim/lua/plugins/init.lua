@@ -141,6 +141,12 @@ return {
     },
 
     {
+        "cbochs/grapple_nvim",
+        enabled = false,
+        dev = true,
+    },
+
+    {
         "cbochs/grapple.nvim",
         enabled = true,
         dev = true,
@@ -148,7 +154,6 @@ return {
         command = "Grapple",
         keys = {
             { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
-            { "<leader>M", "<cmd>Grapple toggle_loaded<cr>", desc = "Grapple toggle loaded" },
             { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
             { "<leader>K", "<cmd>Grapple toggle_scopes<cr>", desc = "Grapple toggle scopes" },
             { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
@@ -157,6 +162,19 @@ return {
             { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
             { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
             { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
+            {
+                "<leader>M",
+                function()
+                    local Oil = require("oil")
+                    local filename = Oil.get_cursor_entry().name
+                    local directory = Oil.get_current_dir()
+
+                    local Grapple = require("grapple")
+                    local Path = require("grapple.path")
+                    Grapple.toggle({ path = Path.join(directory, filename) })
+                end,
+                desc = "Grapple tag under cursor",
+            },
         },
         opts = {
             scope = "git_branch",
