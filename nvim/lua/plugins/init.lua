@@ -151,7 +151,7 @@ return {
         enabled = true,
         dev = true,
         event = { "BufReadPost", "BufNewFile" },
-        command = "Grapple",
+        cmd = "Grapple",
         keys = {
             { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
             { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
