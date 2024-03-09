@@ -4,13 +4,6 @@ return {
     opts = function(_)
         local icons = require("lazyvim.config").icons
 
-        local function fg(name)
-            return function()
-                local hl = vim.api.nvim_get_hl(0, { name = name })
-                return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
-            end
-        end
-
         return {
             options = {
                 theme = "auto",
@@ -44,7 +37,6 @@ return {
                         cond = function()
                             return package.loaded["noice"] and require("noice").api.status.mode.has()
                         end,
-                        color = fg("Constant"),
                     },
                     {
                         "diff",
