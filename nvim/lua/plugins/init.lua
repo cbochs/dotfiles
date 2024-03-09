@@ -1,12 +1,62 @@
 return {
-    { "kchmck/vim-coffee-script" },
+    {
+        "cbochs/grapple.nvim",
+        dev = true,
+        enabled = true,
+        opts = {
+            scope = "git_branch",
+        },
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = "Grapple",
+        keys = {
+            { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
+            { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
+            { "<leader>K", "<cmd>Grapple toggle_scopes<cr>", desc = "Grapple toggle scopes" },
+            { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
+            { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
+            { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
+            { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
+            { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
+            { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
+            {
+                "<leader>M",
+                function()
+                    local Oil = require("oil")
+                    local filename = Oil.get_cursor_entry().name
+                    local directory = Oil.get_current_dir()
+
+                    local Grapple = require("grapple")
+                    local Path = require("grapple.path")
+                    Grapple.toggle({ path = Path.join(directory, filename) })
+                end,
+                desc = "Grapple tag under cursor",
+            },
+        },
+    },
 
     {
-        "stevearc/oil.nvim",
-        keys = {
-            { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
+        "cbochs/grapple_nvim",
+        dev = true,
+        enabled = false,
+    },
+
+    {
+        "cbochs/portal.nvim",
+        dev = true,
+        enabled = true,
+        opts = {
+            wrap = true,
+            select_first = true,
+            escape = {
+                ["<c-j>"] = true,
+                ["<esc>"] = true,
+                ["q"] = true,
+            },
         },
-        opts = {},
+        keys = {
+            { "<leader>i", "<cmd>Portal grapple forward<cr>", desc = "Portal forward" },
+            { "<leader>o", "<cmd>Portal grapple backward<cr>", desc = "Portal backward" },
+        },
     },
 
     { -- override: remove ";" char, disable backdrop
@@ -24,31 +74,6 @@ return {
                 },
             },
         },
-    },
-
-    { -- override: use "/" instead of "g" for search
-        "goolord/alpha-nvim",
-        opts = function(_, dashboard)
-            local logo = [[
-            __:.__
-           (_:..'"=
-            ::/ o o\         AHAH!
-           ;'-'   (_)     Spaceman Spiff      .
-           '-._  ;-'        wins again !  _'._|\/:
-           .:;  ;                .         '- '   /_
-          :.. ; ;,                \       _/,    "_<
-         :.|..| ;:                 \__   '._____  _)
-         :.|.'| ||                            _/ /
-         :.|..| :'                           `;--:
-         '.|..|:':       _               _ _ :|_\:
-      .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
-:....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
- ''''      '-''-'-'.__)-'
-            ]]
-            dashboard.section.header.val = vim.split(logo, "\n")
-            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
-            dashboard.section.buttons.val[4].opts.shortcut = "/"
-        end,
     },
 
     { -- override: add message filters
@@ -83,6 +108,94 @@ return {
         },
     },
 
+    {
+        "gbprod/substitute.nvim",
+        config = true,
+        keys = {
+            { "r", "<cmd>lua require('substitute').operator()<cr>" },
+            { "rr", "<cmd>lua require('substitute').line()<cr>" },
+            { "R", "<cmd>lua require('substitute').eol()<cr>" },
+            { "r", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
+        },
+    },
+
+    {
+        cmd = "CellularAutomaton",
+        keys = {
+            { "gol", "<cmd>CellularAutomaton game_of_life<cr>" },
+            { "gor", "<cmd>CellularAutomaton make_it_rain<cr>" },
+        },
+        "eandrju/cellular-automaton.nvim",
+    },
+
+    { -- override: use "/" instead of "g" for search
+        "goolord/alpha-nvim",
+        opts = function(_, dashboard)
+            local logo = [[
+            __:.__
+           (_:..'"=
+            ::/ o o\         AHAH!
+           ;'-'   (_)     Spaceman Spiff      .
+           '-._  ;-'        wins again !  _'._|\/:
+           .:;  ;                .         '- '   /_
+          :.. ; ;,                \       _/,    "_<
+         :.|..| ;:                 \__   '._____  _)
+         :.|.'| ||                            _/ /
+         :.|..| :'                           `;--:
+         '.|..|:':       _               _ _ :|_\:
+      .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
+:....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
+ ''''      '-''-'-'.__)-'
+            ]]
+            dashboard.section.header.val = vim.split(logo, "\n")
+            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
+            dashboard.section.buttons.val[4].opts.shortcut = "/"
+        end,
+    },
+
+    { "kchmck/vim-coffee-script" },
+
+    {
+        "kevinhwang91/nvim-bqf",
+        ft = "qf",
+    },
+
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { "kevinhwang91/promise-async" },
+        opts = {
+            provider_selector = function(_, _, _)
+                return { "treesitter", "indent" }
+            end,
+        },
+        event = "VeryLazy",
+        keys = {
+            { "zR", "<cmd>lua require('ufo').openAllFolds()<cr>", desc = "Open folds" },
+            { "zM", "<cmd>lua require('ufo').closeAllFolds()<cr>", desc = "Close folds" },
+        },
+    },
+
+    {
+        "kylechui/nvim-surround",
+        opts = {
+            -- change visual keymap to allow flash.nvim to use 'S'
+            keymaps = {
+                visual = "gS",
+                visual_line = "gSS",
+            },
+        },
+        event = "VeryLazy",
+    },
+
+    {
+        "L3MON4D3/LuaSnip",
+        opts = function(_, opts)
+            opts.history = true
+            opts.region_check_events = "InsertEnter"
+            opts.delete_check_events = "TextChanged,InsertLeave"
+        end,
+    },
+
     { -- override: setup better keymaps
         "nvim-telescope/telescope.nvim",
         opts = function(_, opts)
@@ -100,149 +213,15 @@ return {
     },
 
     {
-        "kevinhwang91/nvim-bqf",
-        ft = "qf",
-    },
-
-    {
-        "Wansmer/treesj",
-        keys = {
-            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-        },
-        opts = {
-            use_default_keymaps = false,
-        },
-    },
-
-    {
-        "L3MON4D3/LuaSnip",
-        opts = function(_, opts)
-            opts.history = true
-            opts.region_check_events = "InsertEnter"
-            opts.delete_check_events = "TextChanged,InsertLeave"
-        end,
-    },
-
-    {
         "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
         config = function(_, _)
             require("treesitter-context").setup({ enable = true })
         end,
-    },
-
-    {
-        cmd = "CellularAutomaton",
-        keys = {
-            { "gol", "<cmd>CellularAutomaton game_of_life<cr>" },
-            { "gor", "<cmd>CellularAutomaton make_it_rain<cr>" },
-        },
-        "eandrju/cellular-automaton.nvim",
-    },
-
-    {
-        "cbochs/grapple_nvim",
-        enabled = false,
-        dev = true,
-    },
-
-    {
-        "cbochs/grapple.nvim",
-        enabled = true,
-        dev = true,
-        event = { "BufReadPost", "BufNewFile" },
-        cmd = "Grapple",
-        keys = {
-            { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
-            { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
-            { "<leader>K", "<cmd>Grapple toggle_scopes<cr>", desc = "Grapple toggle scopes" },
-            { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
-            { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
-            { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
-            { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
-            { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
-            { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
-            {
-                "<leader>M",
-                function()
-                    local Oil = require("oil")
-                    local filename = Oil.get_cursor_entry().name
-                    local directory = Oil.get_current_dir()
-
-                    local Grapple = require("grapple")
-                    local Path = require("grapple.path")
-                    Grapple.toggle({ path = Path.join(directory, filename) })
-                end,
-                desc = "Grapple tag under cursor",
-            },
-        },
-        opts = {
-            scope = "git_branch",
-        },
-    },
-
-    {
-        "cbochs/portal.nvim",
-        enabled = true,
-        dev = true,
-        keys = {
-            { "<leader>i", "<cmd>Portal grapple forward<cr>", desc = "Portal forward" },
-            { "<leader>o", "<cmd>Portal grapple backward<cr>", desc = "Portal backward" },
-        },
-        opts = {
-            wrap = true,
-            select_first = true,
-            escape = {
-                ["<c-j>"] = true,
-                ["<esc>"] = true,
-                ["q"] = true,
-            },
-        },
-    },
-
-    {
-        "kylechui/nvim-surround",
         event = "VeryLazy",
-        opts = {
-            -- change visual keymap to allow flash.nvim to use 'S'
-            keymaps = {
-                visual = "gS",
-                visual_line = "gSS",
-            },
-        },
-    },
-
-    {
-        "gbprod/substitute.nvim",
-        keys = {
-            { "r", "<cmd>lua require('substitute').operator()<cr>" },
-            { "rr", "<cmd>lua require('substitute').line()<cr>" },
-            { "R", "<cmd>lua require('substitute').eol()<cr>" },
-            { "r", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
-        },
-        config = true,
-    },
-
-    {
-        "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async" },
-        event = "VeryLazy",
-        keys = {
-            { "zR", "<cmd>lua require('ufo').openAllFolds()<cr>", desc = "Open folds" },
-            { "zM", "<cmd>lua require('ufo').closeAllFolds()<cr>", desc = "Close folds" },
-        },
-        opts = {
-            provider_selector = function(_, _, _)
-                return { "treesitter", "indent" }
-            end,
-        },
     },
 
     {
         "rgroli/other.nvim",
-        keys = {
-            { "ga", "<cmd>Other<cr>", desc = "Other file" },
-        },
         config = function(_, _)
             require("other-nvim").setup({
                 showMissingFiles = false,
@@ -282,5 +261,26 @@ return {
                 },
             })
         end,
+        keys = {
+            { "ga", "<cmd>Other<cr>", desc = "Other file" },
+        },
+    },
+
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        keys = {
+            { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
+        },
+    },
+
+    {
+        "Wansmer/treesj",
+        opts = {
+            use_default_keymaps = false,
+        },
+        keys = {
+            { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
+        },
     },
 }
