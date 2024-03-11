@@ -12,7 +12,7 @@ do
 	plugin_user=$(echo $plugin | awk -F/ '{ print $1 }')
 	plugin_name=$(echo $plugin | awk -F/ '{ print $2 }')
 
-    source "$ZPLUGINDIR/$plugin_name/$plugin_name.plugin.zsh"
+	source "$ZPLUGINDIR/$plugin_name/$plugin_name.plugin.zsh"
 done
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
