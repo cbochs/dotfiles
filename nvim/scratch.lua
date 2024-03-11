@@ -1,48 +1,44 @@
-vim.api.nvim_create_user_command("SortSpec", function()
-    local buf_id = vim.api.nvim_get_current_buf()
-    local parser = vim.treesitter.get_parser(buf_id)
-    local tree = parser:parse()[1]
-    local query = vim.treesitter.query.parse(parser:lang(), [[ (table_constructor) @tbl ]])
-
-    if not tree:root():child():type() == "return_statement" then
-        return vim.notify("Module must only have a return statement", vim.log.levels.WARN)
-    end
-
-    local root_iter = query:iter_captures(tree:root(), buf_id, 0, -1)
-    local _, root, _ = root_iter()
-
-    for field_node, _ in root:iter_children() do
-        if not field_node:named() then
-            goto continue
-        end
-
-        local spec_iter = query:iter_captures(field_node, buf_id)
-        local _, spec_node, _ = spec_iter()
-
-        for prop_node, _ in spec_node:iter_children() do
-            if not prop_node:named() then
-                goto continue
-            end
-
-            vim.print({
-                node = prop_node:type(),
-                text = vim.treesitter.get_node_text(prop_node, buf_id),
-            })
-
-            ::continue::
-        end
-
-        -- vim.print({
-        --     node = spec_node,
-        --     name = spec_node:type(),
-        -- })
-        ::continue::
-    end
-end, { force = true })
-
-if true then
-    return
-end
+-- vim.api.nvim_create_user_command("SortSpec", function()
+--     local buf_id = vim.api.nvim_get_current_buf()
+--     local parser = vim.treesitter.get_parser(buf_id)
+--     local tree = parser:parse()[1]
+--     local query = vim.treesitter.query.parse(parser:lang(), [[ (table_constructor) @tbl ]])
+--
+--     if not tree:root():child():type() == "return_statement" then
+--         return vim.notify("Module must only have a return statement", vim.log.levels.WARN)
+--     end
+--
+--     local root_iter = query:iter_captures(tree:root(), buf_id, 0, -1)
+--     local _, root, _ = root_iter()
+--
+--     for field_node, _ in root:iter_children() do
+--         if not field_node:named() then
+--             goto continue
+--         end
+--
+--         local spec_iter = query:iter_captures(field_node, buf_id)
+--         local _, spec_node, _ = spec_iter()
+--
+--         for prop_node, _ in spec_node:iter_children() do
+--             if not prop_node:named() then
+--                 goto continue
+--             end
+--
+--             vim.print({
+--                 node = prop_node:type(),
+--                 text = vim.treesitter.get_node_text(prop_node, buf_id),
+--             })
+--
+--             ::continue::
+--         end
+--
+--         -- vim.print({
+--         --     node = spec_node,
+--         --     name = spec_node:type(),
+--         -- })
+--         ::continue::
+--     end
+-- end, { force = true })
 
 -- local buf_id = vim.fn.bufadd("./scratch_plugins.lua")
 local buf_id = vim.fn.bufadd("./lua/plugins/init.lua")
@@ -123,7 +119,18 @@ for i, property in ipairs(spec_properties) do
     spec_order[property] = i
 end
 
+local plugin_types = { "normal", "override", "disabled" }
+local plugin_order = {}
+for i, type in ipairs(plugin_types) do
+    plugin_order[type] = i
+end
+
+local spec_types = { "" }
+
 local plugins, ranges, edits = {}, {}, {}
+local enabled = {}
+local disabled = {}
+local overrides = {}
 
 for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
     local plugin_id = plugin_captures["plugin"]
@@ -134,6 +141,7 @@ for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
     local url_iter = url_query:iter_captures(plugin_node, buf_id)
     local _, url_node, _ = url_iter()
     local plugin_url = vim.treesitter.get_node_text(url_node, buf_id)
+    local plugin_type = "normal"
 
     -- Sort the plugin's properties
     local props, prop_ranges, prop_edits = {}, {}, {}
@@ -149,6 +157,12 @@ for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
         local name_node = match[name_id]
         local name_text = vim.treesitter.get_node_text(name_node, buf_id)
 
+        if name_text == "enabled" and plugin_type == "normal" then
+            plugin_type = string.find(prop_text, "false") ~= nil and "disabled" or "normal"
+        elseif name_text == "optional" and plugin_type == "normal" then
+            plugin_type = string.find(prop_text, "true") ~= nil and "override" or "normal"
+        end
+
         table.insert(props, {
             name = string.lower(name_text),
             text = prop_text,
@@ -158,10 +172,6 @@ for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
             ["start"] = { line = prop_range[1], character = prop_range[2] },
             ["end"] = { line = prop_range[3], character = prop_range[4] }, -- +1 to account for trailing comma
         })
-
-        if not spec_order[name_text] then
-            vim.print(name_text)
-        end
     end
 
     table.sort(props, function(prop_a, prop_b)
@@ -184,6 +194,7 @@ for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
     table.insert(plugins, {
         name = string.lower(plugin_url),
         text = plugin_text,
+        type = plugin_type,
     })
 
     table.insert(ranges, {
@@ -193,6 +204,9 @@ for _, match, _ in plugin_query:iter_matches(root, buf_id, 0, -1) do
 end
 
 table.sort(plugins, function(plugin_a, plugin_b)
+    if plugin_order[plugin_a.type] ~= plugin_order[plugin_b.type] then
+        return plugin_order[plugin_a.type] < plugin_order[plugin_b.type]
+    end
     return string.lower(plugin_a.name) < string.lower(plugin_b.name)
 end)
 
