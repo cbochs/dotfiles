@@ -1,7 +1,37 @@
 return {
-    {
+    { -- lazy.nvim (package manager)
+        "folke/lazy.nvim",
+        version = false,
+    },
+
+    { -- LazyVim (distro)
+        "LazyVim/LazyVim",
+        version = false,
+        opts = {
+            colorscheme = "kanagawa",
+            icons = {
+                diagnostics = {
+                    Error = "E",
+                    Warn = "W",
+                    Hint = "H",
+                    Info = "I",
+                },
+            },
+        },
+    },
+
+    { -- kanagawa.nvim (theme)
+        "rebelot/kanagawa.nvim",
+        build = ":KanagawaCompile",
+        opts = {
+            compile = true,
+            dimInactive = true,
+            colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+        },
+    },
+
+    { -- Grapple.nvim
         "cbochs/grapple.nvim",
-        dev = true,
         enabled = true,
         opts = {
             scope = "git_branch",
@@ -34,15 +64,14 @@ return {
         },
     },
 
-    {
+    { -- Grapple.nvim (Rust edition)
         "cbochs/grapple_nvim",
         dev = true,
         enabled = false,
     },
 
-    {
+    { -- Portal.nvim
         "cbochs/portal.nvim",
-        dev = true,
         enabled = true,
         opts = {
             wrap = true,
@@ -59,7 +88,8 @@ return {
         },
     },
 
-    { -- override: remove ";" char, disable backdrop
+    { -- Override: flash.nvim
+        -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
         opts = {
             modes = {
@@ -76,7 +106,8 @@ return {
         },
     },
 
-    { -- override: add message filters
+    { -- Override: noice.nvim
+        -- Reason: add message filters
         "folke/noice.nvim",
         opts = function(_, opts)
             opts.routes = {
@@ -100,7 +131,8 @@ return {
         end,
     },
 
-    { -- override: disable some keymaps in favour of mini.bracketed "treesitter"
+    { -- Override: todo-comments.nvim
+        -- Reason: disable some keymaps in favour of mini.bracketed "treesitter"
         "folke/todo-comments.nvim",
         keys = {
             { "]t", false },
@@ -108,7 +140,7 @@ return {
         },
     },
 
-    {
+    { -- substitute.nvim
         "gbprod/substitute.nvim",
         config = true,
         keys = {
@@ -119,7 +151,7 @@ return {
         },
     },
 
-    {
+    { -- cellular-automaton.nvim
         cmd = "CellularAutomaton",
         keys = {
             { "gol", "<cmd>CellularAutomaton game_of_life<cr>" },
@@ -128,7 +160,8 @@ return {
         "eandrju/cellular-automaton.nvim",
     },
 
-    { -- override: use "/" instead of "g" for search
+    { -- Override: alpha-nvim
+        -- Reason: use "/" instead of "g" for search
         "goolord/alpha-nvim",
         opts = function(_, dashboard)
             local logo = [[
@@ -153,16 +186,21 @@ return {
         end,
     },
 
-    { "kchmck/vim-coffee-script" },
+    { -- vim-coffee-script
+        "kchmck/vim-coffee-script",
+        ft = "coffee",
+    },
 
-    {
+    { -- nvim-bfq (better quickfix)
         "kevinhwang91/nvim-bqf",
         ft = "qf",
     },
 
-    {
+    { -- nvim-ufo
         "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async" },
+        dependencies = {
+            "kevinhwang91/promise-async",
+        },
         opts = {
             provider_selector = function(_, _, _)
                 return { "treesitter", "indent" }
@@ -175,19 +213,18 @@ return {
         },
     },
 
-    {
+    { -- nvim-surround
         "kylechui/nvim-surround",
         opts = {
-            -- change visual keymap to allow flash.nvim to use 'S'
             keymaps = {
-                visual = "gS",
-                visual_line = "gSS",
+                visual = "gs",
+                visual_line = "gS",
             },
         },
         event = "VeryLazy",
     },
 
-    {
+    { -- luasnip
         "L3MON4D3/LuaSnip",
         opts = function(_, opts)
             opts.history = true
@@ -196,7 +233,8 @@ return {
         end,
     },
 
-    { -- override: setup better keymaps
+    { -- Override: setup better keymaps
+        -- Reason: setup better keymaps
         "nvim-telescope/telescope.nvim",
         opts = function(_, opts)
             opts.defaults.file_ignore_patterns = {
@@ -212,7 +250,7 @@ return {
         end,
     },
 
-    {
+    { -- nvim-treesitter-context
         "nvim-treesitter/nvim-treesitter-context",
         config = function(_, _)
             require("treesitter-context").setup({ enable = true })
@@ -220,7 +258,7 @@ return {
         event = "VeryLazy",
     },
 
-    {
+    { -- other.nvim
         "rgroli/other.nvim",
         config = function(_, _)
             require("other-nvim").setup({
@@ -228,34 +266,25 @@ return {
                 mappings = {
                     "rails",
                     {
-                        -- generic test mapping for minitest and rspec
-                        pattern = "/app/(.*)/(.*).rb",
-                        target = {
-                            { context = "test", target = "/spec/requests/%1/%2_spec.rb" },
-                            { context = "test", target = "/spec/requests/%2_spec.rb" },
-                            { context = "test", target = "/spec/requests/**/%2_spec.rb" },
-                        },
-                    },
-                    {
                         pattern = "(.+)/spec/(.*)/(.*)/(.*)_spec.rb",
                         target = {
-                            { target = "%1/db/%3/%4.rb" },
-                            { target = "%1/app/%3/%4.rb" },
-                            { target = "%1/%3/%4.rb" },
+                            { context = "source", target = "%1/db/%3/%4.rb" },
+                            { context = "source", target = "%1/app/%3/%4.rb" },
+                            { context = "source", target = "%1/%3/%4.rb" },
                         },
                     },
                     {
                         pattern = "(.+)/spec/(.*)/(.*)_spec.rb",
                         target = {
-                            { target = "%1/db/%2/%3.rb" },
-                            { target = "%1/app/%2/%3.rb" },
-                            { target = "%1/lib/%2/%3.rb" },
+                            { context = "source", target = "%1/db/%2/%3.rb" },
+                            { context = "source", target = "%1/app/%2/%3.rb" },
+                            { context = "source", target = "%1/lib/%2/%3.rb" },
                         },
                     },
                     {
                         pattern = "(.+)/spec/(.*)/(.*)_(.*)_spec.rb",
                         target = {
-                            { target = "%1/app/%4s/%3_%4.rb" },
+                            { context = "source", target = "%1/app/%4s/%3_%4.rb" },
                         },
                     },
                 },
@@ -266,7 +295,7 @@ return {
         },
     },
 
-    {
+    { -- oil.nvim (replace netrw)
         "stevearc/oil.nvim",
         opts = {},
         keys = {
@@ -274,13 +303,71 @@ return {
         },
     },
 
-    {
+    { -- treesj (split-join)
         "Wansmer/treesj",
         opts = {
             use_default_keymaps = false,
         },
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
+        },
+    },
+
+    { -- disabled: catppuccin
+        -- Reason: prefer kanagawa.nvim theme
+        "catppuccin",
+        enabled = false,
+    },
+
+    { -- Disabled: mini.surround
+        -- Reason: prefer nvim-surround
+        "echasnovski/mini.surround",
+        enabled = false,
+    },
+
+    { -- Disabled: tokyonight.nvim
+        -- Reason: prefer kanagawa.nvim theme
+        "folke/tokyonight.nvim",
+        enabled = false,
+    },
+
+    { -- Disabled: nvim-navic
+        -- Reason: don't need
+        "SmiteshP/nvim-navic",
+        enabled = false,
+    },
+
+    { -- Override: mini.bracketed
+        -- Reason: disable most bracket operations
+        "echasnovski/mini.bracketed",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            comment = { suffix = "k" },
+            indent = { options = { change_type = "diff" } },
+            buffer = { suffix = "" },
+            diagnostic = { suffix = "" },
+            file = { suffix = "" },
+            jump = { suffix = "" },
+            oldfile = { suffix = "" },
+            undo = { suffix = "" },
+            window = { suffix = "" },
+        },
+    },
+
+    { -- mini.trailspace
+        "echasnovski/mini.trailspace",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
+
+    { -- Override: mini.indentscope
+        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
+        "echasnovski/mini.indentscope",
+        opts = {
+            mappings = {
+                goto_top = "",
+                goto_bottom = "",
+            },
         },
     },
 }
