@@ -73,15 +73,6 @@ return {
         },
     },
 
-    { -- cellular-automaton.nvim
-        cmd = "CellularAutomaton",
-        keys = {
-            { "gol", "<cmd>CellularAutomaton game_of_life<cr>" },
-            { "gor", "<cmd>CellularAutomaton make_it_rain<cr>" },
-        },
-        "eandrju/cellular-automaton.nvim",
-    },
-
     { -- vim-coffee-script
         "kchmck/vim-coffee-script",
         ft = "coffee",
