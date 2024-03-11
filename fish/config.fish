@@ -37,9 +37,8 @@ abbr -a dv docker volume
 # Bindings
 function fish_user_key_bindings
     bind -M insert \cz 'fg &>/dev/null'
-    bind -M insert \cj 'set fish_bind_mode visual'
-    # fish_default_key_bindings -M
-    # fish_vi_key_bindings --no-erase insert
+    bind -M insert \cj backward-word
+    bind -M insert \ck forward-word
 end
 
 # Paths
