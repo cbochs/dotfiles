@@ -92,6 +92,9 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 set -gx LDFLAGS "-L/opt/homebrew/opt/imagemagick@6/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/imagemagick@6/include"
 
+# Fzf
+set -gx FZF_DEFAULT_COMMAND "fd --type file --follow"
+
 # GPG Setup
 #
 # References:
