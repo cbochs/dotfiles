@@ -1,10 +1,4 @@
 return {
-    { -- Disabled: catppuccin
-        -- Reason: prefer kanagawa.nvim theme
-        "catppuccin",
-        enabled = false,
-    },
-
     { -- Grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
@@ -39,12 +33,6 @@ return {
         },
     },
 
-    { -- Grapple.nvim (Rust edition)
-        "cbochs/grapple_nvim",
-        dev = true,
-        enabled = false,
-    },
-
     { -- Portal.nvim
         "cbochs/portal.nvim",
         enabled = true,
@@ -63,107 +51,15 @@ return {
         },
     },
 
-    { -- Override: mini.bracketed
-        -- Reason: disable most bracket operations
-        "echasnovski/mini.bracketed",
-        opts = {
-            comment = { suffix = "k" },
-            indent = { options = { change_type = "diff" } },
-            buffer = { suffix = "" },
-            diagnostic = { suffix = "" },
-            file = { suffix = "" },
-            jump = { suffix = "" },
-            oldfile = { suffix = "" },
-            undo = { suffix = "" },
-            window = { suffix = "" },
-        },
-        event = { "BufReadPost", "BufNewFile" },
-    },
-
-    { -- Override: mini.indentscope
-        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
-        "echasnovski/mini.indentscope",
-        opts = {
-            mappings = {
-                goto_top = "",
-                goto_bottom = "",
-            },
-        },
-    },
-
-    { -- Disabled: mini.surround
-        -- Reason: prefer nvim-surround
-        "echasnovski/mini.surround",
-        enabled = false,
-    },
-
     { -- mini.trailspace
         "echasnovski/mini.trailspace",
         opts = {},
         event = { "BufReadPost", "BufNewFile" },
     },
 
-    { -- Override: flash.nvim
-        -- Reason: remove ";" char, disable backdrop
-        "folke/flash.nvim",
-        opts = {
-            modes = {
-                search = {
-                    enabled = false,
-                },
-                char = {
-                    keys = { "f", "F", "t", "T", "," },
-                    highlight = {
-                        backdrop = false,
-                    },
-                },
-            },
-        },
-    },
-
     { -- lazy.nvim (package manager)
         "folke/lazy.nvim",
         version = false,
-    },
-
-    { -- Override: noice.nvim
-        -- Reason: add message filters
-        "folke/noice.nvim",
-        opts = function(_, opts)
-            opts.routes = {
-                { -- filter write messages "xxxL, xxxB"
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                        find = "%dL",
-                    },
-                    opts = { skip = true },
-                },
-                { -- filter search messages
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                        find = "search hit",
-                    },
-                    opts = { skip = true },
-                },
-            }
-        end,
-    },
-
-    { -- Override: todo-comments.nvim
-        -- Reason: disable some keymaps in favour of mini.bracketed "treesitter"
-        "folke/todo-comments.nvim",
-        keys = {
-            { "]t", false },
-            { "[t", false },
-        },
-    },
-
-    { -- Disabled: tokyonight.nvim
-        -- Reason: prefer kanagawa.nvim theme
-        "folke/tokyonight.nvim",
-        enabled = false,
     },
 
     { -- substitute.nvim
@@ -184,32 +80,6 @@ return {
             { "gor", "<cmd>CellularAutomaton make_it_rain<cr>" },
         },
         "eandrju/cellular-automaton.nvim",
-    },
-
-    { -- Override: alpha-nvim
-        -- Reason: use "/" instead of "g" for search
-        "goolord/alpha-nvim",
-        opts = function(_, dashboard)
-            local logo = [[
-            __:.__
-           (_:..'"=
-            ::/ o o\         AHAH!
-           ;'-'   (_)     Spaceman Spiff      .
-           '-._  ;-'        wins again !  _'._|\/:
-           .:;  ;                .         '- '   /_
-          :.. ; ;,                \       _/,    "_<
-         :.|..| ;:                 \__   '._____  _)
-         :.|.'| ||                            _/ /
-         :.|..| :'                           `;--:
-         '.|..|:':       _               _ _ :|_\:
-      .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
-:....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
- ''''      '-''-'-'.__)-'
-            ]]
-            dashboard.section.header.val = vim.split(logo, "\n")
-            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
-            dashboard.section.buttons.val[4].opts.shortcut = "/"
-        end,
     },
 
     { -- vim-coffee-script
@@ -275,23 +145,6 @@ return {
         version = false,
     },
 
-    { -- Override: setup better keymaps
-        -- Reason: setup better keymaps
-        "nvim-telescope/telescope.nvim",
-        opts = function(_, opts)
-            opts.defaults.file_ignore_patterns = {
-                "node_modules", -- ignore node packages
-                "packer_compiled", -- ignore packer_compiled.lua
-                "vendor", -- ignore bundled gems
-            }
-            opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
-                ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
-                ["<c-j>"] = { "<esc>", type = "command" },
-                ["<c-u>"] = false,
-            })
-        end,
-    },
-
     { -- nvim-treesitter-context
         "nvim-treesitter/nvim-treesitter-context",
         config = function(_, _)
@@ -308,6 +161,7 @@ return {
             colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
         },
         build = ":KanagawaCompile",
+        priority = 1000,
     },
 
     { -- other.nvim
@@ -347,12 +201,6 @@ return {
         },
     },
 
-    { -- Disabled: nvim-navic
-        -- Reason: don't need
-        "SmiteshP/nvim-navic",
-        enabled = false,
-    },
-
     { -- oil.nvim (replace netrw)
         "stevearc/oil.nvim",
         opts = {},
@@ -369,5 +217,165 @@ return {
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
         },
+    },
+
+    { -- Override: mini.bracketed
+        -- Reason: disable most bracket operations
+        "echasnovski/mini.bracketed",
+        opts = {
+            comment = { suffix = "k" },
+            indent = { options = { change_type = "diff" } },
+            buffer = { suffix = "" },
+            diagnostic = { suffix = "" },
+            file = { suffix = "" },
+            jump = { suffix = "" },
+            oldfile = { suffix = "" },
+            undo = { suffix = "" },
+            window = { suffix = "" },
+        },
+        event = { "BufReadPost", "BufNewFile" },
+        optional = true,
+    },
+
+    { -- Override: mini.indentscope
+        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
+        "echasnovski/mini.indentscope",
+        opts = {
+            mappings = {
+                goto_top = "",
+                goto_bottom = "",
+            },
+        },
+        optional = true,
+    },
+
+    { -- Override: flash.nvim
+        -- Reason: remove ";" char, disable backdrop
+        "folke/flash.nvim",
+        opts = {
+            modes = {
+                search = {
+                    enabled = false,
+                },
+                char = {
+                    keys = { "f", "F", "t", "T", "," },
+                    highlight = {
+                        backdrop = false,
+                    },
+                },
+            },
+        },
+        optional = true,
+    },
+
+    { -- Override: noice.nvim
+        -- Reason: add message filters
+        "folke/noice.nvim",
+        opts = function(_, opts)
+            opts.routes = {
+                { -- filter write messages "xxxL, xxxB"
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "%dL",
+                    },
+                    opts = { skip = true },
+                },
+                { -- filter search messages
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = "search hit",
+                    },
+                    opts = { skip = true },
+                },
+            }
+        end,
+        optional = true,
+    },
+
+    { -- Override: todo-comments.nvim
+        -- Reason: disable some keymaps in favour of mini.bracketed "treesitter"
+        "folke/todo-comments.nvim",
+        keys = {
+            { "]t", false },
+            { "[t", false },
+        },
+        optional = true,
+    },
+
+    { -- Override: alpha-nvim
+        -- Reason: use "/" instead of "g" for search
+        "goolord/alpha-nvim",
+        opts = function(_, dashboard)
+            local logo = [[
+            __:.__
+           (_:..'"=
+            ::/ o o\         AHAH!
+           ;'-'   (_)     Spaceman Spiff      .
+           '-._  ;-'        wins again !  _'._|\/:
+           .:;  ;                .         '- '   /_
+          :.. ; ;,                \       _/,    "_<
+         :.|..| ;:                 \__   '._____  _)
+         :.|.'| ||                            _/ /
+         :.|..| :'                           `;--:
+         '.|..|:':       _               _ _ :|_\:
+      .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
+:....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
+ ''''      '-''-'-'.__)-'
+            ]]
+            dashboard.section.header.val = vim.split(logo, "\n")
+            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
+            dashboard.section.buttons.val[4].opts.shortcut = "/"
+        end,
+        optional = true,
+    },
+
+    { -- Override: setup better keymaps
+        -- Reason: setup better keymaps
+        "nvim-telescope/telescope.nvim",
+        opts = function(_, opts)
+            opts.defaults.file_ignore_patterns = {
+                "node_modules", -- ignore node packages
+                "packer_compiled", -- ignore packer_compiled.lua
+                "vendor", -- ignore bundled gems
+            }
+            opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
+                ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
+                ["<c-j>"] = { "<esc>", type = "command" },
+                ["<c-u>"] = false,
+            })
+        end,
+        optional = true,
+    },
+
+    { -- Disabled: catppuccin
+        -- Reason: prefer kanagawa.nvim theme
+        "catppuccin",
+        enabled = false,
+    },
+
+    { -- Grapple.nvim (Rust edition)
+        "cbochs/grapple_nvim",
+        dev = true,
+        enabled = false,
+    },
+
+    { -- Disabled: mini.surround
+        -- Reason: prefer nvim-surround
+        "echasnovski/mini.surround",
+        enabled = false,
+    },
+
+    { -- Disabled: tokyonight.nvim
+        -- Reason: prefer kanagawa.nvim theme
+        "folke/tokyonight.nvim",
+        enabled = false,
+    },
+
+    { -- Disabled: nvim-navic
+        -- Reason: don't need
+        "SmiteshP/nvim-navic",
+        enabled = false,
     },
 }
