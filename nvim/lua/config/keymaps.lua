@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 local Wezterm = require("config.wezterm")
 vim.keymap.set("n", "<leader>tl", Wezterm.test.last, { desc = "Test last" })
 vim.keymap.set("n", "<leader>tn", Wezterm.test.near, { desc = "Test nearest" })
