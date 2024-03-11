@@ -55,6 +55,28 @@ return {
         },
     },
 
+    { -- Experimental: nvim-spider
+        "chrisgrieser/nvim-spider",
+        lazy = true,
+        keys = {
+            {
+                "w",
+                "<cmd>lua require('spider').motion('w')<CR>",
+                mode = { "n", "o", "x" },
+            },
+            {
+                "e",
+                "<cmd>lua require('spider').motion('e')<CR>",
+                mode = { "n", "o", "x" },
+            },
+            {
+                "b",
+                "<cmd>lua require('spider').motion('b')<CR>",
+                mode = { "n", "o", "x" },
+            },
+        },
+    },
+
     { -- mini.trailspace
         "echasnovski/mini.trailspace",
         opts = {},
@@ -74,6 +96,31 @@ return {
             { "rr", "<cmd>lua require('substitute').line()<cr>" },
             { "R", "<cmd>lua require('substitute').eol()<cr>" },
             { "r", "<cmd>lua require('substitute').visual()<cr>", mode = "x" },
+        },
+    },
+
+    { -- Experimental: fzf-lua
+        "ibhagwan/fzf-lua",
+        opts = { "fzf-vim" },
+        keys = {
+            {
+                "<c-p>",
+                function()
+                    local opts = {}
+                    opts.cmd = vim.env.FZF_DEFAULT_COMMAND
+                    if vim.fn.expand("%:p:h") ~= vim.loop.cwd() then
+                        opts.cmd = opts.cmd .. (" | proximity-sort %s"):format(vim.fn.expand("%"))
+                    end
+                    opts.prompt = "> "
+                    opts.fzf_opts = {
+                        ["--info"] = "inline",
+                        ["--tiebreak"] = "index",
+                        ["--layout"] = "reverse",
+                    }
+                    require("fzf-lua").files(opts)
+                end,
+                desc = "Find files",
+            },
         },
     },
 
