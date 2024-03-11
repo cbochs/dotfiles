@@ -19,8 +19,8 @@ return {
             {
                 "<leader>m",
                 function()
-                    local Oil = require("oil")
                     local Grapple = require("grapple")
+                    local Oil = require("oil")
 
                     if Oil.get_cursor_entry() then
                         local filename = Oil.get_cursor_entry().name
