@@ -13,6 +13,9 @@ require("lazy").setup({
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         { import = "plugins" },
     },
+    change_detection = {
+        enabled = false,
+    },
     defaults = {
         lazy = false,
         version = false, -- always use the latest git commit
