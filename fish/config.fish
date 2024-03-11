@@ -9,6 +9,7 @@ zoxide init fish | source
 abbr -a b bat
 abbr -a c cd
 abbr -a l eza
+abbr -a n nvim
 abbr -a s ssh
 abbr -a v nvim
 
