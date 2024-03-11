@@ -15,15 +15,6 @@
 !zsh
 !zsh-abbr
 
-fish/*
-!fish/conf.d
-!fish/config.fish
-!fish/fish_plugins.fish
-
-fish/conf.d/*
-!fish/conf.d/path.fish
-!fish/conf.d/variables.fish
-
 karabiner/*
 !karabiner/karabiner.json
 
