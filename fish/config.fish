@@ -39,6 +39,15 @@ function fish_user_key_bindings
     bind -M insert \cz 'fg &>/dev/null'
     bind -M insert \cj backward-word
     bind -M insert \ck forward-word
+
+    # Execute this once per mode that emacs bindings should be used in
+    fish_default_key_bindings -M insert
+
+    # Then execute the vi-bindings so they take precedence when there's a conflict.
+    # Without --no-erase fish_vi_key_bindings will default to
+    # resetting all bindings.
+    # The argument specifies the initial mode (insert, "default" or visual).
+    fish_vi_key_bindings --no-erase insert
 end
 
 # Paths
@@ -111,11 +120,11 @@ set __fish_git_prompt_showupstream none
 set -g fish_prompt_pwd_dir_length 3
 
 function fish_prompt
-    # if [ $fish_bind_mode != insert ]
-    #     set_color yellow
-    # else
-    # end
-    set_color brblack
+    if [ $fish_bind_mode != insert ]
+        set_color yellow
+    else
+        set_color brblack
+    end
 
     echo -n "["(date "+%H:%M")"] "
     set_color blue
