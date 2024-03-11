@@ -1,33 +1,8 @@
 return {
-    { -- lazy.nvim (package manager)
-        "folke/lazy.nvim",
-        version = false,
-    },
-
-    { -- LazyVim (distro)
-        "LazyVim/LazyVim",
-        version = false,
-        opts = {
-            colorscheme = "kanagawa",
-            icons = {
-                diagnostics = {
-                    Error = "E",
-                    Warn = "W",
-                    Hint = "H",
-                    Info = "I",
-                },
-            },
-        },
-    },
-
-    { -- kanagawa.nvim (theme)
-        "rebelot/kanagawa.nvim",
-        build = ":KanagawaCompile",
-        opts = {
-            compile = true,
-            dimInactive = true,
-            colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
-        },
+    { -- Disabled: catppuccin
+        -- Reason: prefer kanagawa.nvim theme
+        "catppuccin",
+        enabled = false,
     },
 
     { -- Grapple.nvim
@@ -88,6 +63,46 @@ return {
         },
     },
 
+    { -- Override: mini.bracketed
+        -- Reason: disable most bracket operations
+        "echasnovski/mini.bracketed",
+        opts = {
+            comment = { suffix = "k" },
+            indent = { options = { change_type = "diff" } },
+            buffer = { suffix = "" },
+            diagnostic = { suffix = "" },
+            file = { suffix = "" },
+            jump = { suffix = "" },
+            oldfile = { suffix = "" },
+            undo = { suffix = "" },
+            window = { suffix = "" },
+        },
+        event = { "BufReadPost", "BufNewFile" },
+    },
+
+    { -- Override: mini.indentscope
+        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
+        "echasnovski/mini.indentscope",
+        opts = {
+            mappings = {
+                goto_top = "",
+                goto_bottom = "",
+            },
+        },
+    },
+
+    { -- Disabled: mini.surround
+        -- Reason: prefer nvim-surround
+        "echasnovski/mini.surround",
+        enabled = false,
+    },
+
+    { -- mini.trailspace
+        "echasnovski/mini.trailspace",
+        opts = {},
+        event = { "BufReadPost", "BufNewFile" },
+    },
+
     { -- Override: flash.nvim
         -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
@@ -104,6 +119,11 @@ return {
                 },
             },
         },
+    },
+
+    { -- lazy.nvim (package manager)
+        "folke/lazy.nvim",
+        version = false,
     },
 
     { -- Override: noice.nvim
@@ -138,6 +158,12 @@ return {
             { "]t", false },
             { "[t", false },
         },
+    },
+
+    { -- Disabled: tokyonight.nvim
+        -- Reason: prefer kanagawa.nvim theme
+        "folke/tokyonight.nvim",
+        enabled = false,
     },
 
     { -- substitute.nvim
@@ -233,6 +259,22 @@ return {
         end,
     },
 
+    { -- LazyVim (distro)
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "kanagawa",
+            icons = {
+                diagnostics = {
+                    Error = "E",
+                    Warn = "W",
+                    Hint = "H",
+                    Info = "I",
+                },
+            },
+        },
+        version = false,
+    },
+
     { -- Override: setup better keymaps
         -- Reason: setup better keymaps
         "nvim-telescope/telescope.nvim",
@@ -256,6 +298,16 @@ return {
             require("treesitter-context").setup({ enable = true })
         end,
         event = "VeryLazy",
+    },
+
+    { -- kanagawa.nvim (theme)
+        "rebelot/kanagawa.nvim",
+        opts = {
+            compile = true,
+            dimInactive = true,
+            colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+        },
+        build = ":KanagawaCompile",
     },
 
     { -- other.nvim
@@ -295,6 +347,12 @@ return {
         },
     },
 
+    { -- Disabled: nvim-navic
+        -- Reason: don't need
+        "SmiteshP/nvim-navic",
+        enabled = false,
+    },
+
     { -- oil.nvim (replace netrw)
         "stevearc/oil.nvim",
         opts = {},
@@ -310,64 +368,6 @@ return {
         },
         keys = {
             { "gj", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-        },
-    },
-
-    { -- disabled: catppuccin
-        -- Reason: prefer kanagawa.nvim theme
-        "catppuccin",
-        enabled = false,
-    },
-
-    { -- Disabled: mini.surround
-        -- Reason: prefer nvim-surround
-        "echasnovski/mini.surround",
-        enabled = false,
-    },
-
-    { -- Disabled: tokyonight.nvim
-        -- Reason: prefer kanagawa.nvim theme
-        "folke/tokyonight.nvim",
-        enabled = false,
-    },
-
-    { -- Disabled: nvim-navic
-        -- Reason: don't need
-        "SmiteshP/nvim-navic",
-        enabled = false,
-    },
-
-    { -- Override: mini.bracketed
-        -- Reason: disable most bracket operations
-        "echasnovski/mini.bracketed",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {
-            comment = { suffix = "k" },
-            indent = { options = { change_type = "diff" } },
-            buffer = { suffix = "" },
-            diagnostic = { suffix = "" },
-            file = { suffix = "" },
-            jump = { suffix = "" },
-            oldfile = { suffix = "" },
-            undo = { suffix = "" },
-            window = { suffix = "" },
-        },
-    },
-
-    { -- mini.trailspace
-        "echasnovski/mini.trailspace",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {},
-    },
-
-    { -- Override: mini.indentscope
-        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
-        "echasnovski/mini.indentscope",
-        opts = {
-            mappings = {
-                goto_top = "",
-                goto_bottom = "",
-            },
         },
     },
 }
