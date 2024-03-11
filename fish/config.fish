@@ -1,6 +1,7 @@
 # Remove default greeting
 set -g fish_greeting
 
+
 # Plugins
 zoxide init fish | source
 
