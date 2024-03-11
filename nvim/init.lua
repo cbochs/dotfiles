@@ -23,6 +23,9 @@ require("lazy").setup({
     dev = {
         path = "~/git",
     },
+    install = {
+        colorscheme = { "kanagawa" },
+    },
     performance = {
         rtp = {
             disabled_plugins = {
