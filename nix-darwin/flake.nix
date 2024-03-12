@@ -21,6 +21,7 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       programs.zsh.enable = true; # Create /etc/zshrc
+      programs.fish.enable = true;
 
       security.pam.enableSudoTouchIdAuth = true;
 
