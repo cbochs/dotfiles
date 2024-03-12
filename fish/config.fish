@@ -34,6 +34,9 @@ abbr -a dc docker compose
 abbr -a di docker image
 abbr -a dv docker volume
 
+abbr -a p docker compose exec portal
+abbr -a j bin/janus-setup
+
 # Bindings
 function fish_user_key_bindings
     bind -M insert \cz 'fg &>/dev/null'
