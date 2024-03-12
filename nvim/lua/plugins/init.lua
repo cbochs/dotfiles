@@ -391,6 +391,12 @@ return {
         optional = true,
     },
 
+    { -- Disabled: bufferline.nvim
+        -- Reason: unused
+        "akinsho/bufferline.nvim",
+        enabled = false,
+    },
+
     { -- Disabled: catppuccin
         -- Reason: prefer kanagawa.nvim theme
         "catppuccin",
@@ -415,8 +421,14 @@ return {
         enabled = false,
     },
 
+    { -- Disabled: nvim-spectre
+        -- Reason: unused
+        "nvim-pack/nvim-spectre",
+        enabled = false,
+    },
+
     { -- Disabled: nvim-navic
-        -- Reason: don't need
+        -- Reason: unused
         "SmiteshP/nvim-navic",
         enabled = false,
     },
