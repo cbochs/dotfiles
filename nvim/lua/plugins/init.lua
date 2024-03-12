@@ -32,7 +32,7 @@ return {
                         Grapple.toggle()
                     end
                 end,
-                desc = "Grapple tag under cursor",
+                desc = "Grapple toggle tag",
             },
         },
     },
@@ -403,7 +403,8 @@ return {
         enabled = false,
     },
 
-    { -- Grapple.nvim (Rust edition)
+    { -- Disabled: Grapple.nvim (Rust edition)
+        -- Reason: an experiment
         "cbochs/grapple_nvim",
         dev = true,
         enabled = false,
