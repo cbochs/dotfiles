@@ -19,23 +19,19 @@ config = {
     -- Disable font ligatures
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
-    -- Tmux-like keybindings
-    leader = { key = "b", mods = "CTRL" },
+    -- Tmux-like keybindings, but without the need for a leader
     keys = {
-        { key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-        { key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-        { key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
-        { key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
-        { key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
-        { key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
-        { key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
-        { key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
-        { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
-        { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
-        { key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+        { key = "\\", mods = "CMD", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "-", mods = "CMD", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+        { key = "z", mods = "CMD", action = wezterm.action.TogglePaneZoomState },
+        { key = "c", mods = "CMD", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+        { key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "l", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Right") },
         {
             key = ",",
-            mods = "LEADER",
+            mods = "CMD",
             action = wezterm.action.PromptInputLine({
                 description = "Tab name",
                 action = wezterm.action_callback(function(window, _, line)
