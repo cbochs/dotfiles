@@ -201,6 +201,11 @@ return {
             compile = true,
             dimInactive = true,
             colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+            overrides = function(_)
+                return {
+                    Comment = { link = "Constant" },
+                }
+            end,
         },
         build = ":KanagawaCompile",
         priority = 1000,
@@ -261,22 +266,10 @@ return {
         },
     },
 
-    { -- Override: mini.bracketed
-        -- Reason: disable most bracket operations
+    { -- Disabled: mini.bracketed
+        -- Reason: unused
         "echasnovski/mini.bracketed",
-        opts = {
-            comment = { suffix = "k" },
-            indent = { options = { change_type = "diff" } },
-            buffer = { suffix = "" },
-            diagnostic = { suffix = "" },
-            file = { suffix = "" },
-            jump = { suffix = "" },
-            oldfile = { suffix = "" },
-            undo = { suffix = "" },
-            window = { suffix = "" },
-        },
-        event = { "BufReadPost", "BufNewFile" },
-        optional = true,
+        enabled = false,
     },
 
     { -- Override: mini.indentscope
@@ -295,15 +288,20 @@ return {
         -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
         opts = {
+            highlight = {
+                backdrop = false,
+                groups = {
+                    current = "CurSearch",
+                    match = "CurSearch",
+                    label = "Cursor",
+                },
+            },
             modes = {
                 search = {
                     enabled = false,
                 },
                 char = {
                     keys = { "f", "F", "t", "T", "," },
-                    highlight = {
-                        backdrop = false,
-                    },
                 },
             },
         },
@@ -314,35 +312,33 @@ return {
         -- Reason: add message filters
         "folke/noice.nvim",
         opts = function(_, opts)
-            opts.routes = {
-                { -- filter write messages "xxxL, xxxB"
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                        find = "%dL",
-                    },
-                    opts = { skip = true },
-                },
-                { -- filter search messages
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                        find = "search hit",
-                    },
-                    opts = { skip = true },
-                },
-            }
-        end,
-        optional = true,
-    },
+            local patterns = {
+                -- filter write messages "{n}L, {n}B"
+                "%d+L, %d+B",
 
-    { -- Override: todo-comments.nvim
-        -- Reason: disable some keymaps in favour of mini.bracketed "treesitter"
-        "folke/todo-comments.nvim",
-        keys = {
-            { "]t", false },
-            { "[t", false },
-        },
+                -- filter undo messages
+                "%d line less;",
+                "%d fewer lines;",
+                "%d more line",
+                "%d change",
+
+                -- filter search messages
+                "search hit",
+            }
+
+            opts.routes = {}
+
+            for _, pattern in ipairs(patterns) do
+                table.insert(opts.routes, {
+                    filter = {
+                        event = "msg_show",
+                        kind = "",
+                        find = pattern,
+                    },
+                    opts = { skip = true },
+                })
+            end
+        end,
         optional = true,
     },
 
@@ -373,13 +369,12 @@ return {
         optional = true,
     },
 
-    { -- Override: setup better keymaps
-        -- Reason: setup better keymaps
+    { -- Override: telescope.nvim
+        -- Reason: better keymaps
         "nvim-telescope/telescope.nvim",
         opts = function(_, opts)
             opts.defaults.file_ignore_patterns = {
                 "node_modules", -- ignore node packages
-                "packer_compiled", -- ignore packer_compiled.lua
                 "vendor", -- ignore bundled gems
             }
             opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
@@ -405,7 +400,7 @@ return {
 
     { -- Disabled: Grapple.nvim (Rust edition)
         -- Reason: an experiment
-        "cbochs/grapple_nvim",
+        "cbochs/grapple_native",
         dev = true,
         enabled = false,
     },
