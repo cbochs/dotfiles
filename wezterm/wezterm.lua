@@ -19,23 +19,34 @@ config = {
     -- Disable font ligatures
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
-    -- Tmux-like keybindings, but without the need for a leader
+    leader = { key = "b", mods = "CTRL" },
     keys = {
+        -- Some easy leaderless bindings
         { key = "\\", mods = "CMD", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
         { key = "-", mods = "CMD", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
-        { key = "z", mods = "CMD", action = wezterm.action.TogglePaneZoomState },
-        { key = "c", mods = "CMD", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
         { key = "h", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Left") },
         { key = "j", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Down") },
         { key = "k", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Up") },
         { key = "l", mods = "CMD", action = wezterm.action.ActivatePaneDirection("Right") },
+
+        -- Keep some normal tmux bindings
+        { key = "\\", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+        { key = "-", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+        { key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
+        { key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
+        { key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
+        { key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
+        { key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
+        { key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+        { key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
+        { key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
         {
             key = ",",
-            mods = "CMD",
+            mods = "LEADER",
             action = wezterm.action.PromptInputLine({
                 description = "Tab name",
                 action = wezterm.action_callback(function(window, _, line)
-                    if line then
+                    if line and line ~= "" then
                         window:active_tab():set_title(line)
                     end
                 end),
