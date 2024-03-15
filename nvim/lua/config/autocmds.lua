@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "coffee", "javascript", "javascriptreact" },
+    pattern = { "coffee", "javascript", "javascriptreact", "nginx" },
     group = cbochs,
     callback = function()
         vim.opt_local.shiftwidth = 2
@@ -40,6 +40,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     group = cbochs,
     callback = function()
         vim.opt_local.filetype = "nginx"
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.env*" },
+    group = cbochs,
+    callback = function()
+        vim.opt_local.filetype = "sh"
     end,
 })
 
