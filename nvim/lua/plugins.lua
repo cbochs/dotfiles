@@ -210,11 +210,6 @@ return {
             compile = true,
             dimInactive = true,
             colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
-            overrides = function(_)
-                return {
-                    Comment = { link = "Constant" },
-                }
-            end,
         },
         build = ":KanagawaCompile",
         priority = 1000,
