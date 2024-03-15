@@ -1,4 +1,13 @@
 return {
+    { -- Experimental: zen-mode.nvim
+        "folke/zen-mode.nvim",
+        opts = {},
+        cmd = "ZenMode",
+        keys = {
+            { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen mode" },
+        },
+    },
+
     { -- Grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
