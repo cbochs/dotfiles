@@ -13,22 +13,9 @@ return {
                 section_separators = "",
             },
             sections = {
-                lualine_a = {
-                    "mode",
-                },
-                lualine_b = {
-                    "diagnostics",
-                },
-                lualine_c = {
-                    {
-                        function()
-                            return require("grapple").statusline()
-                        end,
-                        cond = function()
-                            return require("grapple").exists()
-                        end,
-                    },
-                },
+                lualine_a = { "mode" },
+                lualine_b = { "grapple" },
+                lualine_c = {},
                 lualine_x = {
                     {
                         function()
