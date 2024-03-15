@@ -1,13 +1,4 @@
 return {
-    { -- Experimental: zen-mode.nvim
-        "folke/zen-mode.nvim",
-        opts = {},
-        cmd = "ZenMode",
-        keys = {
-            { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen mode" },
-        },
-    },
-
     { -- Grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
@@ -95,6 +86,15 @@ return {
     { -- lazy.nvim (package manager)
         "folke/lazy.nvim",
         version = false,
+    },
+
+    { -- Experimental: zen-mode.nvim
+        "folke/zen-mode.nvim",
+        opts = {},
+        cmd = "ZenMode",
+        keys = {
+            { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen mode" },
+        },
     },
 
     { -- substitute.nvim
@@ -275,12 +275,6 @@ return {
         },
     },
 
-    { -- Disabled: mini.bracketed
-        -- Reason: unused
-        "echasnovski/mini.bracketed",
-        enabled = false,
-    },
-
     { -- Override: mini.indentscope
         -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
         "echasnovski/mini.indentscope",
@@ -411,6 +405,12 @@ return {
         -- Reason: an experiment
         "cbochs/grapple_native",
         dev = true,
+        enabled = false,
+    },
+
+    { -- Disabled: mini.bracketed
+        -- Reason: unused
+        "echasnovski/mini.bracketed",
         enabled = false,
     },
 
