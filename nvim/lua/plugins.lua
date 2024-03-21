@@ -437,6 +437,12 @@ return {
         enabled = false,
     },
 
+    { -- Disabled: lukas-reineke/headlines.nvim
+        -- Reason: annoying
+        "lukas-reineke/headlines.nvim",
+        enabled = false,
+    },
+
     { -- Disabled: nvim-spectre
         -- Reason: unused
         "nvim-pack/nvim-spectre",
