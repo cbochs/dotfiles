@@ -318,6 +318,9 @@ return {
                 },
                 char = {
                     keys = { "f", "F", "t", "T", "," },
+                    highlight = {
+                        backdrop = false,
+                    },
                 },
             },
         },
