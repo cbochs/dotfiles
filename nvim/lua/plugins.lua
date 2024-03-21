@@ -90,7 +90,9 @@ return {
 
     { -- Experimental: zen-mode.nvim
         "folke/zen-mode.nvim",
-        opts = {},
+        opts = {
+            window = { width = 200 },
+        },
         cmd = "ZenMode",
         keys = {
             { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen mode" },
