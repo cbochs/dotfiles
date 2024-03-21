@@ -58,9 +58,9 @@ function layout() {
             //     { x: 0.65, y: 0.05,  width: 0.30, height: 0.90 },
             // ]
             const PRIMARY_SLOTS = [
-                { x: 0.20, y: 0.10, width: 0.60, height: 0.80 },
-                { x: 0.05, y: 0.08, width: 0.30, height: 0.84 },
-                { x: 0.65, y: 0.08, width: 0.30, height: 0.84 },
+                { x: 0.25, y: 0.00, width: 0.50, height: 1.00 },
+                { x: 0.00, y: 0.00, width: 0.25, height: 1.00 },
+                { x: 0.75, y: 0.00, width: 0.25, height: 1.00 },
             ]
             const SECONDARY_SLOTS = [
                 { x: 0.00, y: 0.00, width: 0.25, height: 0.25 },
