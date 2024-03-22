@@ -419,7 +419,8 @@ return {
 
     { -- Disabled: Grapple.nvim (Rust edition)
         -- Reason: an experiment
-        "cbochs/grapple_native",
+        "cbochs/grapple-native.nvim",
+        name = "grapple_native",
         dev = true,
         enabled = false,
     },
