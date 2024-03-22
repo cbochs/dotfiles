@@ -20,6 +20,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "ruby" },
+    group = cbochs,
+    callback = function()
+        vim.opt_local.indentexpr = ""
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "coffee", "javascript", "javascriptreact", "nginx" },
     group = cbochs,
     callback = function()
