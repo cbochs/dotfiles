@@ -10,9 +10,6 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 
--- Jumplist (portal.nvim)
-vim.opt.jumpoptions = "stack"
-
 -- Formatting options
 -- See:
 --   :h formatoptions
