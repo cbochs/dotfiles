@@ -4,6 +4,11 @@ return {
         enabled = true,
         opts = {
             scope = "git_branch",
+            default_scopes = {
+                cwd = { hidden = true },
+                lsp = { hidden = true },
+                static = { hidden = true },
+            },
         },
         event = { "BufReadPost", "BufNewFile" },
         cmd = "Grapple",
