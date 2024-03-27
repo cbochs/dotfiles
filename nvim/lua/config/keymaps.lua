@@ -7,6 +7,9 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 
 -- Helix-like undo/redo
 vim.keymap.set("n", "U", "<c-r>")
+vim.keymap.set("n", "gl", "$")
+vim.keymap.set("n", "gh", "^")
+vim.keymap.set("n", "gH", "0")
 
 -- Easy source file
 vim.keymap.set("n", "<leader>S", "<cmd>w | source %<cr>", { desc = "Source file" })
