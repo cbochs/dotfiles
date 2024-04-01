@@ -8,8 +8,15 @@ return {
     },
 
     {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        config = true,
+    },
+
+    {
         "nvim-neorg/neorg",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = { "vhyrro/luarocks.nvim" },
+        version = "*", -- Pin Neorg to the latest stable release
         ft = "norg",
         cmd = "Neorg",
         keys = {
