@@ -1,0 +1,19 @@
+theme = "catppuccin_latte"
+
+[editor]
+line-number = "relative"
+
+[keys.normal]
+";" = "command_mode"
+"C-j" = "jump_view_down"
+"C-l" = "jump_view_right"
+"C-k" = "jump_view_up"
+"C-h" = "jump_view_left"
+
+[keys.normal.space]
+"minus" = "hsplit"
+"\\" = "vsplit"
+
+[keys.insert]
+"C-j" = "normal_mode"
+
