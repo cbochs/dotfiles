@@ -77,7 +77,7 @@ fish_add_path $HOME/.local/bin
 # Path: neovim bob binaries
 fish_add_path $HOME/.local/share/bob/nvim-bin
 
-# Path: cisco secure client vpn
+# Path: neovim custom scripts
 fish_add_path $HOME/.config/nvim/bin
 
 # Path: cisco secure client vpn
@@ -98,6 +98,12 @@ set -gx MANPAGER "nvim +Man!"
 
 # Lazygit
 set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
+
+# Neovim Runtime
+set -gx VIMRUNTIME (nvim-lua "vim.env.VIMRUNTIME")
+
+# Helix Runtime
+set -gx HELIX_RUNTIME $HOME/git/helix/runtime
 
 # ImageMagick
 set -gx LDFLAGS "-L/opt/homebrew/opt/imagemagick@6/lib"
