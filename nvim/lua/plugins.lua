@@ -45,6 +45,7 @@ return {
     { -- Portal.nvim
         "cbochs/portal.nvim",
         enabled = true,
+        cmd = "Portal",
         opts = {
             wrap = true,
             select_first = true,
