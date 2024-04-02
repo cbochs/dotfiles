@@ -310,6 +310,10 @@ return {
         -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
         opts = {
+            labels = "asdfghjkl",
+            search = {
+                mode = "fuzzy",
+            },
             highlight = {
                 backdrop = false,
                 groups = {
