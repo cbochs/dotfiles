@@ -4,10 +4,10 @@ function H.defer()
     -- stylua: ignore start
     H.au("BufWritePre", "*", H.trim_whitespace)
 
-    H.au("FileType", { "bash", "ruby", "sh", "javascript", "javascriptreact" }, H.b("autoformat",        false))
-    H.au("FileType", { "bash", "go", "sh", "zsh" },                             H.opt_local("expandtab", false))
-    H.au("FileType", { "coffee", "javascript", "javascriptreact", "nginx" },    H.opt_local("shiftwidth",    2))
-    H.au("FileType", { "norg" },                                                H.opt_local("shiftwidth",    1))
+    H.au("FileType", { "bash", "sh", "javascript", "javascriptreact" },      H.b("autoformat",        false))
+    H.au("FileType", { "bash", "go", "sh", "zsh" },                          H.opt_local("expandtab", false))
+    H.au("FileType", { "coffee", "javascript", "javascriptreact", "nginx" }, H.opt_local("shiftwidth",    2))
+    H.au("FileType", { "norg" },                                             H.opt_local("shiftwidth",    1))
 
     H.au({ "BufNewFile", "BufRead" }, { "*.conf.template" }, H.opt_local("filetype", "nginx"))
     H.au({ "BufNewFile", "BufRead" }, { "*.env*" },          H.opt_local("filetype", "sh"))
