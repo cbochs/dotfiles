@@ -340,29 +340,40 @@ return {
     { -- Override: noice.nvim
         -- Reason: add message filters
         "folke/noice.nvim",
-        opts = function(_, opts)
-            table.insert(opts.routes, {
-                filter = {
-                    event = "msg_show",
-                    any = {
-                        -- filter write messages "{n}L, {n}B"
-                        { find = "%d+L, %d+B" },
+        opts = {
+            routes = {
+                {
+                    opts = { skip = true },
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            -- skip search messages
+                            { find = "^/" },
+                            { find = "search hit" },
 
-                        -- filter undo messages
-                        { find = "%d+ line less" },
-                        { find = "%d+ fewer lines" },
-                        { find = "%d+ more line" },
-                        { find = "%d+ change" },
-
-                        -- filter search messages
-                        { find = "search hit" },
-                        { find = "Pattern not found" },
-                        { find = "^/" },
+                            -- skip undo messages
+                            { find = "%d+ line less" },
+                            { find = "%d+ fewer lines" },
+                            { find = "%d+ more line" },
+                            { find = "%d+ change" },
+                        },
                     },
                 },
-                opts = { skip = true },
-            })
-        end,
+                {
+                    view = "mini",
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            -- mini write messages "{n}L, {n}B"
+                            { find = "%d+L, %d+B" },
+
+                            -- mini search messages
+                            { find = "Pattern not found" },
+                        },
+                    },
+                },
+            },
+        },
         optional = true,
     },
 
