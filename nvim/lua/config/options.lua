@@ -1,3 +1,4 @@
+vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
@@ -9,6 +10,9 @@ vim.opt.foldcolumn = "1"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+-- Jumplist (portal.nvim)
+vim.opt.jumpoptions = "stack"
 
 -- Formatting options
 -- See:
