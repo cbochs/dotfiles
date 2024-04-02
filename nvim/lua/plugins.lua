@@ -199,6 +199,11 @@ return {
                     Hint = "H",
                     Info = "I",
                 },
+                git = {
+                    added = "+",
+                    modified = "~",
+                    removed = "-",
+                },
             },
         },
         version = false,
