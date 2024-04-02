@@ -45,7 +45,6 @@ return {
     { -- Portal.nvim
         "cbochs/portal.nvim",
         enabled = true,
-        cmd = "Portal",
         opts = {
             wrap = true,
             select_first = true,
@@ -55,6 +54,7 @@ return {
                 ["q"] = true,
             },
         },
+        cmd = "Portal",
         keys = {
             { "<leader>i", "<cmd>Portal grapple forward<cr>", desc = "Portal forward" },
             { "<leader>o", "<cmd>Portal grapple backward<cr>", desc = "Portal backward" },
