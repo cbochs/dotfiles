@@ -1,82 +1,64 @@
+local H = {}
+
+function H.defer()
+    -- stylua: ignore start
+    H.au("BufWritePre", "*", H.trim_whitespace)
+
+    H.au("FileType", { "bash", "ruby", "sh", "javascript", "javascriptreact" }, H.b("autoformat",        false))
+    H.au("FileType", { "bash", "go", "sh", "zsh" },                             H.opt_local("expandtab", false))
+    H.au("FileType", { "ruby" },                                                H.opt_local("indentexpr",   ""))
+    H.au("FileType", { "coffee", "javascript", "javascriptreact", "nginx" },    H.opt_local("shiftwidth",    2))
+    H.au("FileType", { "norg" },                                                H.opt_local("shiftwidth",    1))
+
+    H.au({ "BufNewFile", "BufRead" }, { "*.conf.template" }, H.opt_local("filetype", "nginx"))
+    H.au({ "BufNewFile", "BufRead" }, { "*.env*" },          H.opt_local("filetype", "sh"))
+    H.au({ "BufNewFile", "BufRead" }, { "docker-compose*" }, H.opt_local("filetype", "yaml"))
+
+    H.au("BufEnter", { "plugins.lua" }, H.require("config.commands")) -- SortSpec
+    H.au("BufEnter", { "todo.norg" },   "norm zM")
+    -- stylua: ignore end
+end
+
 local cbochs = vim.api.nvim_create_augroup("cbochs", { clear = true })
+function H.au(event, pattern, callback_or_command)
+    local callback, command
+    if type(callback_or_command) == "string" then
+        command = callback_or_command
+    else
+        callback = callback_or_command
+    end
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    group = cbochs,
-    callback = function()
-        ---@diagnostic disable: undefined-global
-        MiniTrailspace.trim()
-        MiniTrailspace.trim_last_lines()
-        ---@diagnostic enable: undefined-global
-    end,
-})
+    vim.api.nvim_create_autocmd(event, {
+        group = cbochs,
+        pattern = pattern,
+        callback = callback,
+        command = command,
+    })
+end
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "bash", "ruby", "sh", "javascript", "javascriptreact" },
-    group = cbochs,
-    callback = function()
-        vim.b.autoformat = false
-    end,
-})
+function H.trim_whitespace()
+    ---@diagnostic disable: undefined-global
+    MiniTrailspace.trim()
+    MiniTrailspace.trim_last_lines()
+    ---@diagnostic enable: undefined-global
+end
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "ruby" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.indentexpr = ""
-    end,
-})
+function H.b(option, value)
+    return function()
+        vim.b[option] = value
+    end
+end
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "coffee", "javascript", "javascriptreact", "nginx" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.shiftwidth = 2
-    end,
-})
+function H.opt_local(option, value)
+    return function()
+        vim.opt_local[option] = value
+    end
+end
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "bash", "go", "sh", "zsh" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.expandtab = false
-    end,
-})
+function H.require(modname)
+    return function()
+        require(modname)
+    end
+end
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.conf.template" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.filetype = "nginx"
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "*.env*" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.filetype = "sh"
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-    pattern = { "docker-compose*.yaml", "docker-compose*.yml" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.filetype = "yaml"
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "norg" },
-    group = cbochs,
-    callback = function()
-        vim.opt_local.shiftwidth = 1
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = "todo.norg",
-    group = cbochs,
-    command = "norm zM",
-})
+H.defer()
