@@ -41,14 +41,13 @@ return {
                     },
                 },
                 lualine_y = {
-                    { "filetype", icon = false },
                     "location",
+                    { "filetype", icons_enabled = false },
                 },
                 lualine_z = {
                     { "filename", file_status = true },
                 },
             },
-            extensions = { "neo-tree" },
         }
     end,
 }
