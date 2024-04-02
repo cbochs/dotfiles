@@ -3,12 +3,14 @@ theme = "catppuccin_latte"
 [editor]
 line-number = "relative"
 
+[editor.cursor-shape]
+insert = "bar"
+
 [keys.normal]
-";" = "command_mode"
-"C-j" = "jump_view_down"
-"C-l" = "jump_view_right"
-"C-k" = "jump_view_up"
 "C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
 
 [keys.normal.space]
 "minus" = "hsplit"
@@ -16,4 +18,3 @@ line-number = "relative"
 
 [keys.insert]
 "C-j" = "normal_mode"
-
