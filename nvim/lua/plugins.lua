@@ -341,32 +341,27 @@ return {
         -- Reason: add message filters
         "folke/noice.nvim",
         opts = function(_, opts)
-            local patterns = {
-                -- filter write messages "{n}L, {n}B"
-                "%d+L, %d+B",
+            table.insert(opts.routes, {
+                filter = {
+                    event = "msg_show",
+                    any = {
+                        -- filter write messages "{n}L, {n}B"
+                        { find = "%d+L, %d+B" },
 
-                -- filter undo messages
-                "%d line less;",
-                "%d fewer lines;",
-                "%d more line",
-                "%d change",
+                        -- filter undo messages
+                        { find = "%d+ line less" },
+                        { find = "%d+ fewer lines" },
+                        { find = "%d+ more line" },
+                        { find = "%d+ change" },
 
-                -- filter search messages
-                "search hit",
-            }
-
-            opts.routes = {}
-
-            for _, pattern in ipairs(patterns) do
-                table.insert(opts.routes, {
-                    filter = {
-                        event = "msg_show",
-                        kind = "",
-                        find = pattern,
+                        -- filter search messages
+                        { find = "search hit" },
+                        { find = "Pattern not found" },
+                        { find = "^/" },
                     },
-                    opts = { skip = true },
-                })
-            end
+                },
+                opts = { skip = true },
+            })
         end,
         optional = true,
     },
