@@ -353,7 +353,6 @@ return {
                         event = "msg_show",
                         any = {
                             -- skip search messages
-                            { find = "^/" },
                             { find = "search hit" },
 
                             -- skip undo messages
