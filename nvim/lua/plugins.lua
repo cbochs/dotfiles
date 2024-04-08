@@ -209,19 +209,21 @@ return {
         version = false,
     },
 
-    { -- Experimental: mistricky/codesnap.nvim
+    { -- Experimental: codesnap.nvim
         "mistricky/codesnap.nvim",
         opts = {
             bg_theme = "sea",
             has_breadcrumbs = true,
             mac_window_bar = false,
+            save_path = "~/Desktop/screenshots_code",
             watermark = "",
         },
         build = "make",
+        cmd = "CodeSnap",
         keys = {
             {
                 "<leader>cs",
-                "<cmd>'<,'>CodeSnap<cr>",
+                "<esc><cmd>CodeSnap<cr>",
                 mode = { "v" },
             },
         },
@@ -281,6 +283,11 @@ return {
         keys = {
             { "ga", "<cmd>Other<cr>", desc = "Other file" },
         },
+    },
+
+    { -- sort.nvim
+        "sQVe/sort.nvim",
+        cmd = "Sort",
     },
 
     { -- oil.nvim (replace netrw)
@@ -481,7 +488,7 @@ return {
         enabled = false,
     },
 
-    { -- Disabled: lukas-reineke/headlines.nvim
+    { -- Disabled: headlines.nvim
         -- Reason: annoying
         "lukas-reineke/headlines.nvim",
         enabled = false,
