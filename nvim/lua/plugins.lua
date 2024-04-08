@@ -94,7 +94,7 @@ return {
         version = false,
     },
 
-    { -- Experimental: zen-mode.nvim
+    { -- zen-mode.nvim
         "folke/zen-mode.nvim",
         opts = {
             window = { width = 200 },
@@ -207,6 +207,24 @@ return {
             },
         },
         version = false,
+    },
+
+    { -- Experimental: mistricky/codesnap.nvim
+        "mistricky/codesnap.nvim",
+        opts = {
+            bg_theme = "sea",
+            has_breadcrumbs = true,
+            mac_window_bar = false,
+            watermark = "",
+        },
+        build = "make",
+        keys = {
+            {
+                "<leader>cs",
+                "<cmd>'<,'>CodeSnap<cr>",
+                mode = { "v" },
+            },
+        },
     },
 
     { -- nvim-treesitter-context
