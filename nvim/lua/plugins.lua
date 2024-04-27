@@ -5,9 +5,9 @@ return {
         opts = {
             scope = "git_branch",
             default_scopes = {
-                cwd = { hidden = true },
-                lsp = { hidden = true },
-                static = { hidden = true },
+                git = { shown = true },
+                git_branch = { shown = true },
+                global = { shown = true },
             },
         },
         event = { "BufReadPost", "BufNewFile" },
