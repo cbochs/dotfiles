@@ -1,5 +1,5 @@
 return {
-    { -- Grapple.nvim
+    { -- grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
         opts = {
@@ -14,7 +14,7 @@ return {
         cmd = "Grapple",
         keys = {
             { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
-            { "<leader>K", "<cmd>Grapple toggle_scopes<cr>", desc = "Grapple toggle scopes" },
+            { "<leader>K", "<cmd>Grapple toggle_loaded<cr>", desc = "Grapple toggle loaded" },
             { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
             { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
             { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
@@ -42,7 +42,7 @@ return {
         },
     },
 
-    { -- Portal.nvim
+    { -- portal.nvim
         "cbochs/portal.nvim",
         enabled = true,
         opts = {
