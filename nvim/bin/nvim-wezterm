@@ -16,6 +16,8 @@ split_pane() {
 	then
 		echo "q" | $send_to_bottom_pane
 	fi
+
+	sleep 0.5
 }
 
 subcommand=$1
