@@ -1,3 +1,5 @@
+vim.g.lazygit_config = false
+
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -19,6 +21,6 @@ vim.opt.jumpoptions = "stack"
 --   :h formatoptions
 --   :h fo-table
 --   :h textwidth
-vim.opt.textwidth = 80
-vim.opt.formatoptions:remove("o") -- Don't continue after 'o' or 'O'
-vim.opt.formatoptions:remove("r") -- Don't continue after <cr>
+-- vim.opt.textwidth = 80
+-- vim.opt.formatoptions:remove("o") -- Don't continue after 'o' or 'O'
+-- vim.opt.formatoptions:remove("r") -- Don't continue after <cr>
