@@ -308,22 +308,6 @@ return {
         },
     },
 
-    { -- Override: mini.ai
-        -- Reason: add "whole file" textobject
-        "echasnovski/mini.ai",
-        opts = function(_, opts)
-            opts.custom_textobjects.g = function()
-                local from = { line = 1, col = 1 }
-                local to = {
-                    line = vim.fn.line("$"),
-                    col = math.max(vim.fn.getline("$"):len(), 1),
-                }
-                return { from = from, to = to }
-            end
-        end,
-        optional = true,
-    },
-
     { -- Override: mini.indentscope
         -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
         "echasnovski/mini.indentscope",
@@ -401,6 +385,17 @@ return {
                         },
                     },
                 },
+            },
+        },
+        optional = true,
+    },
+
+    { -- Override: nvim-snippets
+        -- Reason: extend *.erb filetypes to include html
+        "garymjr/nvim-snippets",
+        opts = {
+            extended_filetypes = {
+                eruby = { "html" },
             },
         },
         optional = true,
