@@ -106,31 +106,6 @@ return {
         },
     },
 
-    { -- Experimental: fzf-lua
-        "ibhagwan/fzf-lua",
-        opts = { "fzf-vim" },
-        keys = {
-            {
-                "<c-p>",
-                function()
-                    local opts = {}
-                    opts.cmd = vim.env.FZF_DEFAULT_COMMAND
-                    if vim.fn.expand("%:p:h") ~= vim.loop.cwd() then
-                        opts.cmd = opts.cmd .. (" | proximity-sort %s"):format(vim.fn.expand("%"))
-                    end
-                    opts.prompt = "> "
-                    opts.fzf_opts = {
-                        ["--info"] = "inline",
-                        ["--tiebreak"] = "index",
-                        ["--layout"] = "reverse",
-                    }
-                    require("fzf-lua").files(opts)
-                end,
-                desc = "Find files",
-            },
-        },
-    },
-
     { -- vim-coffee-script
         "kchmck/vim-coffee-script",
         ft = "coffee",
