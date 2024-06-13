@@ -1,20 +1,18 @@
 vim.g.lazygit_config = false
 
+-- Default expand with 4 spaces
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
--- Reduce command buffer size
-vim.opt.cmdwinheight = 1
+-- Preview commands in split
+vim.opt.inccommand = "split"
 
 -- Folding (nvim-ufo)
 vim.opt.foldcolumn = "1"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-
--- Jumplist (portal.nvim)
-vim.opt.jumpoptions = "stack"
 
 -- Formatting options
 -- See:
