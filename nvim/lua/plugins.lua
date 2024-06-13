@@ -1,4 +1,13 @@
 return {
+    {
+        "garymjr/nvim-snippets",
+        opts = {
+            extended_filetypes = {
+                rust = { "html" },
+            },
+        },
+    },
+
     { -- grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
@@ -39,25 +48,6 @@ return {
                 end,
                 desc = "Grapple toggle tag",
             },
-        },
-    },
-
-    { -- portal.nvim
-        "cbochs/portal.nvim",
-        enabled = true,
-        opts = {
-            wrap = true,
-            select_first = true,
-            escape = {
-                ["<c-j>"] = true,
-                ["<esc>"] = true,
-                ["q"] = true,
-            },
-        },
-        cmd = "Portal",
-        keys = {
-            { "<leader>i", "<cmd>Portal grapple forward<cr>", desc = "Portal forward" },
-            { "<leader>o", "<cmd>Portal grapple backward<cr>", desc = "Portal backward" },
         },
     },
 
@@ -250,36 +240,7 @@ return {
 
     { -- other.nvim
         "rgroli/other.nvim",
-        config = function(_, _)
-            require("other-nvim").setup({
-                showMissingFiles = false,
-                mappings = {
-                    "rails",
-                    {
-                        pattern = "(.+)/spec/(.*)/(.*)/(.*)_spec.rb",
-                        target = {
-                            { context = "source", target = "%1/db/%3/%4.rb" },
-                            { context = "source", target = "%1/app/%3/%4.rb" },
-                            { context = "source", target = "%1/%3/%4.rb" },
-                        },
-                    },
-                    {
-                        pattern = "(.+)/spec/(.*)/(.*)_spec.rb",
-                        target = {
-                            { context = "source", target = "%1/db/%2/%3.rb" },
-                            { context = "source", target = "%1/app/%2/%3.rb" },
-                            { context = "source", target = "%1/lib/%2/%3.rb" },
-                        },
-                    },
-                    {
-                        pattern = "(.+)/spec/(.*)/(.*)_(.*)_spec.rb",
-                        target = {
-                            { context = "source", target = "%1/app/%4s/%3_%4.rb" },
-                        },
-                    },
-                },
-            })
-        end,
+        opts = { showMissingFiles = false },
         keys = {
             { "ga", "<cmd>Other<cr>", desc = "Other file" },
         },
