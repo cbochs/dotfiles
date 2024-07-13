@@ -24,8 +24,10 @@ vim.keymap.set("n", "<leader>tl", Wezterm.test.last, { desc = "Test last" })
 vim.keymap.set("n", "<leader>tn", Wezterm.test.near, { desc = "Test nearest" })
 vim.keymap.set("n", "<leader>tt", Wezterm.test.file, { desc = "Test file" })
 
-require("which-key").register({
+require("which-key").add({
     mode = { "n" },
-    ["<leader>n"] = { name = "+neorg" },
-    ["<leader>t"] = { name = "+test" },
+    {
+        { "<leader>n", group = "neorg" },
+        { "<leader>t", group = "test" },
+    },
 })
