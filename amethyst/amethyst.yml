@@ -1,7 +1,7 @@
 layouts:
   - fullscreen
   - bsp
-  - custom_showcase
+  # - custom_showcase
 
 mod1:
   - option
