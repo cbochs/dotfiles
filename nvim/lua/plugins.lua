@@ -1,13 +1,4 @@
 return {
-    {
-        "garymjr/nvim-snippets",
-        opts = {
-            extended_filetypes = {
-                rust = { "html" },
-            },
-        },
-    },
-
     { -- grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
