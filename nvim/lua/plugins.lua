@@ -184,6 +184,7 @@ return {
 
     { -- other.nvim
         "rgroli/other.nvim",
+        name = "other-nvim",
         opts = { showMissingFiles = false },
         keys = {
             { "ga", "<cmd>Other<cr>", desc = "Other file" },
