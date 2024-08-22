@@ -16,14 +16,19 @@ abbr -a lg lazygit
 abbr -a ll eza -l
 abbr -a lll eza -la
 
+abbr -a tm terramate
+abbr -a dm dagger call -i -m
+
 abbr -a g git
 abbr -a gb git branch
 abbr -a gc git checkout
 abbr -a gcm git checkout master
+abbr -a gcmm git checkout main
 abbr -a gl git log
 abbr -a gP git push
 abbr -a gp git pull
 abbr -a gpu git pull upstream master
+abbr -a gpuu git pull upstream main
 abbr -a gr git remote
 abbr -a gs git st
 abbr -a gsm git submodule update --recursive
@@ -35,6 +40,8 @@ abbr -a dv docker volume
 
 abbr -a p docker compose exec portal
 abbr -a j bin/janus-setup
+
+alias dive ~/git_personal/dive/dive-cli
 
 # Bindings
 function fish_user_key_bindings
@@ -101,8 +108,9 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 # Neovim Bob Config
 set -gx BOB_CONFIG $HOME/.config/bob/config.toml
 
-# Neovim Runtime
-set -gx VIMRUNTIME (nvim-lua "vim.env.VIMRUNTIME")
+# Neovim Runtime (from "nvim -V1 -v")
+# set -gx VIMRUNTIME (nvim-lua "vim.env.VIMRUNTIME")
+# set -gx VIMRUNTIME $HOME/.local/share/bob/nightly/nvim-macos-arm64/share/nvim/runtime
 
 # Helix Runtime
 set -gx HELIX_RUNTIME $HOME/git/helix/runtime
