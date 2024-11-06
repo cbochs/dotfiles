@@ -226,9 +226,20 @@ return {
         optional = true,
     },
 
+    { -- Override: mini.pairs
+        -- Reason: no auto pairs during search
+        "echasnovski/mini.pairs",
+        opts = {
+            modes = {
+                command = false,
+            },
+        },
+    },
+
     { -- Override: flash.nvim
         -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
+        enabled = true,
         opts = {
             labels = "asdfghjkl",
             search = {
