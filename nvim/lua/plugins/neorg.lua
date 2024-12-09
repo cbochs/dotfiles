@@ -1,13 +1,5 @@
 return {
     {
-        "hrsh7th/nvim-cmp",
-        opts = function(_, opts)
-            local cmp = require("cmp")
-            opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "neorg" } }))
-        end,
-    },
-
-    {
         "nvim-neorg/neorg",
         dependencies = {
             "vhyrro/luarocks.nvim",
@@ -42,12 +34,27 @@ return {
                     },
                 }, -- Adds pretty icons to your documents
                 ["core.completion"] = {
-                    config = { engine = "nvim-cmp" },
+                    config = {
+                        engine = {
+                            module_name = "external.lsp-completion",
+                        },
+                    },
                 },
                 ["core.dirman"] = { -- Manages Neorg workspaces
                     config = {
                         default_workspace = "work",
                         workspaces = { work = "~/git_personal/notes" },
+                    },
+                },
+                ["external.interim-ls"] = {
+                    config = {
+                        completion_provider = {
+                            enable = true,
+                            -- show file contents as documentation when you complete a file name
+                            documentation = true,
+                            -- Try to complete categories. Requires benlubas/neorg-se
+                            categories = false,
+                        },
                     },
                 },
             },
