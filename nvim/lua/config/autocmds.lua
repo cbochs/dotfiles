@@ -4,6 +4,11 @@ function H.defer()
     -- stylua: ignore start
     H.au("BufWritePre", "*", H.trim_whitespace)
 
+    H.au("FileType", { "markdown" }, function (opts)
+        vim.opt_local.conceallevel = 0
+        vim.diagnostic.enable(false, { bufnr = opts.buf })
+    end)
+
     H.au("FileType", { "bash", "sh", "javascript", "javascriptreact" },             H.b("autoformat",        false))
     H.au("FileType", { "bash", "go", "sh", "zsh" },                                 H.opt_local("expandtab", false))
     H.au("FileType", { "coffee", "hcl", "javascript", "javascriptreact", "nginx" }, H.opt_local("shiftwidth",    2))
@@ -19,19 +24,13 @@ function H.defer()
 end
 
 local cbochs = vim.api.nvim_create_augroup("cbochs", { clear = true })
-function H.au(event, pattern, callback_or_command)
-    local callback, command
-    if type(callback_or_command) == "string" then
-        command = callback_or_command
-    else
-        callback = callback_or_command
-    end
 
+---@param callback string|(fun(args: vim.api.keyset.create_autocmd.callback_args): boolean?)
+function H.au(event, pattern, callback)
     vim.api.nvim_create_autocmd(event, {
         group = cbochs,
         pattern = pattern,
         callback = callback,
-        command = command,
     })
 end
 
