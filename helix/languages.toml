@@ -1,0 +1,8 @@
+[[language]]
+name = "ruby"
+language-servers = ["ruby-lsp"]
+
+[language-server.ruby-lsp]
+command = "ruby-lsp"
+args = []
+config = { provideFormatter = true }
