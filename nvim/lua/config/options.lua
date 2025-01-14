@@ -1,4 +1,5 @@
 vim.g.lazygit_config = false
+vim.g.snacks_animate = false
 
 -- Default expand with 4 spaces
 vim.opt.expandtab = true
