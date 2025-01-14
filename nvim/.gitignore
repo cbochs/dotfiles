@@ -1,8 +1,8 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
 *.log
+.repro
+.tests
 data
+debug
+doc/tags
+foo.*
+tt.*
