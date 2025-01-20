@@ -1,25 +1,25 @@
 local Wezterm = {}
 
-Wezterm.run_with_callback = function(on_exit, ...)
+function Wezterm.run_with_callback(on_exit, ...)
     vim.system({ "nvim-wezterm", ... }, { text = true }, on_exit)
 end
 
-Wezterm.run = function(...)
+function Wezterm.run(...)
     Wezterm.run_with_callback(nil, ...)
 end
 
-Wezterm.lazygit = function()
+function Wezterm.lazygit()
     Wezterm.run("lazygit")
 end
 
-Wezterm.github_open = function()
+function Wezterm.github_open()
     local file_name = vim.fn.expand("%:~:.")
     local line_number = vim.fn.line(".")
 
     Wezterm.run("github-open", file_name, line_number)
 end
 
-Wezterm.github_link = function()
+function Wezterm.github_link()
     local file_name = vim.fn.expand("%:~:.")
     local line_number = vim.fn.line(".")
 
@@ -29,13 +29,13 @@ Wezterm.github_link = function()
         end
 
         vim.schedule(function()
-            vim.fn.setreg("+", result.stdout)
+            vim.fn.setreg("+", vim.trim(result.stdout))
             vim.notify("Copied Github link.")
         end)
     end, "github-link", file_name, line_number)
 end
 
-Wezterm.preview_readme = function()
+function Wezterm.preview_readme()
     local file_name = vim.fn.expand("%:~:.")
     local line_number = vim.fn.line(".")
 
@@ -46,7 +46,7 @@ Wezterm.test = {}
 
 local test_history = {}
 
-Wezterm.test.run = function(...)
+function Wezterm.test.run(...)
     local args = { ... }
     test_history.file_name = args[1]
     test_history.line_number = args[2]
@@ -54,20 +54,20 @@ Wezterm.test.run = function(...)
     Wezterm.run("test", ...)
 end
 
-Wezterm.test.file = function()
+function Wezterm.test.file()
     local file_name = vim.fn.expand("%:~:.")
 
     Wezterm.test.run(file_name)
 end
 
-Wezterm.test.near = function()
+function Wezterm.test.near()
     local file_name = vim.fn.expand("%:~:.")
     local line_number = vim.fn.line(".")
 
     Wezterm.test.run(file_name, line_number)
 end
 
-Wezterm.test.last = function()
+function Wezterm.test.last()
     if not test_history.file_name then
         vim.notify("No test run yet.")
         return
