@@ -8,10 +8,14 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 -- Helix-like undo/redo
 vim.keymap.set("n", "U", "<c-r>")
 
--- Helix-like go-to lind endings
+-- Helix-like go-to line endings
 vim.keymap.set("n", "gl", "$")
 vim.keymap.set("n", "gh", "^")
 vim.keymap.set("n", "gs", "0")
+
+-- Delete LazyVim next/prev buffer keymaps
+vim.keymap.del("n", "<S-h>")
+vim.keymap.del("n", "<S-l>")
 
 -- Easy source file
 vim.keymap.set("n", "<leader>S", "<cmd>w | source %<cr>", { desc = "Source file" })
