@@ -9,8 +9,8 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set("n", "U", "<c-r>")
 
 -- Helix-like go-to line endings
-vim.keymap.set("n", "gl", "$")
-vim.keymap.set("n", "gh", "^")
+vim.keymap.set({ "n", "x" }, "gl", "$")
+vim.keymap.set({ "n", "x" }, "gh", "^")
 vim.keymap.set("n", "gs", "0")
 
 -- Delete LazyVim next/prev buffer keymaps
@@ -19,6 +19,9 @@ vim.keymap.del("n", "<S-l>")
 
 -- Easy source file
 vim.keymap.set("n", "<leader>S", "<cmd>w | source %<cr>", { desc = "Source file" })
+
+-- Easy copy current filepath
+vim.keymap.set("n", "<leader>yy", "<cmd>let @+ = expand('%')<cr>", { desc = "Copy filepath" })
 
 local Wezterm = require("config.wezterm")
 vim.keymap.set("n", "<leader>ghl", Wezterm.github_link, { desc = "Copy Github link" })
