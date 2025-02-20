@@ -32,6 +32,8 @@ abbr -a gpuu git pull upstream main
 abbr -a gr git remote
 abbr -a gs git st
 abbr -a gsm git submodule update --recursive
+abbr -a grm git rebase master
+abbr -a grmm git rebase main
 
 abbr -a d docker
 abbr -a dc docker compose
