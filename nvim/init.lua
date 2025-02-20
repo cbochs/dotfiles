@@ -20,9 +20,6 @@ require("lazy").setup({
         lazy = false,
         version = false, -- always use the latest git commit
     },
-    dev = {
-        path = "~/git",
-    },
     install = {
         colorscheme = { "kanagawa" },
     },
