@@ -1,4 +1,54 @@
 return {
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            servers = {
+                ruby_lsp = { mason = false },
+            },
+        },
+    },
+
+    { -- Override: blink.cmp
+        -- Reason: completion was a little too eager to trigger
+        -- Reference: https://cmp.saghen.dev/configuration/completion.html#trigger
+        "saghen/blink.cmp",
+        opts = {
+            completion = {
+                trigger = {
+                    show_on_trigger_character = false,
+                    show_on_insert_on_trigger_character = false,
+                },
+            },
+        },
+    },
+
+    { -- Disabled: render-markdown.nvim
+        -- Reason: distracting
+        "MeanderingProgrammer/render-markdown.nvim",
+        enabled = false,
+    },
+
+    { -- Override: nvim-lspconfig
+        "neovim/nvim-lspconfig",
+        opts = {
+            -- Inlay hints clutter the screen
+            inlay_hints = {
+                enabled = false,
+            },
+            servers = {
+                -- Snippet placeholders are a PIA
+                -- Reference: https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+                gopls = {
+                    settings = {
+                        gopls = {
+                            usePlaceholders = false,
+                        },
+                    },
+                },
+            },
+        },
+    },
+
     { -- grapple.nvim
         "cbochs/grapple.nvim",
         enabled = true,
@@ -21,24 +71,7 @@ return {
             { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
             { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
             { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
-            {
-                "<leader>m",
-                function()
-                    local Grapple = require("grapple")
-                    local Oil = require("oil")
-
-                    if Oil.get_cursor_entry() then
-                        local filename = Oil.get_cursor_entry().name
-                        local directory = Oil.get_current_dir()
-
-                        local Path = require("grapple.path")
-                        Grapple.toggle({ path = Path.join(directory, filename) })
-                    else
-                        Grapple.toggle()
-                    end
-                end,
-                desc = "Grapple toggle tag",
-            },
+            { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
         },
     },
 
@@ -51,17 +84,6 @@ return {
     { -- lazy.nvim (package manager)
         "folke/lazy.nvim",
         version = false,
-    },
-
-    { -- zen-mode.nvim
-        "folke/zen-mode.nvim",
-        opts = {
-            window = { width = 200 },
-        },
-        cmd = "ZenMode",
-        keys = {
-            { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Zen mode" },
-        },
     },
 
     { -- substitute.nvim
@@ -104,6 +126,7 @@ return {
 
     { -- nvim-surround
         "kylechui/nvim-surround",
+        enabled = true,
         opts = {
             keymaps = {
                 visual = "gs",
@@ -155,20 +178,8 @@ return {
         build = "make",
         cmd = "CodeSnap",
         keys = {
-            {
-                "<leader>cs",
-                "<esc><cmd>CodeSnap<cr>",
-                mode = { "v" },
-            },
+            { "<leader>cs", "<esc><cmd>CodeSnap<cr>", mode = { "v" } },
         },
-    },
-
-    { -- nvim-treesitter-context
-        "nvim-treesitter/nvim-treesitter-context",
-        config = function(_, _)
-            require("treesitter-context").setup({ enable = true })
-        end,
-        event = "VeryLazy",
     },
 
     { -- kanagawa.nvim (theme)
@@ -185,7 +196,9 @@ return {
     { -- other.nvim
         "rgroli/other.nvim",
         name = "other-nvim",
-        opts = { showMissingFiles = false },
+        opts = {
+            showMissingFiles = false,
+        },
         keys = {
             { "ga", "<cmd>Other<cr>", desc = "Other file" },
         },
@@ -198,6 +211,7 @@ return {
 
     { -- oil.nvim (replace netrw)
         "stevearc/oil.nvim",
+        enabled = true,
         opts = {},
         keys = {
             { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
@@ -214,18 +228,6 @@ return {
         },
     },
 
-    { -- Override: mini.indentscope
-        -- Reason: Disable some keymaps in favour of mini.bracketed "indent"
-        "echasnovski/mini.indentscope",
-        opts = {
-            mappings = {
-                goto_top = "",
-                goto_bottom = "",
-            },
-        },
-        optional = true,
-    },
-
     { -- Override: mini.pairs
         -- Reason: no auto pairs during search
         "echasnovski/mini.pairs",
@@ -239,7 +241,6 @@ return {
     { -- Override: flash.nvim
         -- Reason: remove ";" char, disable backdrop
         "folke/flash.nvim",
-        enabled = true,
         opts = {
             labels = "asdfghjkl",
             search = {
@@ -247,11 +248,6 @@ return {
             },
             highlight = {
                 backdrop = false,
-                groups = {
-                    current = "CurSearch",
-                    match = "CurSearch",
-                    label = "Cursor",
-                },
             },
             modes = {
                 search = {
@@ -310,19 +306,24 @@ return {
     { -- Override: nvim-snippets
         -- Reason: extend *.erb filetypes to include html
         "garymjr/nvim-snippets",
+        enabled = false,
         opts = {
             extended_filetypes = {
-                eruby = { "html" },
+                eruby = {
+                    "html",
+                },
             },
         },
         optional = true,
     },
 
-    { -- Override: alpha-nvim
+    {
         -- Reason: use "/" instead of "g" for search
-        "goolord/alpha-nvim",
-        opts = function(_, dashboard)
-            local logo = [[
+        "folke/snacks.nvim",
+        opts = {
+            dashboard = {
+                preset = {
+                    header = [[
             __:.__
            (_:..'"=
             ::/ o o\         AHAH!
@@ -337,29 +338,25 @@ return {
       .. _:|__| '.\.''..' ) ___________ ( )_):|_|:
 :....::''::/  | : :|''| "/ /_=_=_=_=_=/ :_[__'_\3_)
  ''''      '-''-'-'.__)-'
-            ]]
-            dashboard.section.header.val = vim.split(logo, "\n")
-            dashboard.section.buttons.val[4].opts.keymap[2] = "/"
-            dashboard.section.buttons.val[4].opts.shortcut = "/"
-        end,
-        optional = true,
-    },
-
-    { -- Override: telescope.nvim
-        -- Reason: better keymaps
-        "nvim-telescope/telescope.nvim",
-        opts = function(_, opts)
-            opts.defaults.file_ignore_patterns = {
-                "node_modules", -- ignore node packages
-                "vendor", -- ignore bundled gems
-            }
-            opts.defaults.mappings.i = vim.tbl_extend("force", opts.defaults.mappings.i, {
-                ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
-                ["<c-j>"] = { "<esc>", type = "command" },
-                ["<c-u>"] = false,
-            })
-        end,
-        optional = true,
+                ]],
+                },
+                formats = {
+                    header = { "%s", align = "left" },
+                },
+            },
+            picker = {
+                sources = {
+                    files = {
+                        exclude = {
+                            "node_modules",
+                            "public/images",
+                            "vendor/assets",
+                            "vendor/bundle",
+                        },
+                    },
+                },
+            },
+        },
     },
 
     { -- Disabled: bufferline.nvim
@@ -371,14 +368,6 @@ return {
     { -- Disabled: catppuccin
         -- Reason: prefer kanagawa.nvim theme
         "catppuccin",
-        enabled = false,
-    },
-
-    { -- Disabled: Grapple.nvim (Rust edition)
-        -- Reason: an experiment
-        "cbochs/grapple-native.nvim",
-        name = "grapple_native",
-        dev = true,
         enabled = false,
     },
 
