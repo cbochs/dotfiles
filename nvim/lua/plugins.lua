@@ -378,6 +378,34 @@ return {
                     },
                 },
             },
+            styles = {
+                zen_custom = {
+                    enter = true,
+                    fixbuf = false,
+                    minimal = false,
+                    width = 0.5,
+                    height = 0,
+                    backdrop = { transparent = true, blend = 40 },
+                    keys = { q = "close" },
+                    zindex = 40,
+                    wo = {
+                        winhighlight = "NormalFloat:Normal",
+                    },
+                    w = {
+                        snacks_main = true,
+                    },
+                },
+            },
+            zen = {
+                toggles = {
+                    dim = false,
+                    git_signs = true,
+                    mini_diff_signs = true,
+                },
+                win = {
+                    style = "zen_custom",
+                },
+            },
         },
     },
 
