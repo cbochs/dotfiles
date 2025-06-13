@@ -1,5 +1,10 @@
 return {
     {
+        "williamboman/mason-lspconfig.nvim",
+        branch = "v1.x",
+    },
+
+    {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
