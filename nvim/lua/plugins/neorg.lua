@@ -2,18 +2,17 @@ return {
     {
         "nvim-neorg/neorg",
         dependencies = {
-            "vhyrro/luarocks.nvim",
-            priority = 1000,
-            config = true,
+            "benlubas/neorg-interim-ls",
         },
         version = "*", -- Pin Neorg to the latest stable release
         ft = "norg",
         cmd = "Neorg",
         keys = {
-            { "<leader>ni", "<cmd>Neorg index<cr>", desc = "Index" },
-            { "<leader>nj", "<cmd>Neorg journal today<cr>", desc = "Journal" },
-            { "<leader>nr", "<cmd>Neorg return<cr>", desc = "Return" },
-            { "<leader>ns", "<cmd>Neorg sync-parsers<cr>", desc = "Sync parsers" },
+            -- <Plug>(neorg.keybind-name)
+            { "<leader>ni", "<Plug>(neorg.index)", desc = "Index" },
+            { "<leader>nj", "<Plug>(neorg.journal.today)", desc = "Journal" },
+            { "<leader>nr", "<Plug>(neorg.return)", desc = "Return" },
+            { "<leader>ns", "<Plug>(neorg.sync)", desc = "Sync parsers" },
         },
         opts = {
             load = {
@@ -50,9 +49,7 @@ return {
                     config = {
                         completion_provider = {
                             enable = true,
-                            -- show file contents as documentation when you complete a file name
                             documentation = true,
-                            -- Try to complete categories. Requires benlubas/neorg-se
                             categories = false,
                         },
                     },

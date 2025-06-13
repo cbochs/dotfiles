@@ -19,7 +19,6 @@ function H.defer()
     H.au({ "BufNewFile", "BufRead" }, { "docker-compose*" }, H.opt_local("filetype", "yaml"))
 
     H.au("BufEnter", { "plugins.lua" }, H.require("config.commands")) -- SortSpec
-    H.au("BufEnter", { "todo.norg" },   "norm zM")
     -- stylua: ignore end
 end
 
