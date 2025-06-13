@@ -10,6 +10,18 @@ return {
     },
 
     {
+        "neo451/feed.nvim",
+        cmd = "Feed",
+        opts = {
+            feeds = {
+                "dagger/dagger/releases",
+                "https://fasterthanli.me/index.xml",
+                "https://neovim.io/news.xml",
+            },
+        },
+    },
+
+    {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
