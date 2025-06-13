@@ -2,6 +2,7 @@
 set -g fish_greeting
 
 # Plugins
+mise activate fish | source
 zoxide init fish | source
 
 # Abbreviations
@@ -11,13 +12,12 @@ abbr -a l eza
 abbr -a n nvim
 abbr -a s ssh
 abbr -a v nvim
+abbr -a d dagger call
 
 abbr -a lg lazygit
+abbr -a ls eza
 abbr -a ll eza -l
-abbr -a lll eza -la
-
-abbr -a tm terramate
-abbr -a dm dagger call -i -m
+abbr -a lll eza -lah
 
 abbr -a g git
 abbr -a gb git branch
@@ -40,6 +40,9 @@ abbr -a dc docker compose
 abbr -a di docker image
 abbr -a dv docker volume
 
+abbr -a tf terraform
+abbr -a tm terramate
+
 abbr -a p docker compose exec portal
 abbr -a j bin/janus-setup
 
@@ -47,18 +50,19 @@ alias dive ~/git_personal/dive/dive-cli
 
 # Bindings
 function fish_user_key_bindings
-    bind -M insert \cz 'fg &>/dev/null'
-    bind -M insert \cj backward-word
-    bind -M insert \ck forward-word
+    # Execute this once per mode which emacs bindings should be used in
+    fish_default_key_bindings
 
-    # Execute this once per mode that emacs bindings should be used in
-    fish_default_key_bindings -M insert
+    bind \cz 'fg &>/dev/null'
+    bind \cj backward-word
+    bind \ck forward-word
 
-    # Then execute the vi-bindings so they take precedence when there's a conflict.
-    # Without --no-erase fish_vi_key_bindings will default to
+    # Then execute the vi-bindings so they take precedence when there's a
+    # conflict. Without --no-erase fish_vi_key_bindings will default to
     # resetting all bindings.
+    #
     # The argument specifies the initial mode (insert, "default" or visual).
-    fish_vi_key_bindings --no-erase insert
+    # fish_vi_key_bindings --no-erase insert
 end
 
 # Paths
@@ -79,7 +83,10 @@ fish_add_path /opt/homebrew/bin
 # Path: rust and cargo binaries
 fish_add_path $HOME/.cargo/bin
 
-# Path: pipx binaries
+# Path: go binaries
+fish_add_path $HOME/go/bin
+
+# Path: local binaries
 fish_add_path $HOME/.local/bin
 
 # Path: neovim bob binaries
@@ -141,11 +148,12 @@ set -g __fish_git_prompt_showupstream none
 set -g fish_prompt_pwd_dir_length 3
 
 function fish_prompt
-    if [ $fish_bind_mode != insert ]
-        set_color yellow
-    else
-        set_color brblack
-    end
+    # if [ $fish_bind_mode != insert ]
+    #     set_color yellow
+    # else
+    #     set_color brblack
+    # end
+    set_color brblack
 
     echo -n "["(date "+%H:%M")"] "
     set_color blue
@@ -162,5 +170,3 @@ function fish_prompt
     echo -n '| '
     set_color normal
 end
-
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
