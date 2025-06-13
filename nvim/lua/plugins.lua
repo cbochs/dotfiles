@@ -5,6 +5,11 @@ return {
     },
 
     {
+        "terrastruct/d2-vim",
+        ft = "d2",
+    },
+
+    {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
