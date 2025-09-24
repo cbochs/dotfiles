@@ -1,12 +1,14 @@
-/*
+/**/*
 
 !README.md
+!aerospace
 !alacritty
 !amethyst
 !bob
+!git/config
 !fish
 !helix
-!karabiner
+!karabiner/karabiner.json
 !lazygit
 !nix-darwin
 !nvim
@@ -16,11 +18,6 @@
 !zellij
 !zsh
 !zsh-abbr
-
-karabiner/*
-!karabiner/karabiner.json
-
-zsh/*
 !zsh/.zshenv
 !zsh/.zshrc
 !zsh/fresh-install.zsh
