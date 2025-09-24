@@ -98,7 +98,7 @@ return {
     },
 
     { -- mini.trailspace
-        "echasnovski/mini.trailspace",
+        "nvim-mini/mini.trailspace",
         opts = {},
         event = { "BufReadPost", "BufNewFile" },
     },
@@ -252,7 +252,7 @@ return {
 
     { -- Override: mini.pairs
         -- Reason: no auto pairs during search
-        "echasnovski/mini.pairs",
+        "nvim-mini/mini.pairs",
         opts = {
             modes = {
                 command = false,
@@ -423,13 +423,13 @@ return {
 
     { -- Disabled: mini.bracketed
         -- Reason: unused
-        "echasnovski/mini.bracketed",
+        "nvim-mini/mini.bracketed",
         enabled = false,
     },
 
     { -- Disabled: mini.surround
         -- Reason: prefer nvim-surround
-        "echasnovski/mini.surround",
+        "nvim-mini/mini.surround",
         enabled = false,
     },
 
