@@ -1,7 +1,18 @@
 return {
     {
-        "williamboman/mason-lspconfig.nvim",
-        branch = "v1.x",
+        "nvim-treesitter/nvim-treesitter",
+        opts = function(_, opts)
+            table.insert(opts.ensure_installed, "fish")
+        end,
+    },
+
+    {
+        "dmtrKovalenko/fff.nvim",
+        build = "cargo build --release",
+        -- stylua: ignore
+        keys = {
+            { "ff", function() require("fff").find_files() end, desc = "Open file picker" },
+        },
     },
 
     {
@@ -339,7 +350,8 @@ return {
         optional = true,
     },
 
-    {
+    { -- Override: snacks.nvim
+        -- Reason: c&h dashboard header
         -- Reason: use "/" instead of "g" for search
         "folke/snacks.nvim",
         opts = {
