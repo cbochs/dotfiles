@@ -36,17 +36,15 @@ abbr -a grm git rebase master
 abbr -a grmm git rebase main
 
 abbr -a d docker
-abbr -a dc docker compose
+abbr -a dc docker container
 abbr -a di docker image
 abbr -a dv docker volume
 
 abbr -a tf terraform
 abbr -a tm terramate
 
-abbr -a p docker compose exec portal
-abbr -a j bin/janus-setup
-
 alias dive ~/git_personal/dive/dive-cli
+alias pass gopass
 
 # Bindings
 function fish_user_key_bindings

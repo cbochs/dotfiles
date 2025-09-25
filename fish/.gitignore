@@ -2,4 +2,4 @@ completions
 fish_variables
 functions
 
-conf.d/env.fish
+conf.d/work.fish
