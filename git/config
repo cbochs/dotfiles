@@ -1,0 +1,24 @@
+[user]
+	name = cbochs
+[core]
+	editor = nvim
+[alias]
+	st = status --short --branch -M
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[include]
+	path = config-personal
+[includeIf "gitdir:~/git/"]
+	path = config-work
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[init]
+	defaultBranch = main

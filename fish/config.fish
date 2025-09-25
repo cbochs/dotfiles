@@ -117,10 +117,6 @@ set -gx LG_CONFIG_FILE $HOME/.config/lazygit/config.yml
 # Neovim Bob Config
 set -gx BOB_CONFIG $HOME/.config/bob/config.toml
 
-# Neovim Runtime (from "nvim -V1 -v")
-# set -gx VIMRUNTIME (nvim-lua "vim.env.VIMRUNTIME")
-# set -gx VIMRUNTIME $HOME/.local/share/bob/nightly/nvim-macos-arm64/share/nvim/runtime
-
 # Helix Runtime
 set -gx HELIX_RUNTIME $HOME/git/helix/runtime
 
