@@ -18,6 +18,7 @@ abbr -a lg lazygit
 abbr -a ls eza
 abbr -a ll eza -l
 abbr -a lll eza -lah
+abbr -a pas pass
 
 abbr -a g git
 abbr -a gb git branch
