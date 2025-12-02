@@ -37,7 +37,7 @@ abbr -a grm git rebase master
 abbr -a grmm git rebase main
 
 abbr -a d docker
-abbr -a dc docker container
+abbr -a dc docker compose
 abbr -a di docker image
 abbr -a dv docker volume
 
