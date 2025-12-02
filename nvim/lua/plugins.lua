@@ -1,5 +1,14 @@
 return {
     {
+        "folke/sidekick.nvim",
+        opts = {
+            nes = {
+                enabled = false,
+            },
+        },
+    },
+
+    {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             table.insert(opts.ensure_installed, "fish")
