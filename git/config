@@ -1,5 +1,6 @@
 [user]
 	name = cbochs
+	email = calvin.bochulak@gmail.com
 [core]
 	editor = nvim
 [alias]
