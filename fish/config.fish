@@ -48,6 +48,8 @@ abbr -a dv docker volume
 abbr -a tf terraform
 abbr -a tm terramate
 
+abbr -a bu "brew upgrade (brew list --installed-on-request) (brew list --cask -1 | grep -v 'balenaetcher')"
+
 alias dive ~/git_personal/dive/dive-cli
 alias pass gopass
 
