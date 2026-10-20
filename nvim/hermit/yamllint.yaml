@@ -1,0 +1,11 @@
+---
+extends: default
+rules:
+  line-length:
+    level: warning
+    max: 300
+    allow-non-breakable-inline-mappings: true
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 0
