@@ -21,6 +21,8 @@ config = {
 
     leader = { key = "b", mods = "CTRL" },
     keys = {
+        { key = " ", mods = "CTRL", action = wezterm.action.SendKey({ key = " ", mods = "CTRL" }) },
+
         -- Some easy leaderless bindings
         { key = "\\", mods = "CMD", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
         { key = "-", mods = "CMD", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
