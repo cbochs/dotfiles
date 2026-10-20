@@ -6,7 +6,7 @@ export PATH="$PATH:/Users/calvin/.docker/bin"
 set -g fish_greeting ""
 
 # Plugins
-mise activate fish | source
+# mise activate fish | source
 zoxide init fish | source
 
 # Abbreviations
