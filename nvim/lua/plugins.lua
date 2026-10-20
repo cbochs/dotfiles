@@ -16,15 +16,6 @@ return {
     },
 
     {
-        "dmtrKovalenko/fff.nvim",
-        build = "cargo build --release",
-        -- stylua: ignore
-        keys = {
-            { "ff", function() require("fff").find_files() end, desc = "Open file picker" },
-        },
-    },
-
-    {
         "terrastruct/d2-vim",
         ft = "d2",
     },
@@ -33,7 +24,19 @@ return {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
-                ruby_lsp = { mason = false },
+                -- Reference: https://ansible-language-server.readthedocs.io/en/latest/settings/
+                ansiblels = {
+                    settings = {
+                        ansible = {
+                            python = {
+                                activationScript = ".venv/bin/activate",
+                            },
+                        },
+                    },
+                },
+                ruby_lsp = {
+                    mason = false,
+                },
             },
         },
     },
@@ -80,7 +83,7 @@ return {
     },
 
     { -- grapple.nvim
-        "cbochs/grapple.nvim",
+        "cbochs/elpparg.nvim",
         enabled = true,
         opts = {
             scope = "git_branch",
@@ -92,16 +95,19 @@ return {
         },
         event = { "BufReadPost", "BufNewFile" },
         cmd = "Grapple",
+        -- stylua: ignore
         keys = {
-            { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
-            { "<leader>K", "<cmd>Grapple toggle_loaded<cr>", desc = "Grapple toggle loaded" },
-            { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
-            { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
-            { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
-            { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
-            { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
-            { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
-            { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
+            { "<leader>m", function() require("elpparg").tag() end, desc = "Grapple toggle tag" },
+            { "<leader>k", function() require("elpparg").open() end, desc = "Grapple open tag list" },
+            -- { "<leader>k", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple toggle tags" },
+            -- { "<leader>K", "<cmd>Grapple toggle_loaded<cr>", desc = "Grapple toggle loaded" },
+            -- { "<leader>j", "<cmd>Grapple cycle forward<cr>", desc = "Grapple cycle forward" },
+            -- { "<leader>J", "<cmd>Grapple cycle backward<cr>", desc = "Grapple cycle backward" },
+            -- { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Grapple select 1" },
+            -- { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Grapple select 2" },
+            -- { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 3" },
+            -- { "<leader>4", "<cmd>Grapple select index=3<cr>", desc = "Grapple select 4" },
+            -- { "<leader>m", "<cmd>Grapple toggle<cr>", desc = "Grapple toggle tag" },
         },
     },
 
@@ -152,18 +158,6 @@ return {
             { "zR", "<cmd>lua require('ufo').openAllFolds()<cr>", desc = "Open folds" },
             { "zM", "<cmd>lua require('ufo').closeAllFolds()<cr>", desc = "Close folds" },
         },
-    },
-
-    { -- nvim-surround
-        "kylechui/nvim-surround",
-        enabled = true,
-        opts = {
-            keymaps = {
-                visual = "gs",
-                visual_line = "gS",
-            },
-        },
-        event = "VeryLazy",
     },
 
     { -- luasnip
@@ -268,30 +262,10 @@ return {
         },
     },
 
-    { -- Override: flash.nvim
-        -- Reason: remove ";" char, disable backdrop
+    { -- Disabled: flash.nvim
+        -- Reason: Not used
         "folke/flash.nvim",
-        opts = {
-            labels = "asdfghjkl",
-            search = {
-                mode = "fuzzy",
-            },
-            highlight = {
-                backdrop = false,
-            },
-            modes = {
-                search = {
-                    enabled = false,
-                },
-                char = {
-                    keys = { "f", "F", "t", "T", "," },
-                    highlight = {
-                        backdrop = false,
-                    },
-                },
-            },
-        },
-        optional = true,
+        enabled = false,
     },
 
     { -- Override: noice.nvim
@@ -433,12 +407,6 @@ return {
     { -- Disabled: mini.bracketed
         -- Reason: unused
         "nvim-mini/mini.bracketed",
-        enabled = false,
-    },
-
-    { -- Disabled: mini.surround
-        -- Reason: prefer nvim-surround
-        "nvim-mini/mini.surround",
         enabled = false,
     },
 
