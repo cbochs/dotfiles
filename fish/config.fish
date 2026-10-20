@@ -3,7 +3,7 @@ export PATH="$PATH:/Users/calvin/.docker/bin"
 # End of Docker Desktop section.
 
 # Remove default greeting
-set -g fish_greeting
+set -g fish_greeting ""
 
 # Plugins
 mise activate fish | source
