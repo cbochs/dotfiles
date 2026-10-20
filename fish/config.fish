@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/calvin/.docker/bin"
+# End of Docker Desktop section.
+
 # Remove default greeting
 set -g fish_greeting
 
