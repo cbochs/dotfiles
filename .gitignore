@@ -1,11 +1,6 @@
 /*
 
-!aerospace/
-!alacritty/
-!amethyst/
 !bob/
-!fish/
-!git/
 !helix/
 !karabiner/
 !lazygit/
@@ -15,7 +10,6 @@
 !wezterm/
 !zellij/
 !zsh-abbr/
-!zsh/
 
 !README.md
 !starship.toml
