@@ -38,17 +38,55 @@ map({ 'n' },      '<leader>\\', '<c-w>v', { desc = 'Split vertically' })
 map({ 'n' },      '<leader>-',  '<c-w>s', { desc = 'Split horizontally' })
 map({ 'n', 'x' }, '<leader>y',  '"+y',    { desc = 'Copy to system clipboard' })
 
--- Custom toggles
-Config.toggles = {
-  format = true,
-}
+-- Custom toggles =============================================================
 
-local function toggle(key)
-  Config.toggles[key] = not Config.toggles[key]
-  vim.print('Toggling ' .. key .. ' to ' .. tostring(Config.toggles[key]))
+local function set_toggle(toggle)
+    local get = function() return toggle.tbl[toggle.opt] end
+    local set = function(v) toggle.tbl[toggle.opt] = v; return v end
+    local tog = function()
+      local new_state = set(not get())
+      vim.print('Toggled ' .. toggle.opt .. ': ' .. tostring(new_state))
+    end
+    toggle.enabled = get
+
+    nmap('<leader>u'     .. toggle.key, tog, 'Toggled ' .. toggle.opt)
+    nmap('<localleader>' .. toggle.key, tog, 'Toggled ' .. toggle.opt)
 end
 
-nmap('<leader>uf', function() toggle('format') end, 'Toggle formatting')
+vim.g.autoformat = true
+
+Config.toggles = {
+  format   = { key = 'f', opt = 'autoformat',     tbl = vim.g },
+  number   = { key = 'n', opt = 'number',         tbl = vim.o },
+  relative = { key = 'r', opt = 'relativenumber', tbl = vim.o },
+  wrap     = { key = 'w', opt = 'wrap',           tbl = vim.o },
+}
+
+vim.tbl_map(set_toggle, Config.toggles)
+
+-- Custom marks ===============================================================
+
+local function set_mark(mark)
+    local jump =
+      mark.kind == 'mark' and function() vim.cmd.edit(vim.fs.joinpath(vim.fn.getcwd(), mark.path)) end or
+      mark.kind == 'pick' and function()
+        vim.schedule(function()
+          MiniPick.set_picker_query(vim.split(mark.path, ''))
+        end)
+        MiniPick.builtin.files()
+      end or
+      mark.kind == 'file' and ''
+
+    nmap('\'' .. mark.key, jump, mark.desc)
+end
+
+Config.marks = {
+  { key = 'r', path = 'README.md',      kind = 'mark', desc = 'Repo README.md' },
+  { key = 'R', path = 'README.md',      kind = 'pick', desc = 'All README.md' },
+  { key = 'g', path = '.gitlab-ci.yml', kind = 'mark', desc = 'Repo .gitlab-ci.yml' }
+}
+
+vim.tbl_map(set_mark, Config.marks)
 
 -- Leader mappings ============================================================
 

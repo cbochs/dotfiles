@@ -206,7 +206,7 @@ later(function()
   })
 
   local pre_write = function(args)
-    if Config.toggles.format then
+    if vim.g.autoformat then
       MiniTrailspace.trim()
       MiniTrailspace.trim_last_lines()
 
