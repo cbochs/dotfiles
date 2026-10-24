@@ -1,0 +1,2 @@
+# Bob does not respect XDG on macOS
+downloads_location = "$HOME/.local/share/bob"
