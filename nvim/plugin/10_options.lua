@@ -1,6 +1,7 @@
 -- stylua: ignore start
 
-vim.g.mapleader = ' ' -- Use `<Space>` as <Leader> key
+vim.g.mapleader   = ' '  -- Use `<Space>` as <Leader> key
+vim.g.localleader = '\\' -- Use `\` as <LocalLeader> key
 
 -- General ====================================================================
 vim.o.mouse     = 'a'                              -- Enable mouse
