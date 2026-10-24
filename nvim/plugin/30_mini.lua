@@ -170,6 +170,7 @@ now_if_args(function()
     -- Use `g?` to see available bookmarks
     MiniFiles.set_bookmark('c', vim.fn.stdpath('config'), { desc = 'Config' })
     MiniFiles.set_bookmark('w', vim.fn.getcwd, { desc = 'Working directory' })
+    MiniFiles.set_bookmark('x', '/etc/nix-darwin', { desc = 'Nix config' })
   end
   Config.new_autocmd('User', 'MiniFilesExplorerOpen', add_marks, 'Add bookmarks')
 
