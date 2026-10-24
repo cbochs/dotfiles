@@ -24,11 +24,27 @@ map({ 'n', 'v' }, ';', ':',                          { desc = 'Command-line mode
 map({ 'n', 'x' }, 'j', 'v:count == 0 ? "gj" : "j"',  { desc = 'Down', expr = true, silent = true }) -- Handle wrapped lines
 map({ 'n', 'x' }, 'k', 'v:count == 0 ? "gk" : "k"',  { desc = 'Up',   expr = true, silent = true }) -- Handle wrapped lines
 
-map({ 'n' }, 'U',  '<c-r>',                                                     { desc = 'Redo' })        -- Helix-like
-map({ 'n' }, 'gl', '$',                                                         { desc = 'Line end' })    -- Helix-like
-map({ 'n' }, 'gh', '^',                                                         { desc = 'Line start' })  -- Helix-like
+-- Skip using buffer name for scratch files (like mini.starter buffer)
+local open_files = function()
+  local buf_ft = vim.o.filetype
+  local is_files = buf_ft == 'minifiles'
+  local is_start = buf_ft == 'ministarter'
+
+  if is_files then
+    MiniFiles.go_out()
+  else
+    local buf_ty = vim.bo.buftype
+    local is_scratch = buf_ty == 'help' or buf_ty == 'quickfix'
+    local use_buf = not is_start and not is_scratch
+    MiniFiles.open(use_buf and vim.api.nvim_buf_get_name(0) or nil)
+  end
+end
+
+map({ 'n' }, 'U',  '<c-r>',                                                     { desc = 'Redo' })       -- Helix-like
+map({ 'n' }, 'gl', '$',                                                         { desc = 'Line end' })   -- Helix-like
+map({ 'n' }, 'gh', '^',                                                         { desc = 'Line start' }) -- Helix-like
 map({ 'n' }, 'gj', '<cmd>TSJToggle<cr>',                                        { desc = 'Split-join' }) -- Prefer treesj over mini.splitjoin
-map({ 'n' }, '-',  '<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>', { desc = 'Explore files' })
+map({ 'n' }, '-',  open_files,                                                  { desc = 'Explore files' })
 map({ 'n' }, 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>',                     { desc = 'Go to definition' })
 
 map({ 'x' }, '<', '<gv', { desc = 'Decrease indent' }) -- Re-apply selection

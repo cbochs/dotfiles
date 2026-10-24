@@ -105,6 +105,9 @@ now(function()
     content_hooks = {
       starter.gen_hook.aligning('center', 'center'),
     },
+    -- Default: 'abcdefghijklmnopqrstuvwxyz0123456789_-.'
+    -- Removed: '-'
+    query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
   })
 end)
 
