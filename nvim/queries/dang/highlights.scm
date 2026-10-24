@@ -13,7 +13,6 @@
   (scalar_token)
   (if_token)
   (else_token)
-  (for_token)
   (break_token)
   (continue_token)
   (case_token)
@@ -23,6 +22,7 @@
   (new_token)
   (try_token)
   (catch_token)
+  (rescue_token)
   (raise_token)
   (return_token)
 
@@ -49,6 +49,7 @@
 (multi_template
   (lang_tag_part (lang_tag_name) @label))
 (int) @number
+(float) @number.float
 (boolean) @boolean
 (null) @constant.builtin
 
@@ -73,16 +74,27 @@
   (bang_token)
   (arrow_token)
   (ampersand_token)
+  (equality_op)
+  (relational_op)
+  (additive_op)
+  (multiplicative_op)
+  (double_colon_token)
 ] @operator
+
+(unary_expr "!" @operator)
 
 ["{{" "}}" "{" "}" "[" "]" "(" ")"] @punctuation.bracket
 
 [
   (comma_token)
+  (semi_token)
   (dot_token)
+  (colon_token)
 ] @punctuation.delimiter
 
 ["@" "|"] @punctuation.special
+
+(spread_token) @punctuation.special
 
 ;; Whitespace before `${` is parsed as part of the interpolation token because
 ;; whitespace is normally an extra; keep that prefix highlighted as string.
@@ -122,7 +134,9 @@
 
 ;; Identifiers
 (symbol) @variable
+(auto_call_symbol (id) @variable)
 (call (symbol) @function.call)
+(symbol_block (symbol) @function.call)
 
 ;; Key-value pairs
 (key_value
@@ -131,10 +145,10 @@
 ;; Built-in functions
 ((call
   (symbol) @function.builtin)
-  (#match? @function.builtin "^(assert|print|toJSON|toString)$"))
+  (#match? @function.builtin "^(assert|print|loop|toJSON|toString)$"))
 ((symbol_block
   (symbol) @function.builtin)
-  (#match? @function.builtin "^(assert|print|toJSON|toString)$"))
+  (#match? @function.builtin "^(assert|print|loop|toJSON|toString)$"))
 
 ;; Field selections
 (select_or_call
@@ -149,6 +163,8 @@
 
 ;; Field definitions
 (type_and_block_field
+  (symbol) @function.method)
+(type_and_args_field
   (symbol) @function.method)
 (type_and_args_and_block_field
   (symbol) @function.method)
@@ -167,6 +183,8 @@
 (arg_with_type
   (symbol) @variable.parameter)
 (arg_with_default
+  (symbol) @variable.parameter)
+(block_param
   (symbol) @variable.parameter)
 
 ;; Type definitions
