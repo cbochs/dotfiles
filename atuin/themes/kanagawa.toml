@@ -1,0 +1,24 @@
+# Kanagawa Wave palette, adapted for Atuin's semantic foreground colors.
+# Palette reference: https://github.com/rebelot/kanagawa.nvim
+
+[theme]
+name = "kanagawa"
+parent = "default"
+
+[colors]
+AlertInfo = "#7E9CD8"      # crystalBlue
+AlertWarn = "#E6C384"      # carpYellow
+# AlertError = "#C34043"     # autumnRed
+AlertError = "#E6C384"     # autumnRed
+Annotation = "#C8C093"     # oldWhite
+Base = "#DCD7BA"           # fujiWhite
+Guidance = "#7FB4CA"       # springBlue
+Important = "#FFA066"      # surimiOrange
+Title = "#957FB8"          # oniViolet
+Muted = "#727169"          # fujiGray
+SyntaxCommand = "#7AA89F"  # waveAqua2
+SyntaxFlag = "#957FB8"     # oniViolet
+SyntaxString = "#E6C384"   # carpYellow
+SyntaxVariable = "#D27E99" # sakuraPink
+SyntaxOperator = "#7E9CD8" # crystalBlue
+SyntaxComment = "#6A9589"  # waveAqua1

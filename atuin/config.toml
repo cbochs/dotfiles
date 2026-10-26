@@ -1,0 +1,23 @@
+command_chaining = true
+ctrl_n_shortcuts = true
+dialect = "uk" # date format
+enter_accept = false
+inline_height = 9
+invert = true
+prefers_reduced_motion = true
+show_help = false
+show_tabs = false
+style = "compact"
+workspaces = true
+
+[stats]
+# TODO: look at later
+
+[theme]
+name = "kanagawa"
+
+[search]
+filters = ["global", "workspace"]
+
+[ui]
+columns = ["duration", "command"]
