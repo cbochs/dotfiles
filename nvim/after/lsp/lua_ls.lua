@@ -32,7 +32,9 @@ return {
           'MiniKeymap',
           'MiniMisc',
           'MiniPick',
+          'MiniSessions',
           'MiniSnippets',
+          'MiniVisits',
         },
       },
       -- Define runtime properties. Use 'LuaJIT', as it is built into Neovim.
