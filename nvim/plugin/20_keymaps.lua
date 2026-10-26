@@ -40,12 +40,12 @@ local open_files = function()
   end
 end
 
-map({ 'n' }, 'U',  '<c-r>',                                                     { desc = 'Redo' })       -- Helix-like
-map({ 'n' }, 'gl', '$',                                                         { desc = 'Line end' })   -- Helix-like
-map({ 'n' }, 'gh', '^',                                                         { desc = 'Line start' }) -- Helix-like
-map({ 'n' }, 'gj', '<cmd>TSJToggle<cr>',                                        { desc = 'Split-join' }) -- Prefer treesj over mini.splitjoin
-map({ 'n' }, '-',  open_files,                                                  { desc = 'Explore files' })
-map({ 'n' }, 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>',                     { desc = 'Go to definition' })
+map({ 'n' }, 'U',  '<c-r>',                                 { desc = 'Redo' })       -- Helix-like
+map({ 'n' }, 'gl', '$',                                     { desc = 'Line end' })   -- Helix-like
+map({ 'n' }, 'gh', '^',                                     { desc = 'Line start' }) -- Helix-like
+map({ 'n' }, 'gj', '<cmd>TSJToggle<cr>',                    { desc = 'Split-join' }) -- Prefer treesj over mini.splitjoin
+map({ 'n' }, '-',  open_files,                              { desc = 'Explore files' })
+map({ 'n' }, 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = 'Go to definition' })
 
 map({ 'x' }, '<', '<gv', { desc = 'Decrease indent' }) -- Re-apply selection
 map({ 'x' }, '>', '>gv', { desc = 'Increase indent' }) -- Re-apply selection
