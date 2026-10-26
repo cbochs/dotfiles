@@ -84,22 +84,32 @@ vim.tbl_map(set_toggle, Config.toggles)
 
 local function set_mark(mark)
     local jump =
-      mark.kind == 'mark' and function() vim.cmd.edit(vim.fs.joinpath(vim.fn.getcwd(), mark.path)) end or
-      mark.kind == 'pick' and function()
+      -- Act like a normal mark
+      mark.kind == 'mark' and function()
+          vim.cmd.edit(vim.fs.joinpath(vim.fn.getcwd(), mark.path))
+      end or
+      -- Open MiniPick picker with a pre-populated query
+      mark.kind == 'minipick' and function()
         vim.schedule(function()
           MiniPick.set_picker_query(vim.split(mark.path, ''))
         end)
         MiniPick.builtin.files()
       end or
-      mark.kind == 'file' and ''
+      -- Open MiniFiles explorer and navigate to a directory
+      mark.kind == 'minifiles' and function()
+          local path = type(mark.path) == 'function' and mark.path() or mark.path
+          MiniFiles.open(path)
+      end
 
     nmap('\'' .. mark.key, jump, mark.desc)
 end
 
 Config.marks = {
-  { key = 'r', path = 'README.md',      kind = 'mark', desc = 'Repo README.md' },
-  { key = 'R', path = 'README.md',      kind = 'pick', desc = 'All README.md' },
-  { key = 'g', path = '.gitlab-ci.yml', kind = 'mark', desc = 'Repo .gitlab-ci.yml' }
+  { key = 'R', path = 'README.md',       kind = 'minipick',  desc = 'Search for README.md' },
+  { key = 'g', path = '.gitlab-ci.yml',  kind = 'mark',      desc = 'Open .gitlab-ci.yml' },
+  { key = 'r', path = 'README.md',       kind = 'mark',      desc = 'Open README.md' },
+  { key = 'w', path = vim.fn.getcwd,     kind = 'minifiles', desc = 'Explore working directory' },
+  { key = 'x', path = '/etc/nix-darwin', kind = 'minifiles', desc = 'Explore nix config' }
 }
 
 vim.tbl_map(set_mark, Config.marks)
