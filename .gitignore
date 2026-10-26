@@ -2,14 +2,8 @@
 
 !atuin/
 !bob/
-!helix/
-!karabiner/
-!nix-darwin/
 !nvim/
 !tmux/
-!wezterm/
-!zellij/
 !zsh-abbr/
 
 !README.md
-!starship.toml
