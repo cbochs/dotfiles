@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "b72ed05dd452690181837d484984144a64709f17",
+      "rev": "1e4cb39b9200950dca1cbc4d630c60c16eb8e7e4",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "conform.nvim": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
+      "rev": "d4854fa9a94b5c8b37dd209fb4a19e98e764186f",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "kanagawa.nvim": {
@@ -25,11 +25,11 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "kulala.nvim": {
-      "rev": "5bdb80c55412792aaaa590df96ff1dae6dacf01d",
+      "rev": "125751ea9f41c1ee966c5c7e3032e3539dd2f33e",
       "src": "https://github.com/mistweaverco/kulala.nvim.git"
     },
     "mini.nvim": {
-      "rev": "e4e61006afcf6b399924e64b43c1168fca7b4301",
+      "rev": "ed8683521996657ce774e5eec9d2f9b1b5ecef82",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "nvim-bqf": {
@@ -41,11 +41,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
+      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -67,7 +67,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "schemastore.nvim": {
-      "rev": "7fca30f2890a6acf9d21d194876c6ac960d92070",
+      "rev": "067b472f6dbc04520982acc9ab14f27c68195c70",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "substitute.nvim": {
