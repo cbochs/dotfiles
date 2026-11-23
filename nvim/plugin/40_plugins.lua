@@ -170,7 +170,7 @@ later(function()
       jsonnet   = { 'jsonnetfmt' },
       lua       = { 'stylua' },
       markdown  = { 'mdformat' },
-      python    = { 'ruff' },
+      python    = { 'ruff_format' },
       rust      = { 'rustfmt' },
       sh        = { 'shfmt' },
       terraform = { 'terraform_fmt' },
