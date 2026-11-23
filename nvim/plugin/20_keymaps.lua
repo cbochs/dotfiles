@@ -18,11 +18,9 @@ local xmap_leader = function(lhs, rhs, desc) vim.keymap.set('x', '<Leader>' .. l
 --
 -- Many general mappings are created by 'mini.basics'. See 'plugin/30_mini.lua'
 
-map({ 'i', 'v' }, '<c-j>', '<esc>',                  { desc = 'Escape' })
-map({ 'n', 's' }, '<esc>', '<cmd>:noh<cr>',          { desc = 'Escape (clear highlights)' })
-map({ 'n', 'v' }, ';', ':',                          { desc = 'Command-line mode'})
-map({ 'n', 'x' }, 'j', 'v:count == 0 ? "gj" : "j"',  { desc = 'Down', expr = true, silent = true }) -- Handle wrapped lines
-map({ 'n', 'x' }, 'k', 'v:count == 0 ? "gk" : "k"',  { desc = 'Up',   expr = true, silent = true }) -- Handle wrapped lines
+map({ 'i', 'v' }, '<c-j>', '<esc>',         { desc = 'Escape' })
+map({ 'n', 's' }, '<esc>', '<cmd>:noh<cr>', { desc = 'Escape (clear highlights)' })
+map({ 'n', 'v' }, ';',     ':',             { desc = 'Command-line mode'})
 
 -- Skip using buffer name for scratch files (like mini.starter buffer)
 local open_files = function()
@@ -56,29 +54,23 @@ map({ 'n', 'x' }, '<leader>y',  '"+y',    { desc = 'Copy to system clipboard' })
 
 -- Custom toggles =============================================================
 
-local function set_toggle(toggle)
-    local get = function() return toggle.tbl[toggle.opt] end
-    local set = function(v) toggle.tbl[toggle.opt] = v; return v end
-    local tog = function()
-      local new_state = set(not get())
-      vim.print('Toggled ' .. toggle.opt .. ': ' .. tostring(new_state))
-    end
-    toggle.enabled = get
-
-    nmap('<leader>u'     .. toggle.key, tog, 'Toggled ' .. toggle.opt)
-    nmap('<localleader>' .. toggle.key, tog, 'Toggled ' .. toggle.opt)
+-- Custom config toggles.
+--
+-- See also:
+-- - `;h MiniBasics.config.mappings` - list of toggleable options
+-- - https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua#L616
+local function map_toggle(lhs, opt)
+    local rhs = string.format(
+        "<cmd>lua vim.g.%s = not vim.g.%s; print(vim.g.%s and '  %s' or 'no%s')<cr>",
+        opt, opt, opt, opt, opt
+    )
+    nmap('<leader>u' .. lhs, rhs, "Toggle '" .. opt .. "'")
+    nmap('<localleader>' .. lhs, rhs, "Toggle '" .. opt .. "'")
 end
 
 vim.g.autoformat = true
 
-Config.toggles = {
-  format   = { key = 'f', opt = 'autoformat',     tbl = vim.g },
-  number   = { key = 'n', opt = 'number',         tbl = vim.o },
-  relative = { key = 'r', opt = 'relativenumber', tbl = vim.o },
-  wrap     = { key = 'w', opt = 'wrap',           tbl = vim.o },
-}
-
-vim.tbl_map(set_toggle, Config.toggles)
+map_toggle('f', 'autoformat')
 
 -- Custom marks ===============================================================
 
