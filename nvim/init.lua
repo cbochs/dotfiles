@@ -39,8 +39,3 @@ Config.on_packchanged = function(plugin_name, kinds, callback, desc)
   end
   Config.new_autocmd('PackChanged', '*', f, desc)
 end
-
--- Define custom toggles
---
-Config.toggles2 = {}
-Config.add_toggle = function(lhs, desc, get, set) end
