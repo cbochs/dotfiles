@@ -41,36 +41,62 @@ end
 map({ 'n' }, 'U',  '<c-r>',                                 { desc = 'Redo' })       -- Helix-like
 map({ 'n' }, 'gl', '$',                                     { desc = 'Line end' })   -- Helix-like
 map({ 'n' }, 'gh', '^',                                     { desc = 'Line start' }) -- Helix-like
-map({ 'n' }, 'gj', '<cmd>TSJToggle<cr>',                    { desc = 'Split-join' }) -- Prefer treesj over mini.splitjoin
+map({ 'n' }, 'gj', '<cmd>TSJToggle<cr>',                    { desc = 'Split-join' }) -- Prefer treesj over 'mini.splitjoin'
 map({ 'n' }, '-',  open_files,                              { desc = 'Explore files' })
 map({ 'n' }, 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = 'Go to definition' })
 
 map({ 'x' }, '<', '<gv', { desc = 'Decrease indent' }) -- Re-apply selection
 map({ 'x' }, '>', '>gv', { desc = 'Increase indent' }) -- Re-apply selection
 
-map({ 'n' },      '<leader>\\', '<c-w>v', { desc = 'Split vertically' })
-map({ 'n' },      '<leader>-',  '<c-w>s', { desc = 'Split horizontally' })
-map({ 'n', 'x' }, '<leader>y',  '"+y',    { desc = 'Copy to system clipboard' })
+map({ 'n' }, '<leader>\\', '<c-w>v', { desc = 'Split vertically' })
+map({ 'n' }, '<leader>-',  '<c-w>s', { desc = 'Split horizontally' })
+
+local open_zed_markdown_preview = function()
+  local path = vim.fn.expand('%:p')
+  local line = vim.fn.line('.')
+  vim.cmd('silent! update')
+  vim.system({ 'zed', '-n', path .. ':' .. line })
+end
+map({ 'n' }, '<leader>mp', open_zed_markdown_preview, { desc = 'Open markdown preview' })
 
 -- Custom toggles =============================================================
 
+local toggle_prefix = [[\]]
+
 -- Custom config toggles.
+--
+-- Toggles from 'mini.basics'.
+-- `b` - 'background'.
+-- `c` - 'cursorline'.
+-- `C` - 'cursorcolumn'.
+-- `d` - 'diagnostic' (via vim.diagnostic functions).
+-- `h` - 'hlsearch' (or v:hlsearch to be precise).
+-- `i` - 'ignorecase'.
+-- `l` - 'list'.
+-- `n` - 'number'.
+-- `r` - 'relativenumber'.
+-- `s` - 'spell'.
+-- `w` - 'wrap'.
 --
 -- See also:
 -- - `;h MiniBasics.config.mappings` - list of toggleable options
 -- - https://github.com/nvim-mini/mini.nvim/blob/main/lua/mini/basics.lua#L616
-local function map_toggle(lhs, opt)
-    local rhs = string.format(
-        "<cmd>lua vim.g.%s = not vim.g.%s; print(vim.g.%s and '  %s' or 'no%s')<cr>",
-        opt, opt, opt, opt, opt
-    )
-    nmap('<leader>u' .. lhs, rhs, "Toggle '" .. opt .. "'")
-    nmap('<localleader>' .. lhs, rhs, "Toggle '" .. opt .. "'")
+local function map_toggle(lhs, rhs, desc)
+    nmap(toggle_prefix .. lhs, rhs, desc)
+end
+
+local explore_quickfix = function()
+  vim.cmd(vim.fn.getqflist({ winid = true }).winid ~= 0 and 'cclose' or 'copen')
+end
+local explore_locations = function()
+  vim.cmd(vim.fn.getloclist(0, { winid = true }).winid ~= 0 and 'lclose' or 'lopen')
 end
 
 vim.g.autoformat = true
 
-map_toggle('f', 'autoformat')
+map_toggle('f', "<cmd>lua vim.g.autoformat = not vim.g.autoformat; print(vim.g.autoformat and '  autoformat' or 'noautoformat')<cr>", "Toggle 'autoformat'")
+map_toggle('q', explore_quickfix, "Toggle 'quickfix'")
+map_toggle('L', explore_locations, "Toggle 'locations'")
 
 -- Custom marks ===============================================================
 
@@ -136,20 +162,12 @@ nmap_leader('bs', new_scratch_buffer,                           'Scratch')
 local edit_plugin_file = function(filename)
   return string.format('<Cmd>edit %s/plugin/%s<CR>', vim.fn.stdpath('config'), filename)
 end
-local explore_quickfix = function()
-  vim.cmd(vim.fn.getqflist({ winid = true }).winid ~= 0 and 'cclose' or 'copen')
-end
-local explore_locations = function()
-  vim.cmd(vim.fn.getloclist(0, { winid = true }).winid ~= 0 and 'lclose' or 'lopen')
-end
 
 nmap_leader('ei', '<Cmd>edit $MYVIMRC<CR>',                 'Edit init.lua')
 nmap_leader('ek', edit_plugin_file('20_keymaps.lua'),       'Edit keymaps')
 nmap_leader('em', edit_plugin_file('30_mini.lua'),          'Edit mini config')
 nmap_leader('eo', edit_plugin_file('10_options.lua'),       'Edit options')
 nmap_leader('ep', edit_plugin_file('40_plugins.lua'),       'Edit plugins')
-nmap_leader('eq', explore_quickfix,                         'Explore quickfix')
-nmap_leader('eQ', explore_locations,                        'Explore location')
 nmap_leader('en', '<Cmd>lua MiniNotify.show_history()<CR>', 'Explore notifications')
 
 -- Section: f is for 'Fuzzy Find'. Common usage:
