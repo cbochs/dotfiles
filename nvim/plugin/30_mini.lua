@@ -571,7 +571,13 @@ end)
 -- - `:h MiniSurround-builtin-surroundings` - list of all supported surroundings
 -- - `:h MiniSurround-surrounding-specification` - examples of custom surroundings
 -- - `:h MiniSurround-vim-surround-config` - alternative set of action mappings
-later(function() require('mini.surround').setup() end)
+later(
+  function()
+    require('mini.surround').setup({
+      search_method = 'cover_or_next',
+    })
+  end
+)
 
 -- Highlight and remove trailspace.
 later(function() require('mini.trailspace').setup() end)
